@@ -55,7 +55,7 @@ src/
 ### Clone Repository
 
 ```bash
-git clone https://github.com/Umesh-React-Dev/flyness-nextJs.git
+git clone https://github.com/Umesh-React-Dev/flyness-nextjs.git
 ```
 
 ### Install Dependencies

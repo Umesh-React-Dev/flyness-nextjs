@@ -1,0 +1,137 @@
+@use "../../styles/variables" as *;
+
+.sideServices {
+  position: fixed;
+  top: 140px;
+  right: 0;
+  z-index: 105;
+
+  &__list {
+
+    flex-direction: column;
+    width: 52spx;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    overflow: visible;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background: #00bfb3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .6);
+  }
+
+  &__item {
+    position: relative;
+
+    &:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      bottom: 0;
+      height: 1px;
+      background: #5cd1ca;
+      pointer-events: none;
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 52px;
+    color: $color-white;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(0, 0, 0, 0.08);
+
+      .sideServices__tooltip {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) translateX(0);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-white;
+      outline-offset: -3px;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+
+  &__tooltip {
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    padding: 10px 14px;
+    background: #ffffff;
+    color: #000000;
+    font-family: $font-family;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    border-radius: 6px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease,
+      transform 0.2s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 9px 0 9px 10px;
+      border-color: transparent transparent transparent #ffffff;
+      filter: drop-shadow(2px 0 2px rgba(0, 0, 0, 0.08));
+    }
+  }
+
+  &__srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .sideServices {
+    &__list {
+      width: 44px;
+    }
+
+    &__link {
+      width: 44px;
+      height: 48px;
+    }
+  }
+}

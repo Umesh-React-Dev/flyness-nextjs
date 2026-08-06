@@ -36,6 +36,7 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    outline: none;
   }
 
   .logo {
@@ -54,6 +55,10 @@
       align-items: center;
       gap: 16px;
 
+      .searchControl {
+        position: relative;
+      }
+
       .searchButton {
         display: flex;
         align-items: center;
@@ -63,9 +68,71 @@
         border: none;
         cursor: pointer;
         color: $color-text;
+        transition: color 0.2s, opacity 0.2s;
 
         &:hover {
           opacity: 0.7;
+        }
+
+        &.isOpen {
+          color: $color-pink;
+          opacity: 1;
+        }
+      }
+
+      .searchPopover {
+        position: absolute;
+        top: calc(100% + 5px);
+        right: 0;
+        z-index: 120;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 380px;
+        padding: 15px 18px;
+        background: #f1f1f1;
+        border-radius: 10px;
+  
+      }
+
+      .searchInput {
+        flex: 1;
+        min-width: 0;
+        padding: 0 0 8px;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #6b6b6b;
+        border-radius: 0;
+        color: $color-text;
+        font-size: 15px;
+        font-family: inherit;
+        outline: none;
+        color: #000000;
+
+        &::placeholder {
+          color: #707070;
+        }
+
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button {
+          display: none;
+        }
+      }
+
+      .searchSubmit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #707070 !important;
+  
+
+        &:hover {
+          color: $color-text;
         }
       }
 
@@ -73,6 +140,7 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
+        margin-bottom: 8px;
         padding: 8px 20px;
         background: $color-pink;
         color: $color-white;

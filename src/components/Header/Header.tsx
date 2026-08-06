@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/flynas-logo-green.svg";
@@ -73,7 +73,11 @@ function ArrowRightIcon() {
 
 export default function Header() {
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const activeMenu =
     navItems.find((item) => item.id === activeMenuId)?.menu ?? null;
@@ -101,6 +105,36 @@ export default function Header() {
     return () => clearCloseTimeout();
   }, []);
 
+  useEffect(() => {
+    if (!isSearchOpen) return;
+
+    searchInputRef.current?.focus();
+
+    const handlePointerDown = (event: MouseEvent) => {
+      if (!searchRef.current?.contains(event.target as Node)) {
+        setIsSearchOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsSearchOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isSearchOpen]);
+
+  const handleSearchSubmit = (event: FormEvent) => {
+    event.preventDefault();
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -110,9 +144,43 @@ export default function Header() {
 
         <div className="rightSection">
           <div className="utilityBar">
-            <button type="button" className="searchButton" aria-label="Search">
-              <SearchIcon />
-            </button>
+            <div className="searchControl" ref={searchRef}>
+              <button
+                type="button"
+                className={`searchButton${isSearchOpen ? " isOpen" : ""}`}
+                aria-label="Search"
+                aria-expanded={isSearchOpen}
+                aria-haspopup="true"
+                onClick={() => setIsSearchOpen((open) => !open)}
+              >
+                <SearchIcon />
+              </button>
+
+              {isSearchOpen ? (
+                <form
+                  className="searchPopover"
+                  role="search"
+                  onSubmit={handleSearchSubmit}
+                >
+                  <input
+                    ref={searchInputRef}
+                    type="search"
+                    className="searchInput"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    aria-label="Search"
+                  />
+                  <button
+                    type="submit"
+                    className="searchSubmit"
+                    aria-label="Submit search"
+                  >
+                    <SearchIcon />
+                  </button>
+                </form>
+              ) : null}
+            </div>
 
             <a href="#" className="loginButton">
               Log In

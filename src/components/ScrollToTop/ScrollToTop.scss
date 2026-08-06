@@ -1,0 +1,58 @@
+@use "../../styles/variables" as *;
+
+.scrollToTop {
+  position: fixed;
+  right: 24px;
+  bottom: 80px;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 9px;
+  background: $color-pink;
+  color: $color-white;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    transform 0.25s ease,
+    background-color 0.2s ease;
+
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: #c92f5d;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-pink;
+    outline-offset: 3px;
+  }
+
+  &__icon {
+    display: block;
+  }
+}
+
+@media (max-width: 1100px) {
+  .scrollToTop {
+    right: 16px;
+    bottom: 126px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+}

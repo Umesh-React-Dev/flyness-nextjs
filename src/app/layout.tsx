@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
+import CopyrightSection from "@/components/Footer/CopyrightSection";
 import Footer from "@/components/Footer/Footer";
 import FooterBottom from "@/components/Footer/FooterBottom";
 import Header from "@/components/Header/Header";
+import NewsletterSubscribe from "@/components/NewsletterSubscribe";
+import ScrollToTop from "@/components/ScrollToTop";
+import SideServices from "@/components/SideServices";
 import "./globals.scss";
+
 
 export const metadata: Metadata = {
   title: "Flyness",
@@ -19,8 +24,12 @@ export default function RootLayout({
       <body>
         <Header />
         <main>{children}</main>
+        <NewsletterSubscribe />
         <Footer />
         <FooterBottom />
+        <CopyrightSection />
+        <SideServices />
+        <ScrollToTop />
       </body>
     </html>
   );

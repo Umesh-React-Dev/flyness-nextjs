@@ -1,0 +1,194 @@
+@use "../../styles/variables" as *;
+
+$skew: -7deg;
+$unskew: 7deg;
+$badge-navy: #1e3a5f;
+$badge-orange: #f06a1a;
+$skew-pad: 52px;
+
+.destinationSlider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+
+  &__viewport {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    /* Extra side space so skewed cards are not clipped */
+    padding: 10px 16px;
+  }
+
+  &__track {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+    will-change: transform;
+  }
+
+  &__item {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding: 0 8px;
+
+    &[aria-hidden="true"] {
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: clamp(300px, 38vw, 400px);
+    overflow: hidden;
+    text-decoration: none;
+    color: $color-white;
+    background: rgba(0, 0, 0, 0.15);
+    transform: skewX($skew);
+    box-shadow: 0 12px 28px rgba(224,57,109,.25);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+
+    &:hover {
+      transform: skewX($skew) translateY(-4px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+
+      .destinationSlider__image {
+        transform: skewX($unskew) scale(1.3);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-white;
+      outline-offset: 3px;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 14px;
+    left: -2px;
+    z-index: 2;
+    padding: 4px 10px 4px 15px;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    color: $color-white;
+    transform: skewX($unskew);
+
+    &--popular {
+      background: $badge-navy;
+    }
+
+    &--new {
+      background: $badge-orange;
+    }
+  }
+
+  &__media {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  &__image {
+    object-fit: cover;
+    object-position: center;
+    transform: skewX($unskew) scale(1.18);
+    transform-origin: center;
+    transition: transform 0.4s ease;
+  }
+
+  &__label {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-height: 23px;
+    padding: 4px 6px;
+    background: $color-pink;
+    font-family: "Flynas-Medium", $font-family;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-align: center;
+    font-size: 12px;
+    border-bottom: 1px solid #ffffff;
+  }
+
+  &__arrow {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: $color-white;
+    color: $color-text;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-pink;
+      outline-offset: 3px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    &__viewport {
+      padding-inline: 24px;
+    }
+
+    &__item {
+      padding: 0 6px;
+    }
+
+    &__card {
+      height: clamp(280px, 55vw, 360px);
+    }
+  }
+
+  @media (max-width: 640px) {
+    gap: 4px;
+
+    &__viewport {
+      padding-inline: 18px;
+    }
+
+    &__arrow {
+      width: 34px;
+      height: 34px;
+    }
+
+    &__label {
+      min-height: 44px;
+      padding: 10px 12px;
+    }
+  }
+}

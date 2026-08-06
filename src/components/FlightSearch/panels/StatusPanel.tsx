@@ -3,19 +3,19 @@
 import { type FormEvent, useState } from "react";
 import type { Airport } from "../airportData";
 import AirportField from "../AirportField";
-import DateRangePicker from "../DateRangePicker";
+import StatusDateField from "../StatusDateField";
 import {
   STATUS_SEARCH_MODES,
   type StatusSearchMode,
 } from "../flightSearchData";
-import { formatStatusDate, startOfDay } from "../dateUtils";
+import { startOfDay } from "../dateUtils";
 
 export default function StatusPanel() {
   const [mode, setMode] = useState<StatusSearchMode>("route");
   const [origin, setOrigin] = useState<Airport | null>(null);
   const [destination, setDestination] = useState<Airport | null>(null);
   const [flightNumber, setFlightNumber] = useState("");
-  const [depart, setDepart] = useState<Date | null>(() => startOfDay(new Date()));
+  const [depart, setDepart] = useState<Date>(() => startOfDay(new Date()));
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -75,14 +75,7 @@ export default function StatusPanel() {
         )}
 
         <div className="flightSearch__dateFields flightSearch__dateFields--single">
-          <DateRangePicker
-            mode="single"
-            showReturn={false}
-            departLabel="Date"
-            formatDepart={formatStatusDate}
-            value={{ depart, returnDate: null }}
-            onChange={({ depart: nextDepart }) => setDepart(nextDepart)}
-          />
+          <StatusDateField value={depart} onChange={setDepart} />
         </div>
 
         <button type="submit" className="flightSearch__submit">

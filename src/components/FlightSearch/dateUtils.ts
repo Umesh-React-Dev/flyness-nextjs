@@ -27,6 +27,12 @@ export function addMonths(date: Date, amount: number) {
   return next;
 }
 
+export function addDays(date: Date, amount: number) {
+  const next = new Date(date);
+  next.setDate(next.getDate() + amount);
+  return startOfDay(next);
+}
+
 export function formatFlightDate(date: Date | null) {
   if (!date) return "";
   return date.toLocaleDateString("en-GB", {
@@ -39,9 +45,18 @@ export function formatFlightDate(date: Date | null) {
 export function formatStatusDate(date: Date | null) {
   if (!date) return "";
   const formatted = formatFlightDate(date);
-  if (isSameDay(date, startOfDay(new Date()))) {
+  const today = startOfDay(new Date());
+
+  if (isSameDay(date, today)) {
     return `TODAY, ${formatted}`;
   }
+  if (isSameDay(date, addDays(today, 1))) {
+    return `TOMORROW, ${formatted}`;
+  }
+  if (isSameDay(date, addDays(today, -1))) {
+    return `YESTERDAY, ${formatted}`;
+  }
+
   return formatted;
 }
 

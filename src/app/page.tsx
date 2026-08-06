@@ -1,8 +1,11 @@
+import FlightSearch from "@/components/FlightSearch";
+import HeroSlider from "@/components/HeroSlider";
+
 export default function HomePage() {
-    return (
-      <main>
-        <h1>Flyness</h1>
-        <p>Flight booking starts here.</p>
-      </main>
-    );
-  }
+  return (
+    <div className="homeHero">
+      <HeroSlider />
+      <FlightSearch />
+    </div>
+  );
+}

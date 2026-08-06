@@ -1,0 +1,114 @@
+@use "../../../styles/variables" as *;
+
+.languageMenu {
+  position: relative;
+
+  .languageMenuTrigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: #f5f5f5;
+    border: 1px solid $color-border;
+    border-radius: 6px;
+    cursor: pointer;
+    color: $color-text;
+    font-size: 13px;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: background 0.2s, border-color 0.2s;
+
+    &:hover,
+    &.isOpen {
+      background: #eeeeee;
+      border-color: #d8d8d8;
+    }
+  }
+
+  .languageMenuPanel {
+    position: absolute;
+    top: calc(100% + 2px);
+    right: 0;
+    z-index: 120;
+    width: 300px;
+    padding: 20px 22px 24px;
+    background: $color-white;
+    border: 1px solid rgba(0, 0, 0, 0.176);
+    border-radius: 6px;
+  }
+
+  .languageMenuLabel {
+    margin: 0;
+    color: #6c757d;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .languageMenuSelected {
+    margin-bottom: 16px;
+  }
+
+  .languageMenuSelectedValue {
+    margin: 8px 0 0;
+    color: $color-text;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .languageMenuDivider {
+    height: 1px;
+    margin: 0 0 16px;
+    background: $color-border;
+  }
+
+  .languageMenuAll {
+    .languageMenuLabel {
+      margin-bottom: 4px;
+    }
+  }
+
+  .languageMenuList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .languageMenuCountryCode {
+    margin: 0 0 4px;
+    color: rgb(33, 37, 41);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .languageMenuLanguages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .languageMenuLanguage {
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $color-pink;
+    font-size: 15px;
+    font-family: inherit;
+    line-height: 1.3;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.isSelected {
+      font-weight: 600;
+    }
+  }
+}

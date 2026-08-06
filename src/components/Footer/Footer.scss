@@ -1,0 +1,79 @@
+@use "../../styles/variables" as *;
+
+.footer {
+  background: $color-footer-bg;
+  border-top: 3px solid $color-teal;
+  color: $color-white;
+
+  .container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 24px 16px;
+  }
+
+  .column {
+    min-width: 0;
+
+    .columnTitle {
+      margin: 0 0 16px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: $color-white;
+    }
+
+    .linkList {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin-bottom: 8px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .link {
+        color: rgba($color-white, 0.85);
+        font-size: 12px;
+        line-height: 1.5;
+        text-decoration: none;
+        transition: opacity 0.2s;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 32px 24px;
+    }
+
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

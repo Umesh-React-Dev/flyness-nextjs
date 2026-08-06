@@ -1,0 +1,211 @@
+@use "../../styles/variables" as *;
+
+.header {
+  position: relative;
+  z-index: 50;
+  background: $color-white;
+  border-bottom: 1px solid $color-border;
+
+  .container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  // Full-bleed panel below the header (reads as another section over page content)
+  .megaMenuShell {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 48px 24px;
+  }
+
+  .megaMenuInner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .logoLink {
+    margin-left: 24px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .logo {
+    width: auto;
+  }
+
+  .rightSection {
+    padding-top: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+
+    .utilityBar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .searchButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $color-text;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
+      .loginButton {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 20px;
+        background: $color-pink;
+        color: $color-white;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+
+      .divider {
+        width: 1px;
+        height: 20px;
+        background: $color-border;
+        flex-shrink: 0;
+      }
+
+      .utilityLink {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: $color-text;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
+    }
+
+    .navBar {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+
+      .navItem {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        &.isActive .navLink,
+        &:hover .navLink {
+          opacity: 1;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0;
+          height: 3px;
+          border-radius: 2px 2px 0 0;
+          transition: width 0.25s ease;
+        }
+
+        &:hover::after,
+        &.isActive::after {
+          width: 100%;
+        }
+
+        &.accentPink::after {
+          background: $color-pink;
+        }
+
+        &.accentTeal::after {
+          background: $color-teal;
+        }
+      }
+
+      .navLink {
+        padding: 20px 0;
+        color: $color-text;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+        font-family: "Flynas-Medium", sans-serif !important;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .rightSection {
+      align-items: flex-start;
+      width: 100%;
+
+      .utilityBar {
+        flex-wrap: wrap;
+      }
+
+      .navBar {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .rightSection {
+      .utilityBar {
+        gap: 12px;
+
+        .divider {
+          display: none;
+        }
+      }
+
+      .navBar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+  }
+}

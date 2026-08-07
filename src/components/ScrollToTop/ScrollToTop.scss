@@ -3,7 +3,7 @@
 .scrollToTop {
   position: fixed;
   right: 24px;
-  bottom: 80px;
+  bottom: 120px;
   z-index: 110;
   display: flex;
   align-items: center;
@@ -50,7 +50,7 @@
 @media (max-width: 1100px) {
   .scrollToTop {
     right: 16px;
-    bottom: 126px;
+    bottom: 156px;
     width: 48px;
     height: 48px;
     border-radius: 12px;

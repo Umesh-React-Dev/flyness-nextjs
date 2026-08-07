@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MegaMenuIcon } from "./MegaMenuIcons";
 import type { MegaMenuItem } from "./types";
 import "./MegaMenuPopover.scss";
 
@@ -40,49 +39,68 @@ export default function MegaMenuPopover({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <aside className="megaMenuSidebar" aria-label="Menu categories">
-        {menu.categories.map((category) => {
-          const isActive = category.id === activeCategory.id;
+      <div className="megaMenuTabsContent">
+        <div className="megaMenuLayout">
+          <aside className="megaMenuSidebar" aria-label="Menu categories">
+            <div className="megaMenuLeftTabs" role="tablist">
+              {menu.categories.map((category) => {
+                const isActive = category.id === activeCategory.id;
 
-          return (
-            <button
-              key={category.id}
-              type="button"
-              className={`megaMenuCategory${isActive ? " isActive" : ""}`}
-              aria-current={isActive ? "true" : undefined}
-              onMouseEnter={() => setActiveCategoryId(category.id)}
-              onFocus={() => setActiveCategoryId(category.id)}
-              onClick={() => setActiveCategoryId(category.id)}
-            >
-              <span className="megaMenuCategoryIcon">
-                <MegaMenuIcon name={category.icon} size={22} />
-              </span>
-              <span className="megaMenuCategoryText">
-                <span className="megaMenuCategoryTitle">{category.title}</span>
-                <span className="megaMenuCategoryDescription">
-                  {category.description}
-                </span>
-              </span>
-            </button>
-          );
-        })}
-      </aside>
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    role="tab"
+                    className={`megaMenuCategory${isActive ? " isActive" : ""}`}
+                    aria-selected={isActive}
+                    onMouseEnter={() => setActiveCategoryId(category.id)}
+                    onFocus={() => setActiveCategoryId(category.id)}
+                    onClick={() => setActiveCategoryId(category.id)}
+                  >
+                    <i
+                      className="megaMenuSpriteIcon"
+                      style={{ backgroundPosition: category.iconPosition }}
+                      aria-hidden="true"
+                    />
+                    <span className="megaMenuCategoryText">
+                      <span className="megaMenuCategoryTitle">
+                        {category.title}
+                      </span>
+                      <span className="megaMenuCategoryDescription">
+                        {category.description}
+                      </span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </aside>
 
-      <div className="megaMenuContent">
-        <div className="megaMenuGrid">
-          {activeCategory.links.map((link) => (
-            <a key={link.title} href={link.href} className="megaMenuLink">
-              <span className="megaMenuLinkIcon">
-                <MegaMenuIcon name={link.icon} size={22} />
-              </span>
-              <span className="megaMenuLinkText">
-                <span className="megaMenuLinkTitle">{link.title}</span>
-                <span className="megaMenuLinkDescription">
-                  {link.description}
-                </span>
-              </span>
-            </a>
-          ))}
+          <div className="megaMenuPanel">
+            <div className="megaMenuTabContent" role="tabpanel">
+              <div className="megaMenuGrid">
+                {activeCategory.links.map((link) => (
+                  <a
+                    key={link.title}
+                    href={link.href}
+                    className="megaMenuLink"
+                  >
+                    <i
+                      className="megaMenuSpriteIcon"
+                      style={{ backgroundPosition: link.iconPosition }}
+                      aria-hidden="true"
+                    />
+                    <span className="megaMenuLinkText">
+                      <span className="megaMenuLinkTitle">{link.title}</span>
+                      <span className="megaMenuLinkDescription">
+                        {link.description}
+                      </span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CopyrightSection from "@/components/Footer/CopyrightSection";
 import Footer from "@/components/Footer/Footer";
 import FooterBottom from "@/components/Footer/FooterBottom";
+import FloatingLogo from "@/components/FloatingLogo";
 import Header from "@/components/Header/Header";
 import NewsletterSubscribe from "@/components/NewsletterSubscribe";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -30,6 +31,7 @@ export default function RootLayout({
         <CopyrightSection />
         <SideServices />
         <ScrollToTop />
+        <FloatingLogo />
       </body>
     </html>
   );

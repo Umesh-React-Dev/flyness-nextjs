@@ -2,14 +2,14 @@ export type MegaMenuLink = {
   title: string;
   description: string;
   href: string;
-  icon: string;
+  iconPosition: string;
 };
 
 export type MegaMenuCategory = {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  iconPosition: string;
   links: MegaMenuLink[];
 };
 

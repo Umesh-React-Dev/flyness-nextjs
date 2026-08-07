@@ -16,14 +16,13 @@
     gap: 24px;
   }
 
-  // Full-bleed panel below the header (reads as another section over page content)
   .megaMenuShell {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 0 48px 24px;
+    padding: 1px 48px 24px;
   }
 
   .megaMenuInner {

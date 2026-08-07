@@ -1,0 +1,28 @@
+try { 
+	webengage.onReady(function(){
+var lang = window.location.href.split("/")[3];
+  console.log(lang);
+
+if (lang == "en"|| lang == "en-ae") {
+webengage_fs_configurationMap.config.webPushConfig.optInNotificationContent.text="Don't Miss Out on Our Deals and Updates!. Tap <b>Allow</b> to stay informed.";
+webengage_fs_configurationMap.config.webPushConfig.optInNotificationContent.allowText='Allow';
+webengage_fs_configurationMap.config.webPushConfig.optInNotificationContent.denyText='No Thanks';
+}
+else if (lang == "ar" || lang == "ar-ae") {
+    webengage_fs_configurationMap.config.webPushConfig.optInNotificationContent.text='لاتفوت عروضنا وأخبارنا الحصرية! اضغط "السماح" لتبقى على اطلاع';
+    webengage_fs_configurationMap.config.webPushConfig.optInNotificationContent.allowText='السماح';
+    webengage_fs_configurationMap.config.webPushConfig.optInNotificationContent.denyText='لا، شكراَ ';
+}
+else{
+  webengage_fs_configurationMap.config.webPushConfig.optInNotificationContent.text="Don't Miss Out on Our Deals and Updates!. Tap <b>Allow</b> to stay informed.";
+webengage_fs_configurationMap.config.webPushConfig.optInNotificationContent.allowText='Allow';
+webengage_fs_configurationMap.config.webPushConfig.optInNotificationContent.denyText='No Thanks';
+  }
+});
+ } catch(e) { 
+ 	if (e instanceof Error) { 
+		var data = e.stack || e.description;
+		data = (data.length > 900 ? data.substring(0, 900) : data);
+	 	webengage.eLog(null, 'error', data, 'cwc-error','cwc', 'i2l1kdk');
+	 }
+ }

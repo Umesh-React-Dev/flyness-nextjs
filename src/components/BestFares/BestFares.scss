@@ -1,0 +1,396 @@
+@use "../../styles/variables" as *;
+
+$fare-accent: #e0396d;
+$fare-tab: #333333;
+$fare-tab-muted: #6b6b6b;
+$fare-divider: #d9d9d9;
+
+.bestFares {
+  width: 100%;
+  background: $color-white;
+  color: $color-text;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 48px 56px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    border-bottom: 1px solid $fare-divider;
+    margin-bottom: 28px;
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__tab {
+    position: relative;
+    flex-shrink: 0;
+    margin: 0;
+    color: #333 !important;
+    font-size: 18px;
+    padding: 10px 20px;
+    line-height: 1.42;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: -1px;
+      height: 3px;
+      background: transparent;
+      border-radius: 2px 2px 0 0;
+      transition: background 0.2s ease;
+    }
+
+    &:hover {
+      color: $fare-tab;
+    }
+
+    &.is-active {
+      color: $fare-tab;
+      font-family: "Flynas-Medium", $font-family;
+      font-weight: 600;
+
+      &::after {
+        background: $fare-accent;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $fare-accent;
+      outline-offset: 2px;
+    }
+  }
+
+  &__cta {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    padding: 10px 22px;
+    border: 1.5px solid $fare-accent;
+    border-radius: 999px;
+    color: $fare-accent;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      background: $fare-accent;
+      color: $color-white;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $fare-accent;
+      outline-offset: 3px;
+    }
+  }
+
+  &__slider {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+  }
+
+  &__viewport {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    transition: transform 0.45s cubic-bezier(0.33, 1, 0.68, 1);
+    will-change: transform;
+  }
+
+  &__item {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    padding: 0 15px;
+  }
+
+  &__card {
+    position: relative;
+    display: block;
+    height: clamp(320px, 36vw, 420px);
+    overflow: hidden;
+    border-radius: 20px;
+    text-decoration: none;
+    color: $color-white;
+    background: #1a1a1a;
+
+    &:hover,
+    &:focus-visible {
+      .bestFares__image {
+        transform: scale(1.06);
+      }
+
+      .bestFares__bookNow {
+        max-height: 44px;
+        margin-top: 14px;
+        padding: 9px 28px;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $fare-accent;
+      outline-offset: 3px;
+    }
+  }
+
+  &__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__image {
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.45s ease;
+  }
+
+  &__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.85) 100%);
+    pointer-events: none;
+  }
+
+  &__content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px 22px;
+    text-align: center;
+  }
+
+  &__city {
+    font-family: "Flynas-Medium", $font-family;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+
+  &__from {
+    margin-top: 16px;
+    font-family: "Flynas-Regular", $font-family;
+    font-size: 14px;
+    line-height: 1.2;
+    opacity: 0.95;
+  }
+
+  &__price {
+    margin-top: 2px;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  &__cabin {
+    margin-top: 4px;
+    font-family: "Flynas-Regular", $font-family;
+    font-size: 12px;
+    line-height: 1.2;
+    opacity: 0.92;
+  }
+
+  &__bookNow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 0;
+    margin-top: 0;
+    padding: 0 28px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: $color-pink;
+    color: $color-white;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease,
+      max-height 0.3s ease,
+      margin-top 0.3s ease,
+      padding 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  &__arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: $color-teal;
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+
+    &:hover {
+      color: #00a89e;
+      transform: scale(1.08);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-teal;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    svg {
+      width: 70px !important;
+      height: 70px !important;
+    }
+  }
+}
+
+.bestFares__srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 900px) {
+  .bestFares {
+    &__inner {
+      padding: 30px 20px 48px;
+    }
+
+    &__header {
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 16px;
+      padding-bottom: 0;
+    }
+
+    &__tabs {
+      order: 2;
+      width: 100%;
+      border-bottom: 1px solid $fare-divider;
+    }
+
+    &__header {
+      border-bottom: none;
+    }
+
+    &__cta {
+      order: 1;
+      margin-left: auto;
+      margin-bottom: 4px;
+    }
+
+    &__item {
+      padding: 0 8px;
+    }
+
+    &__card {
+      height: clamp(280px, 52vw, 360px);
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .bestFares {
+    &__inner {
+      padding: 28px 12px 40px;
+    }
+
+    &__tab {
+      padding: 10px 16px 12px;
+      font-size: 15px;
+    }
+
+    &__cta {
+      padding: 7px 16px;
+      font-size: 13px;
+    }
+
+    &__arrow {
+      width: 32px;
+      height: 32px;
+
+      svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    &__item {
+      padding: 0 6px;
+    }
+
+    &__card {
+      height: min(70vw, 380px);
+      border-radius: 16px;
+    }
+  }
+}

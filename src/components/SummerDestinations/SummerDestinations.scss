@@ -1,0 +1,64 @@
+@use "../../styles/variables" as *;
+
+.summerDestinations {
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+  color: $color-white;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  &__bgImage {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(8, 28, 48, 0.35) 0%,
+      rgba(8, 28, 48, 0.22) 45%,
+      rgba(8, 28, 48, 0.4) 100%
+    );
+    pointer-events: none;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 72px 72px 80px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+    font-weight: 600;
+    line-height: 1.2;
+    font-size: 25px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  @media (max-width: 768px) {
+    &__inner {
+      gap: 28px;
+      padding: 56px 16px 64px;
+    }
+  }
+}

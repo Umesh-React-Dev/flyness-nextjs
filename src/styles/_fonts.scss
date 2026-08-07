@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Flynas-Regular";
+  src:
+    url("/fonts/Flynas-Regular.woff2") format("woff2"),
+    url("/fonts/Flynas-Regular.woff") format("woff"),
+    url("/fonts/Flynas-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Flynas-Medium";
+  src:
+    url("/fonts/Flynas-Medium.woff2") format("woff2"),
+    url("/fonts/Flynas-Medium.woff") format("woff"),
+    url("/fonts/Flynas-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,277 @@
+@use "../../styles/variables" as *;
+
+.header {
+  position: relative;
+  z-index: 50;
+  background: $color-white;
+  border-bottom: 1px solid $color-border;
+
+  .container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .megaMenuShell {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 9999999;
+    padding: 1px 48px 24px;
+  }
+
+  .megaMenuInner {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .logoLink {
+    margin-left: 24px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    outline: none;
+  }
+
+  .logo {
+    width: auto;
+  }
+
+  .rightSection {
+    padding-top: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+
+    .utilityBar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .searchControl {
+        position: relative;
+      }
+
+      .searchButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $color-text;
+        transition: color 0.2s, opacity 0.2s;
+
+        &:hover {
+          opacity: 0.7;
+        }
+
+        &.isOpen {
+          color: $color-pink;
+          opacity: 1;
+        }
+      }
+
+      .searchPopover {
+        position: absolute;
+        top: calc(100% + 5px);
+        right: 0;
+        z-index: 120;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 380px;
+        padding: 15px 18px;
+        background: #f1f1f1;
+        border-radius: 10px;
+  
+      }
+
+      .searchInput {
+        flex: 1;
+        min-width: 0;
+        padding: 0 0 8px;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #6b6b6b;
+        border-radius: 0;
+        color: $color-text;
+        font-size: 15px;
+        font-family: inherit;
+        outline: none;
+        color: #000000;
+
+        &::placeholder {
+          color: #707070;
+        }
+
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button {
+          display: none;
+        }
+      }
+
+      .searchSubmit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #707070 !important;
+  
+
+        &:hover {
+          color: $color-text;
+        }
+      }
+
+      .loginButton {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 20px;
+        background: $color-pink;
+        color: $color-white;
+        border-radius: 50px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+
+      .divider {
+        width: 1px;
+        height: 20px;
+        background: $color-border;
+        flex-shrink: 0;
+      }
+
+      .utilityLink {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: $color-text;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
+    }
+
+    .navBar {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+
+      .navItem {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        &.isActive .navLink,
+        &:hover .navLink {
+          opacity: 1;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0;
+          height: 3px;
+          border-radius: 2px 2px 0 0;
+          transition: width 0.25s ease;
+        }
+
+        &:hover::after,
+        &.isActive::after {
+          width: 100%;
+        }
+
+        &.accentPink::after {
+          background: $color-pink;
+        }
+
+        &.accentTeal::after {
+          background: $color-pink;
+        }
+      }
+
+      .navLink {
+        padding: 20px 0;
+        color: $color-text;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+        font-family: "Flynas-Medium", sans-serif !important;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .rightSection {
+      align-items: flex-start;
+      width: 100%;
+
+      .utilityBar {
+        flex-wrap: wrap;
+      }
+
+      .navBar {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .rightSection {
+      .utilityBar {
+        gap: 12px;
+
+        .divider {
+          display: none;
+        }
+      }
+
+      .navBar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+  }
+}

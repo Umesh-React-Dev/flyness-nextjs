@@ -1,0 +1,28 @@
+#login-container.logged-in {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.user-details {
+    text-align: left;
+}
+
+.user-name {
+    color: #008a8a;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.user-membership, .user-balance {
+    font-size: 0.9em;
+    color: #333;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.logout-link {
+    margin-right: 15px;
+}

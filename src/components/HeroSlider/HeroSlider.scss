@@ -1,0 +1,178 @@
+@use "../../styles/variables" as *;
+
+.heroSlider {
+  position: relative;
+  width: 100%;
+  min-height: clamp(420px, 72vh, 680px);
+  overflow: hidden;
+  color: $color-white;
+
+  &__slides {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+
+    &.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &__image {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    min-height: clamp(420px, 72vh, 680px);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 72px 120px;
+  }
+
+  &__copy {
+    display: grid;
+    width: min(100%, 560px);
+  }
+
+  &__text {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+    pointer-events: none;
+    visibility: hidden;
+
+    &.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      visibility: visible;
+    }
+  }
+
+  &__title {
+    margin: 0 0 8px;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-size: 35px;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.4;
+    font-size: 18px;
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    background: $color-pink;
+    color: $color-white;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-white;
+      outline-offset: 3px;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.35);
+    color: $color-white;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition:
+      background 0.2s ease,
+      opacity 0.2s ease;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-white;
+      outline-offset: 3px;
+    }
+
+    &--prev {
+      left: 80px;
+    }
+
+    &--next {
+      right: 80px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    min-height: clamp(360px, 62vh, 520px);
+
+    &__content {
+      min-height: clamp(360px, 62vh, 520px);
+      padding: 40px 56px 100px 24px;
+      gap: 20px;
+    }
+
+    &__arrow {
+      width: 36px;
+      height: 36px;
+
+      &--prev {
+        left: 8px;
+      }
+
+      &--next {
+        right: 8px;
+      }
+    }
+  }
+}

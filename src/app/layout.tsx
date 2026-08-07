@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.scss";
 
 export const metadata: Metadata = {
-  title: "Flyness",
-  description: "Flight booking web application",
+  title: "flynas",
+  description: "flynas login and flight booking",
 };
 
 export default function RootLayout({

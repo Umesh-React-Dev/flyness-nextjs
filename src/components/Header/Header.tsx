@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/images/flynas-logo-green.svg";
+import logo from "@/assets/images/header-logo.svg";
 import LanguageMenu from "@/components/common/LanguageMenu";
 import MegaMenuPopover from "@/components/common/MegaMenuPopover";
 import { navItems } from "./megaMenuData";

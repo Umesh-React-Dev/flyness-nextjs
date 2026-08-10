@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import CopyrightSection from "@/components/Footer/CopyrightSection";
-import Footer from "@/components/Footer/Footer";
-import FooterBottom from "@/components/Footer/FooterBottom";
-import FloatingLogo from "@/components/FloatingLogo";
-import Header from "@/components/Header/Header";
-import NewsletterSubscribe from "@/components/NewsletterSubscribe";
-import ScrollToTop from "@/components/ScrollToTop";
-import SideServices from "@/components/SideServices";
+import favicon from "@/assets/images/favicon.ico";
 import "./globals.scss";
-
 
 export const metadata: Metadata = {
   title: "flynas",
   description: "flynas login and flight booking",
+  icons: {
+    icon: favicon.src,
+  },
 };
 
 export default function RootLayout({
@@ -22,17 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Header />
-        <main>{children}</main>
-        <NewsletterSubscribe />
-        <Footer />
-        <FooterBottom />
-        <CopyrightSection />
-        <SideServices />
-        <ScrollToTop />
-        <FloatingLogo />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

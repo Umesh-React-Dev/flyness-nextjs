@@ -1,0 +1,138 @@
+@use "../../styles/variables" as *;
+
+$help-footer-bg: #004e50;
+$help-copyright-bg: #00b0ab;
+$help-max: 1400px;
+
+.helpFooter {
+  background: $help-footer-bg;
+  color: $color-white;
+
+  &__main {
+    width: 100%;
+    max-width: $help-max;
+    margin: 0 auto;
+    padding: 48px 72px;
+  }
+
+  &__columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+  }
+
+  &__text {
+    margin: 0;
+    max-width: 300px;
+    font-size: 14px;
+    line-height: 22.75px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+    padding: 8px 0 0;
+    list-style: none;
+  }
+
+  &__socialLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    border-radius: 9999px;
+    background: $color-white;
+    line-height: 0;
+    text-decoration: none;
+    transition: transform 0.15s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  &__socialIcon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    object-fit: contain;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__link {
+    font-size: 14px;
+    line-height: 20px;
+    color: $color-white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__copyright {
+    background: $help-copyright-bg;
+    padding: 12px 56px;
+  }
+
+  &__copyrightText {
+    margin: 0 auto;
+    max-width: $help-max;
+    padding: 0 32px;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+    color: $color-white;
+  }
+}
+
+@media (max-width: 900px) {
+  .helpFooter {
+    &__main {
+      padding: 40px 24px;
+    }
+
+    &__columns {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    &__copyright {
+      padding: 12px 16px;
+    }
+
+    &__copyrightText {
+      padding: 0;
+    }
+  }
+}

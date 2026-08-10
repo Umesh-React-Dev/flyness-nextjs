@@ -189,10 +189,10 @@ export default function Header() {
 
             <span className="divider" aria-hidden="true" />
 
-            <a href="#" className="utilityLink">
+            <Link href="/help" className="utilityLink">
               <HeadsetIcon />
               Help &amp; Support
-            </a>
+            </Link>
 
             <span className="divider" aria-hidden="true" />
 

@@ -1,0 +1,109 @@
+@use "../../styles/variables" as *;
+
+$help-teal: #00bdb6;
+$help-border: #e6e6e6;
+$help-max: 1400px;
+
+.helpHeader {
+  background: $color-white;
+  border-bottom: 1px solid $help-border;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: $help-max;
+    height: 64px;
+    margin: 0 auto;
+    padding: 0 72px;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  &__logoImage {
+    width: auto;
+    height: 48px;
+    display: block;
+  }
+
+  &__nav {
+    padding-left: 32px;
+  }
+
+  &__homeLink {
+    font-family: "Flynas-Medium", $font-family;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    color: $help-teal;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__lang {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 12px;
+    margin: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: $color-text;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  &__langIcon {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .helpHeader {
+    &__inner {
+      padding: 0 16px;
+    }
+
+    &__nav {
+      padding-left: 8px;
+    }
+
+    &__logoImage {
+      height: 40px;
+    }
+  }
+}

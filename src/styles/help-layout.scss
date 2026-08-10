@@ -1,0 +1,11 @@
+.helpLayout {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+}
+
+.helpLayout__main {
+  flex: 1;
+  min-height: 0;
+}

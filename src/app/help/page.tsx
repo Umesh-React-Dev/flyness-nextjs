@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Help from "@/components/Help/Help";
+import HelpPage from "@/features/help/HelpPage";
 
 export const metadata: Metadata = {
   title: "Help & Support | flynas",
@@ -7,6 +7,6 @@ export const metadata: Metadata = {
     "Get help with your flynas journey — track support cases, browse help topics, and find answers to frequently asked questions.",
 };
 
-export default function HelpPage() {
-  return <Help />;
+export default function Page() {
+  return <HelpPage />;
 }

@@ -1,6 +1,6 @@
 @use "../../styles/variables" as *;
 
-$help-teal: #00bdb6;
+$help-teal: hsl(178 100% 37%);
 $help-border: #e6e6e6;
 $help-max: 1400px;
 
@@ -55,6 +55,10 @@ $help-max: 1400px;
     }
   }
 
+  &__langWrap {
+    position: relative;
+  }
+
   &__lang {
     display: inline-flex;
     align-items: center;
@@ -63,7 +67,7 @@ $help-max: 1400px;
     height: 36px;
     padding: 0 12px;
     margin: 0;
-    border: 0;
+    border: 1px solid transparent;
     border-radius: 8px;
     background: transparent;
     color: $color-text;
@@ -72,21 +76,74 @@ $help-max: 1400px;
     font-weight: 500;
     line-height: 20px;
     cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
 
-    &:hover {
-      background: rgba(0, 0, 0, 0.04);
+    &:hover,
+    &.isOpen {
+      border-color: $help-teal;
+      background: $color-white;
+      color: $help-teal;
     }
   }
 
   &__langIcon {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 16px;
     height: 16px;
-    overflow: hidden;
+    color: inherit;
 
-    img {
-      width: 100%;
-      height: 100%;
+    svg {
+      display: block;
+    }
+  }
+
+  &__langMenu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    z-index: 120;
+    min-width: 120px;
+    padding: 6px;
+    background: $color-white;
+    border: 1px solid $help-border;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
+  }
+
+  &__langOption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 36px;
+    padding: 8px 12px;
+    margin: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #000000;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      background: hsl(0 0% 100%);
+    }
+  }
+
+  &__langCheck {
+    display: inline-flex;
+    color: $help-teal;
+    flex-shrink: 0;
+    
+
+    svg {
       display: block;
     }
   }

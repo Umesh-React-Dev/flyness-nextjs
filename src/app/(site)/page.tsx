@@ -1,27 +1,5 @@
-import BestFares from "@/components/BestFares";
-import BookNowPayLater from "@/components/BookNowPayLater";
-import BookOrganiseTrip from "@/components/BookOrganiseTrip";
-import FlightSearch from "@/components/FlightSearch";
-import HeroSlider from "@/components/HeroSlider";
-import ReasonsToFly from "@/components/ReasonsToFly";
-import SummerDestinations from "@/components/SummerDestinations";
-import TripExtras from "@/components/TripExtras";
-import WhereWeFly from "@/components/WhereWeFly";
+import HomePage from "@/features/home/HomePage";
 
-export default function HomePage() {
-  return (
-    <>
-      <div className="homeHero">
-        <HeroSlider />
-        <FlightSearch />
-      </div>
-      <SummerDestinations />
-      <TripExtras />
-      <WhereWeFly />
-      <BookNowPayLater />
-      <BestFares />
-      <BookOrganiseTrip />
-      <ReasonsToFly />
-    </>
-  );
+export default function Page() {
+  return <HomePage />;
 }

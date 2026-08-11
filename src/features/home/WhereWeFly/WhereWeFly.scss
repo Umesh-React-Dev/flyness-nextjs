@@ -1,16 +1,9 @@
-@use "../../styles/variables" as *;
+@use "../../../styles/variables" as *;
 
-.bookNowPayLater {
+.whereWeFly {
   width: 100%;
   line-height: 0;
-  background-color: #f7f7f7;
-  padding: 20px;
-
-  &__inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-  }
+  background: #1f6b68;
 
   &__link {
     display: block;
@@ -28,6 +21,5 @@
     width: 100%;
     height: auto;
     display: block;
-    vertical-align: top;
   }
 }

@@ -11,11 +11,11 @@ import iconEmail from "@/assets/images/help/icon-email.svg";
 import iconTrackArrow from "@/assets/images/help/icon-track-arrow.svg";
 import iconChevron from "@/assets/images/help/icon-chevron.svg";
 import { HELP_CATEGORIES, HELP_FAQS } from "@/jsonStaticData/helpData";
-import "./Help.scss";
+import "./HelpPage.scss";
 
 type TrackMode = "case" | "email";
 
-export default function Help() {
+export default function HelpPage() {
   const [trackMode, setTrackMode] = useState<TrackMode>("email");
   const [trackValue, setTrackValue] = useState("");
   const [openFaqId, setOpenFaqId] = useState<string | null>(

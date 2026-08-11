@@ -1,5 +1,5 @@
-import HelpFooter from "@/components/Help/HelpFooter";
-import HelpHeader from "@/components/Help/HelpHeader";
+import HelpFooter from "@/features/help/HelpFooter";
+import HelpHeader from "@/features/help/HelpHeader";
 import "@/styles/help-layout.scss";
 
 export default function HelpLayout({

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
-import { AgenciesSignupForm } from "@/components/onboarding/signup/AgenciesSignupForm";
-import { CorporateSignupForm } from "@/components/onboarding/signup/CorporateSignupForm";
-import { MemberSignupForm } from "@/components/onboarding/signup/MemberSignupForm";
+import { AgenciesSignupForm } from "@/features/onboarding/signup/AgenciesSignupForm";
+import { CorporateSignupForm } from "@/features/onboarding/signup/CorporateSignupForm";
+import { MemberSignupForm } from "@/features/onboarding/signup/MemberSignupForm";
 import "@/styles/signup.scss";
 
 const SIGNUP_TYPES = ["member", "corporate", "agencies"] as const;

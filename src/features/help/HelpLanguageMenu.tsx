@@ -61,8 +61,14 @@ function CheckIcon() {
 
 export default function HelpLanguageMenu() {
   return (
-    <details className="helpHeader__langWrap">
-      <summary className="helpHeader__lang" aria-label="Language">
+    <div className="helpHeader__langWrap">
+      <div
+        className="helpHeader__lang"
+        role="button"
+        tabIndex={0}
+        aria-label="Language"
+        aria-haspopup="listbox"
+      >
         <span className="helpHeader__langIcon" aria-hidden="true">
           <GlobeIcon />
         </span>
@@ -72,25 +78,26 @@ export default function HelpLanguageMenu() {
         <span className="helpHeader__langLabel helpHeader__langLabel--ar">
           العربية
         </span>
-      </summary>
+      </div>
 
       <div className="helpHeader__langMenu" role="listbox" aria-label="Language">
         {LANGUAGES.map((option) => (
-          <label key={option.code} className="helpHeader__langOption">
+          <div key={option.code} className="helpHeader__langOption" role="option">
             <input
               type="radio"
               name="help-language"
               value={option.code}
               defaultChecked={option.code === "en"}
               className="helpHeader__langInput"
+              aria-label={option.label}
             />
             <span>{option.label}</span>
             <span className="helpHeader__langCheck" aria-hidden="true">
               <CheckIcon />
             </span>
-          </label>
+          </div>
         ))}
       </div>
-    </details>
+    </div>
   );
 }

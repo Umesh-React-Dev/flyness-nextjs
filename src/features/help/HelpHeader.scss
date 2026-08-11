@@ -58,10 +58,14 @@ $help-max: 1400px;
   &__langWrap {
     position: relative;
 
-    &[open] > .helpHeader__lang {
+    &:focus-within > .helpHeader__lang {
       border-color: $help-teal;
       background: $color-white;
       color: $help-teal;
+    }
+
+    &:focus-within > .helpHeader__langMenu {
+      display: block;
     }
 
     &:has(.helpHeader__langInput[value="ar"]:checked) {
@@ -91,17 +95,9 @@ $help-max: 1400px;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
-    list-style: none;
     cursor: pointer;
+    outline: none;
     transition: color 0.2s, border-color 0.2s, background 0.2s;
-
-    &::-webkit-details-marker {
-      display: none;
-    }
-
-    &::marker {
-      content: "";
-    }
 
     &:hover {
       border-color: $help-teal;
@@ -130,6 +126,7 @@ $help-max: 1400px;
   }
 
   &__langMenu {
+    display: none;
     position: absolute;
     top: calc(100% + 4px);
     right: 0;
@@ -143,6 +140,7 @@ $help-max: 1400px;
   }
 
   &__langOption {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -173,8 +171,10 @@ $help-max: 1400px;
 
   &__langInput {
     position: absolute;
+    inset: 0;
+    margin: 0;
     opacity: 0;
-    pointer-events: none;
+    cursor: pointer;
   }
 
   &__langCheck {
@@ -182,6 +182,7 @@ $help-max: 1400px;
     color: $help-teal;
     flex-shrink: 0;
     opacity: 0;
+    pointer-events: none;
 
     svg {
       display: block;

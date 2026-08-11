@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/help/logo-green.svg";
-import iconGlobe from "@/assets/images/help/icon-globe.svg";
+import HelpLanguageMenu from "./HelpLanguageMenu";
 import "./HelpHeader.scss";
 
 export default function HelpHeader() {
@@ -26,12 +26,7 @@ export default function HelpHeader() {
           </nav>
         </div>
 
-        <button type="button" className="helpHeader__lang" aria-label="Language">
-          <span className="helpHeader__langIcon" aria-hidden="true">
-            <Image src={iconGlobe} alt="" width={16} height={16} />
-          </span>
-          English
-        </button>
+        <HelpLanguageMenu />
       </div>
     </header>
   );

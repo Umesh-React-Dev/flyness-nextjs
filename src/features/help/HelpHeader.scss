@@ -57,6 +57,22 @@ $help-max: 1400px;
 
   &__langWrap {
     position: relative;
+
+    &[open] > .helpHeader__lang {
+      border-color: $help-teal;
+      background: $color-white;
+      color: $help-teal;
+    }
+
+    &:has(.helpHeader__langInput[value="ar"]:checked) {
+      .helpHeader__langLabel--en {
+        display: none;
+      }
+
+      .helpHeader__langLabel--ar {
+        display: inline;
+      }
+    }
   }
 
   &__lang {
@@ -75,14 +91,28 @@ $help-max: 1400px;
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
+    list-style: none;
     cursor: pointer;
     transition: color 0.2s, border-color 0.2s, background 0.2s;
 
-    &:hover,
-    &.isOpen {
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::marker {
+      content: "";
+    }
+
+    &:hover {
       border-color: $help-teal;
       background: $color-white;
       color: $help-teal;
+    }
+  }
+
+  &__langLabel {
+    &--ar {
+      display: none;
     }
   }
 
@@ -133,15 +163,25 @@ $help-max: 1400px;
     cursor: pointer;
 
     &:hover {
-      background: hsl(0 0% 100%);
+      background: hsl(0 0% 96%);
     }
+
+    &:has(.helpHeader__langInput:checked) .helpHeader__langCheck {
+      opacity: 1;
+    }
+  }
+
+  &__langInput {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
   }
 
   &__langCheck {
     display: inline-flex;
     color: $help-teal;
     flex-shrink: 0;
-    
+    opacity: 0;
 
     svg {
       display: block;

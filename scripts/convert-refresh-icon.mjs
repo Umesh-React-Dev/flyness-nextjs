@@ -5,7 +5,7 @@
 import fs from "fs";
 import path from "path";
 
-const root = path.resolve("src/assets/images");
+const root = path.resolve("assets/images");
 const htmlPath = path.join(root, "refresh-icon.html");
 const outDir = path.join(root, "refresh-icon");
 const cssOutDir = path.join(outDir, "styles");

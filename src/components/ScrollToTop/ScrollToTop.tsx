@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ChevronUpIcon from "@/assets/icons/ChevronUpIcon";
 import "./ScrollToTop.scss";
 
 const SHOW_AFTER_PX = 400;
@@ -30,23 +31,7 @@ export default function ScrollToTop() {
       aria-label="Back to top"
       tabIndex={visible ? 0 : -1}
     >
-      <svg
-        className="scrollToTop__icon"
-        viewBox="0 0 24 24"
-        width="28"
-        height="28"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path
-          d="M6.5 14.5 12 9l5.5 5.5"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.75"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+      <ChevronUpIcon className="scrollToTop__icon" />
     </button>
   );
 }

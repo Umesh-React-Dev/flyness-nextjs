@@ -1,35 +1,5 @@
+import EmailIcon from "@/assets/icons/EmailIcon";
 import "./NewsletterSubscribe.scss";
-
-function EmailIcon() {
-  return (
-    <svg
-      className="newsletterSubscribe__icon"
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <rect
-        x="3.25"
-        y="5.25"
-        width="17.5"
-        height="13.5"
-        rx="2"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <path
-        d="m5 7.75 6.35 4.7c.4.3.9.3 1.3 0L19 7.75"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 export default function NewsletterSubscribe() {
   return (
@@ -54,7 +24,7 @@ export default function NewsletterSubscribe() {
           <label className="visually-hidden" htmlFor="newsletter-email">
             Email
           </label>
-          <EmailIcon />
+          <EmailIcon className="newsletterSubscribe__icon" />
           <input
             id="newsletter-email"
             className="newsletterSubscribe__input"

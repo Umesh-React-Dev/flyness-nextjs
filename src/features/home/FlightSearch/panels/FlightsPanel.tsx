@@ -5,7 +5,7 @@ import type { Airport } from "../airportData";
 import AirportField from "../AirportField";
 import DateRangePicker from "../DateRangePicker";
 import { TRIP_TYPES, type TripType } from "../flightSearchData";
-import { SwapIcon } from "../FlightSearchIcons";
+import SwapIcon from "@/assets/icons/SwapIcon";
 import { startOfDay } from "../dateUtils";
 
 export default function FlightsPanel() {

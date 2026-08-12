@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ChevronLeftIcon from "@/assets/icons/ChevronLeftIcon";
+import ChevronRightIcon from "@/assets/icons/ChevronRightIcon";
 import { HERO_CTA, HERO_SLIDES } from "./heroSliderData";
 import "./HeroSlider.scss";
 
@@ -84,7 +86,7 @@ export default function HeroSlider() {
         aria-label="Previous slide"
         onClick={goToPrev}
       >
-        <ChevronLeftIcon />
+        <ChevronLeftIcon width={20} height={20} strokeWidth={2} />
       </button>
       <button
         type="button"
@@ -92,36 +94,8 @@ export default function HeroSlider() {
         aria-label="Next slide"
         onClick={goToNext}
       >
-        <ChevronRightIcon />
+        <ChevronRightIcon width={20} height={20} strokeWidth={2} />
       </button>
     </section>
-  );
-}
-
-function ChevronLeftIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M12.5 4.5L7 10l5.5 5.5"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ChevronRightIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M7.5 4.5L13 10l-5.5 5.5"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

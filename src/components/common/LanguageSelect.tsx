@@ -1,6 +1,9 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type ComponentType } from "react";
+import FlagRu from "@/assets/icons/FlagRu";
+import FlagSa from "@/assets/icons/FlagSa";
+import FlagUk from "@/assets/icons/FlagUk";
 import "@/styles/language-select.scss";
 
 export type LanguageCode = "en" | "ar" | "ru";
@@ -8,55 +11,8 @@ export type LanguageCode = "en" | "ar" | "ru";
 export type LanguageOption = {
   code: LanguageCode;
   label: string;
-  Flag: () => ReactNode;
+  Flag: ComponentType<{ className?: string }>;
 };
-
-function FlagUk() {
-  return (
-    <svg viewBox="0 0 60 30" width="22" height="14" aria-hidden="true">
-      <rect width="60" height="30" fill="#012169" />
-      <path d="M0 0l60 30M60 0L0 30" stroke="#fff" strokeWidth="6" />
-      <path d="M0 0l60 30M60 0L0 30" stroke="#C8102E" strokeWidth="2" />
-      <path d="M30 0v30M0 15h60" stroke="#fff" strokeWidth="10" />
-      <path d="M30 0v30M0 15h60" stroke="#C8102E" strokeWidth="6" />
-    </svg>
-  );
-}
-
-function FlagSa() {
-  return (
-    <svg viewBox="0 0 60 30" width="22" height="14" aria-hidden="true">
-      <rect width="60" height="30" fill="#006C35" />
-      <text
-        x="30"
-        y="14"
-        textAnchor="middle"
-        fill="#fff"
-        fontSize="7"
-        fontFamily="Arial, sans-serif"
-      >
-        لا إله إلا الله
-      </text>
-      <path d="M18 20h24" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" />
-      <path
-        d="M40 18.5c2 0 3.2 1.2 3.2 2.8S42 24 40 24"
-        fill="none"
-        stroke="#fff"
-        strokeWidth="1.2"
-      />
-    </svg>
-  );
-}
-
-function FlagRu() {
-  return (
-    <svg viewBox="0 0 60 30" width="22" height="14" aria-hidden="true">
-      <rect width="60" height="10" y="0" fill="#fff" />
-      <rect width="60" height="10" y="10" fill="#0039A6" />
-      <rect width="60" height="10" y="20" fill="#D52B1E" />
-    </svg>
-  );
-}
 
 export const DEFAULT_LANGUAGES: LanguageOption[] = [
   { code: "en", label: "English", Flag: FlagUk },

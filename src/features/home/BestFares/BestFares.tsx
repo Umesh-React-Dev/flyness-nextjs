@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import ChevronLeftIcon from "@/assets/icons/ChevronLeftIcon";
+import ChevronRightIcon from "@/assets/icons/ChevronRightIcon";
 import {
   BEST_FARES_CTA,
   FARES_BY_ORIGIN,
@@ -160,33 +162,5 @@ export default function BestFares() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ChevronLeftIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M15 5L8 12l7 7"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ChevronRightIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M9 5l7 7-7 7"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

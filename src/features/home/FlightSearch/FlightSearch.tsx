@@ -1,14 +1,12 @@
 "use client";
 
 import { type ComponentType, useState } from "react";
+import CheckInIcon from "@/assets/icons/CheckInIcon";
+import FlightsIcon from "@/assets/icons/FlightsIcon";
+import ManageIcon from "@/assets/icons/ManageIcon";
+import PackagesIcon from "@/assets/icons/PackagesIcon";
+import StatusIcon from "@/assets/icons/StatusIcon";
 import { SEARCH_TABS, type SearchTabId } from "./flightSearchData";
-import {
-  CheckInIcon,
-  FlightsIcon,
-  ManageIcon,
-  PackagesIcon,
-  StatusIcon,
-} from "./FlightSearchIcons";
 import CheckInPanel from "./panels/CheckInPanel";
 import FlightsPanel from "./panels/FlightsPanel";
 import ManagePanel from "./panels/ManagePanel";

@@ -2,6 +2,9 @@
 
 import { FormEvent, useState } from "react";
 import Image from "next/image";
+import EditIcon from "@/assets/icons/EditIcon";
+import LockIcon from "@/assets/icons/LockIcon";
+import UserIcon from "@/assets/icons/UserIcon";
 import loginBackground from "@/assets/images/login/login-background.jpg";
 import "@/styles/login.scss";
 
@@ -12,76 +15,6 @@ const TABS: { id: LoginType; label: string }[] = [
   { id: "corporate", label: "Corporate Login" },
   { id: "agencies", label: "Agencies Login" },
 ];
-
-function UserIcon() {
-  return (
-    <svg
-      className="login-field__icon"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <circle cx="12" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.6" />
-      <path
-        d="M5.5 19.5c1.8-3.2 4-4.8 6.5-4.8s4.7 1.6 6.5 4.8"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function LockIcon() {
-  return (
-    <svg
-      className="login-field__icon"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <rect
-        x="6"
-        y="11"
-        width="12"
-        height="9"
-        rx="1.5"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      />
-      <path
-        d="M9 11V8a3 3 0 0 1 6 0v3"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function EditIcon() {
-  return (
-    <svg
-      className="login-signup__icon"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M5 19h3.2L18.5 8.7a1.6 1.6 0 0 0 0-2.3L16.6 4.5a1.6 1.6 0 0 0-2.3 0L4 14.8V18a1 1 0 0 0 1 1Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M13.5 6.5 16.5 9.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
 
 function NasmilesLogo() {
   return (
@@ -169,7 +102,7 @@ export function LoginForm() {
 
           <form className="login-form" onSubmit={handleSubmit} noValidate>
             <div className="login-field">
-              <UserIcon />
+              <UserIcon className="login-field__icon" />
               <input
                 type={isMember ? "email" : "text"}
                 name="identifier"
@@ -182,7 +115,7 @@ export function LoginForm() {
             </div>
 
             <div className="login-field">
-              <LockIcon />
+              <LockIcon className="login-field__icon" />
               <input
                 type="password"
                 name="password"
@@ -236,14 +169,14 @@ export function LoginForm() {
 
               {loginType === "corporate" && (
                 <a href="/signup/corporate" className="login-signup__cta">
-                  <EditIcon />
+                  <EditIcon className="login-signup__icon" />
                   New corporate member? Sign up
                 </a>
               )}
 
               {loginType === "agencies" && (
                 <a href="/signup/agencies" className="login-signup__cta">
-                  <EditIcon />
+                  <EditIcon className="login-signup__icon" />
                   New Agent ? Sign up
                 </a>
               )}

@@ -11,7 +11,7 @@ import {
   type OccupancyValue,
   type PackageType,
 } from "../flightSearchData";
-import { SwapIcon } from "../FlightSearchIcons";
+import SwapIcon from "@/assets/icons/SwapIcon";
 import { startOfDay } from "../dateUtils";
 
 export default function PackagesPanel() {

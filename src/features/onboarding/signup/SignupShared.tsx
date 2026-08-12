@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { FormEvent, ReactNode } from "react";
+import AgentTitleIcon from "@/assets/icons/AgentTitleIcon";
+import RequiredIcon from "@/assets/icons/RequiredIcon";
+import UploadIcon from "@/assets/icons/UploadIcon";
 
 export const DAYS = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, "0"));
 export const MONTHS = [
@@ -81,62 +84,12 @@ export function RecaptchaPlaceholder() {
   );
 }
 
-function UploadIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M12 16V7m0 0 3.5 3.5M12 7 8.5 10.5"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M5 16.5V18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1.5"
-        stroke="currentColor"
-        strokeWidth="1.7"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
 export function UploadDocumentButton() {
   return (
     <button type="button" className="signup-upload">
       <UploadIcon />
       Upload your Document
     </button>
-  );
-}
-
-function RequiredIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="m8 12 2.5 2.5L16 9"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function AgentTitleIcon() {
-  return (
-    <svg className="signup-title__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor" />
-      <path
-        d="m8 12 2.4 2.4L16.5 8.5"
-        stroke="#fff"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }
 
@@ -159,7 +112,7 @@ export function SignupShell({
     <main className="signup-main">
       {title ? (
         <h1 className="signup-title">
-          {showAgentIcon ? <AgentTitleIcon /> : null}
+          {showAgentIcon ? <AgentTitleIcon className="signup-title__icon" /> : null}
           {title}
         </h1>
       ) : null}

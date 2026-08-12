@@ -34,7 +34,7 @@ export const HELP_CATEGORIES: HelpCategory[] = [
     description:
       "Do you need help with your journey? We're here to help you with any problem you may face.",
     icon: iconSupport,
-    href: "#",
+    href: "/help/support",
     tags: [
       { label: "Cancel or Delay" },
       { label: "Payment Issues" },
@@ -48,7 +48,7 @@ export const HELP_CATEGORIES: HelpCategory[] = [
     description:
       "Have a question about your trip? We're happy to assist with baggage, seat selection, travel rules, and more.",
     icon: iconInquiries,
-    href: "#",
+    href: "/help/inquiry",
   },
   {
     id: "feedback",
@@ -56,7 +56,7 @@ export const HELP_CATEGORIES: HelpCategory[] = [
     description:
       "Your feedback matters! Share your opinions with us so we can always provide you with the best experience and excellent services.",
     icon: iconFeedback,
-    href: "#",
+    href: "/help/complaint-feedback",
   },
   {
     id: "baggage",

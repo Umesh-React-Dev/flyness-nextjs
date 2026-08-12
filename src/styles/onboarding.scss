@@ -78,6 +78,29 @@
   user-select: none;
 }
 
+.onboarding-layout:has(.login-main) {
+  background: #0a0a0a;
+
+  .onboarding-footer {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    border-top-color: rgba(255, 255, 255, 0.28);
+  }
+
+  .onboarding-footer__item a {
+    color: rgba(255, 255, 255, 0.92);
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .onboarding-footer__sep {
+    color: rgba(255, 255, 255, 0.55);
+  }
+}
+
 @media (max-width: 640px) {
   .onboarding-header {
     padding: 0.85rem 1rem;

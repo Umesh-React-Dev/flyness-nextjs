@@ -182,10 +182,10 @@ export default function Header() {
               ) : null}
             </div>
 
-            <a href="#" className="loginButton">
+            <Link href="/login" className="loginButton">
               Log In
               <ArrowRightIcon />
-            </a>
+            </Link>
 
             <span className="divider" aria-hidden="true" />
 

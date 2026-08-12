@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import Image from "next/image";
+import loginBackground from "@/assets/images/login/login-background.jpg";
 import "@/styles/login.scss";
 
 type LoginType = "member" | "corporate" | "agencies";
@@ -140,6 +141,16 @@ export function LoginForm() {
 
   return (
     <main className="login-main">
+      <div className="login-main__bg" aria-hidden="true">
+        <Image
+          src={loginBackground}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="login-main__bgImage"
+        />
+      </div>
       <div className="login-stage">
         <div className="login-card">
           <nav className="login-tabs" aria-label="Login type">

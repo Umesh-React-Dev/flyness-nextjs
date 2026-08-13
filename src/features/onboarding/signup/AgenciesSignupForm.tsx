@@ -2,38 +2,43 @@
 
 import { FormEvent } from "react";
 import {
+  CURRENCIES,
   Field,
   FormActions,
+  LANGUAGES,
   RecaptchaPlaceholder,
   SignupShell,
   TITLES,
 } from "./SignupShared";
-
-const CURRENCIES = ["Saudi Riyal", "US Dollar", "Euro", "UAE Dirham"];
-const LANGUAGES = ["English", "Arabic", "Russian"];
+import { AGENCIES_SIGNUP } from "@/jsonStaticData/onboardingData";
 
 export function AgenciesSignupForm() {
+  const { fields, sections, conditions, title } = AGENCIES_SIGNUP;
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
 
   return (
-    <SignupShell title="Agent Register" showAgentIcon onSubmit={handleSubmit}>
+    <SignupShell title={title} showAgentIcon onSubmit={handleSubmit}>
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Organization Details</h2>
+          <h2 className="signup-card__title">{sections.organizationDetails}</h2>
         </div>
         <div className="signup-grid signup-grid--4">
-          <Field label="Organization Code" required>
+          <Field
+            label={fields.organizationCode.label}
+            required={fields.organizationCode.required}
+          >
             <input className="signup-input" type="text" name="organizationCode" />
           </Field>
-          <Field label="Agent ID" required>
+          <Field label={fields.agentId.label} required={fields.agentId.required}>
             <input className="signup-input" type="text" name="agentId" />
           </Field>
           <Field
-            label="Password"
-            required
-            hint="Your password can comprise letters, numbers or special characters"
+            label={fields.password.label}
+            required={fields.password.required}
+            hint={fields.password.hint}
           >
             <input
               className="signup-input"
@@ -43,9 +48,9 @@ export function AgenciesSignupForm() {
             />
           </Field>
           <Field
-            label="Confirm password"
-            required
-            hint="Your password can comprise letters, numbers or special characters"
+            label={fields.confirmPassword.label}
+            required={fields.confirmPassword.required}
+            hint={fields.confirmPassword.hint}
           >
             <input
               className="signup-input"
@@ -59,35 +64,40 @@ export function AgenciesSignupForm() {
 
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Contact Details</h2>
+          <h2 className="signup-card__title">{sections.contactDetails}</h2>
         </div>
 
         <div className="signup-grid signup-grid--4" style={{ marginBottom: "1.1rem" }}>
-          <Field label="Title" required>
+          <Field label={fields.title.label} required={fields.title.required}>
             <select className="signup-select" name="title" defaultValue="">
               <option value="" disabled>
-                Title
+                {fields.title.placeholder}
               </option>
-              {TITLES.map((title) => (
-                <option key={title} value={title}>
-                  {title}
+              {TITLES.map((item) => (
+                <option key={item} value={item}>
+                  {item}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="First name" required>
+          <Field label={fields.firstName.label} required={fields.firstName.required}>
             <input className="signup-input" type="text" name="firstName" autoComplete="given-name" />
           </Field>
-          <Field label="Middle name">
-            <input className="signup-input" type="text" name="middleName" autoComplete="additional-name" />
+          <Field label={fields.middleName.label}>
+            <input
+              className="signup-input"
+              type="text"
+              name="middleName"
+              autoComplete="additional-name"
+            />
           </Field>
-          <Field label="Last name" required>
+          <Field label={fields.lastName.label} required={fields.lastName.required}>
             <input className="signup-input" type="text" name="lastName" autoComplete="family-name" />
           </Field>
         </div>
 
         <div className="signup-grid signup-grid--4" style={{ marginBottom: "1.1rem" }}>
-          <Field label="Currency" required>
+          <Field label={fields.currency.label} required={fields.currency.required}>
             <select className="signup-select" name="currency" defaultValue="Saudi Riyal">
               {CURRENCIES.map((item) => (
                 <option key={item} value={item}>
@@ -96,7 +106,7 @@ export function AgenciesSignupForm() {
               ))}
             </select>
           </Field>
-          <Field label="Language" required>
+          <Field label={fields.language.label} required={fields.language.required}>
             <select className="signup-select" name="language" defaultValue="English">
               {LANGUAGES.map((item) => (
                 <option key={item} value={item}>
@@ -105,22 +115,22 @@ export function AgenciesSignupForm() {
               ))}
             </select>
           </Field>
-          <Field label="Email" required>
+          <Field label={fields.email.label} required={fields.email.required}>
             <input className="signup-input" type="email" name="email" autoComplete="email" />
           </Field>
-          <Field label="Evening Phone" required>
+          <Field label={fields.eveningPhone.label} required={fields.eveningPhone.required}>
             <input className="signup-input" type="tel" name="eveningPhone" />
           </Field>
         </div>
 
         <div className="signup-grid signup-grid--4">
-          <Field label="Contact Phone" required>
+          <Field label={fields.contactPhone.label} required={fields.contactPhone.required}>
             <input className="signup-input" type="tel" name="contactPhone" />
           </Field>
-          <Field label="Mobile Phone" required>
+          <Field label={fields.mobilePhone.label} required={fields.mobilePhone.required}>
             <input className="signup-input" type="tel" name="mobilePhone" autoComplete="tel" />
           </Field>
-          <Field label="Fax" required>
+          <Field label={fields.fax.label} required={fields.fax.required}>
             <input className="signup-input" type="tel" name="fax" />
           </Field>
         </div>
@@ -129,9 +139,9 @@ export function AgenciesSignupForm() {
       <label className="signup-check" style={{ margin: "1rem 0" }}>
         <input type="checkbox" name="acceptConditions" />
         <span>
-          I have read and understood and accept the{" "}
-          <a href="#" className="signup-link">
-            Conditions of carriage
+          {conditions.prefix}{" "}
+          <a href={conditions.href} className="signup-link">
+            {conditions.linkLabel}
           </a>
         </span>
       </label>

@@ -5,34 +5,22 @@ import { FormEvent, ReactNode } from "react";
 import AgentTitleIcon from "@/assets/icons/AgentTitleIcon";
 import RequiredIcon from "@/assets/icons/RequiredIcon";
 import UploadIcon from "@/assets/icons/UploadIcon";
+import {
+  SIGNUP_COMMON,
+  SIGNUP_OPTIONS,
+} from "@/jsonStaticData/onboardingData";
 
 export const DAYS = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, "0"));
-export const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+export const MONTHS = SIGNUP_OPTIONS.months;
 export const YEARS = Array.from({ length: 100 }, (_, i) => String(new Date().getFullYear() - i));
 
-export const TITLES = ["Mr", "Mrs", "Ms", "Miss", "Dr"];
-export const NATIONALITIES = ["Saudi Arabia", "United Arab Emirates", "Egypt", "India", "United Kingdom"];
-export const DOCUMENT_TYPES = ["Passport", "National ID", "Iqama"];
-export const COUNTRY_CODES = [
-  "Saudi Arabia(+966)",
-  "United Arab Emirates(+971)",
-  "Egypt(+20)",
-  "India(+91)",
-  "United Kingdom(+44)",
-];
+export const TITLES = SIGNUP_OPTIONS.titles;
+export const NATIONALITIES = SIGNUP_OPTIONS.nationalities;
+export const DOCUMENT_TYPES = SIGNUP_OPTIONS.documentTypes;
+export const COUNTRY_CODES = SIGNUP_OPTIONS.countryCodes;
+export const CURRENCIES = SIGNUP_OPTIONS.currencies;
+export const LANGUAGES = SIGNUP_OPTIONS.languages;
+export const DESTINATIONS = SIGNUP_OPTIONS.destinations;
 
 type FieldProps = {
   label: string;
@@ -56,13 +44,11 @@ export function Field({ label, required, hint, className = "", children }: Field
 }
 
 export function RecaptchaPlaceholder() {
-  const captchaLabel = "I'm not a robot";
-
   return (
     <div className="signup-recaptcha" role="presentation">
       <label className="signup-recaptcha__check">
-        <input type="checkbox" aria-label={captchaLabel} />
-        <span>{captchaLabel}</span>
+        <input type="checkbox" aria-label={SIGNUP_COMMON.captchaLabel} />
+        <span>{SIGNUP_COMMON.captchaLabel}</span>
       </label>
       <div className="signup-recaptcha__brand">
         <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -88,7 +74,7 @@ export function UploadDocumentButton() {
   return (
     <button type="button" className="signup-upload">
       <UploadIcon />
-      Upload your Document
+      {SIGNUP_COMMON.uploadDocument}
     </button>
   );
 }
@@ -120,7 +106,7 @@ export function SignupShell({
       {showRequiredNote ? (
         <p className="signup-required-note">
           <RequiredIcon />
-          This is required
+          {SIGNUP_COMMON.requiredNote}
         </p>
       ) : null}
 
@@ -135,14 +121,14 @@ type FormActionsProps = {
   backHref?: string;
 };
 
-export function FormActions({ backHref = "/login" }: FormActionsProps) {
+export function FormActions({ backHref = SIGNUP_COMMON.backHref }: FormActionsProps) {
   return (
     <div className="signup-actions">
       <Link href={backHref} className="signup-btn signup-btn--back">
-        Back
+        {SIGNUP_COMMON.back}
       </Link>
       <button type="submit" className="signup-btn signup-btn--register">
-        Register
+        {SIGNUP_COMMON.register}
       </button>
     </div>
   );

@@ -15,8 +15,11 @@ import {
   UploadDocumentButton,
   YEARS,
 } from "./SignupShared";
+import { CORPORATE_SIGNUP } from "@/jsonStaticData/onboardingData";
 
 export function CorporateSignupForm() {
+  const { fields, sections } = CORPORATE_SIGNUP;
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
@@ -25,20 +28,20 @@ export function CorporateSignupForm() {
     <SignupShell showRequiredNote onSubmit={handleSubmit}>
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Your login details</h2>
+          <h2 className="signup-card__title">{sections.loginDetails}</h2>
         </div>
         <div className="signup-grid signup-grid--3">
           <Field
-            label="User Email"
-            required
-            hint="Please enter your valid corporate email address as your username (e.g. lg@corporatedomain.com)"
+            label={fields.userEmail.label}
+            required={fields.userEmail.required}
+            hint={fields.userEmail.hint}
           >
             <input className="signup-input" type="email" name="email" autoComplete="email" />
           </Field>
           <Field
-            label="Password"
-            required
-            hint="Your password can comprise letters, numbers or special characters"
+            label={fields.password.label}
+            required={fields.password.required}
+            hint={fields.password.hint}
           >
             <input
               className="signup-input"
@@ -48,9 +51,9 @@ export function CorporateSignupForm() {
             />
           </Field>
           <Field
-            label="Confirm password"
-            required
-            hint="Your password can comprise letters, numbers or special characters"
+            label={fields.confirmPassword.label}
+            required={fields.confirmPassword.required}
+            hint={fields.confirmPassword.hint}
           >
             <input
               className="signup-input"
@@ -64,34 +67,38 @@ export function CorporateSignupForm() {
 
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Passenger and Document details</h2>
+          <h2 className="signup-card__title">{sections.passengerDocument}</h2>
           <UploadDocumentButton />
         </div>
 
         <div className="signup-grid signup-grid--4" style={{ marginBottom: "1.1rem" }}>
-          <Field label="Title" required>
+          <Field label={fields.title.label} required={fields.title.required}>
             <select className="signup-select" name="title" defaultValue="">
               <option value="" disabled>
-                Title
+                {fields.title.placeholder}
               </option>
-              {TITLES.map((title) => (
-                <option key={title} value={title}>
-                  {title}
+              {TITLES.map((item) => (
+                <option key={item} value={item}>
+                  {item}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="First name" required>
+          <Field label={fields.firstName.label} required={fields.firstName.required}>
             <input className="signup-input" type="text" name="firstName" autoComplete="given-name" />
           </Field>
-          <Field label="Last name" required>
+          <Field label={fields.lastName.label} required={fields.lastName.required}>
             <input className="signup-input" type="text" name="lastName" autoComplete="family-name" />
           </Field>
-          <Field label="Date of birth (Gregorian)" required className="signup-field--dob">
+          <Field
+            label={fields.dateOfBirth.label}
+            required={fields.dateOfBirth.required}
+            className="signup-field--dob"
+          >
             <div className="signup-dob">
               <select className="signup-select" name="dobDay" defaultValue="" aria-label="Day">
                 <option value="" disabled>
-                  DD
+                  {fields.dateOfBirth.dayPlaceholder}
                 </option>
                 {DAYS.map((day) => (
                   <option key={day} value={day}>
@@ -101,7 +108,7 @@ export function CorporateSignupForm() {
               </select>
               <select className="signup-select" name="dobMonth" defaultValue="" aria-label="Month">
                 <option value="" disabled>
-                  MONTH
+                  {fields.dateOfBirth.monthPlaceholder}
                 </option>
                 {MONTHS.map((month, index) => (
                   <option key={month} value={String(index + 1)}>
@@ -111,7 +118,7 @@ export function CorporateSignupForm() {
               </select>
               <select className="signup-select" name="dobYear" defaultValue="" aria-label="Year">
                 <option value="" disabled>
-                  YYYY
+                  {fields.dateOfBirth.yearPlaceholder}
                 </option>
                 {YEARS.map((year) => (
                   <option key={year} value={year}>
@@ -124,7 +131,7 @@ export function CorporateSignupForm() {
         </div>
 
         <div className="signup-grid signup-grid--3">
-          <Field label="Nationality" required>
+          <Field label={fields.nationality.label} required={fields.nationality.required}>
             <select className="signup-select" name="nationality" defaultValue="Saudi Arabia">
               {NATIONALITIES.map((item) => (
                 <option key={item} value={item}>
@@ -133,10 +140,10 @@ export function CorporateSignupForm() {
               ))}
             </select>
           </Field>
-          <Field label="Document type" required>
+          <Field label={fields.documentType.label} required={fields.documentType.required}>
             <select className="signup-select" name="documentType" defaultValue="">
               <option value="" disabled>
-                Document type
+                {fields.documentType.placeholder}
               </option>
               {DOCUMENT_TYPES.map((item) => (
                 <option key={item} value={item}>
@@ -145,7 +152,7 @@ export function CorporateSignupForm() {
               ))}
             </select>
           </Field>
-          <Field label="Document number" required>
+          <Field label={fields.documentNumber.label} required={fields.documentNumber.required}>
             <input className="signup-input" type="text" name="documentNumber" />
           </Field>
         </div>
@@ -153,10 +160,10 @@ export function CorporateSignupForm() {
 
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Contact details</h2>
+          <h2 className="signup-card__title">{sections.contactDetails}</h2>
         </div>
         <div className="signup-grid signup-grid--2" style={{ marginBottom: "1.1rem" }}>
-          <Field label="Country code" required>
+          <Field label={fields.countryCode.label} required={fields.countryCode.required}>
             <select className="signup-select" name="countryCode" defaultValue="Saudi Arabia(+966)">
               {COUNTRY_CODES.map((item) => (
                 <option key={item} value={item}>
@@ -165,15 +172,19 @@ export function CorporateSignupForm() {
               ))}
             </select>
           </Field>
-          <Field label="Mobile" required hint="e.g. 920001234">
+          <Field
+            label={fields.mobile.label}
+            required={fields.mobile.required}
+            hint={fields.mobile.hint}
+          >
             <input className="signup-input" type="tel" name="mobile" autoComplete="tel" />
           </Field>
         </div>
         <div className="signup-grid signup-grid--2">
-          <Field label="Email" required>
+          <Field label={fields.email.label} required={fields.email.required}>
             <input className="signup-input" type="email" name="contactEmail" autoComplete="email" />
           </Field>
-          <Field label="Confirm email" required>
+          <Field label={fields.confirmEmail.label} required={fields.confirmEmail.required}>
             <input className="signup-input" type="email" name="confirmEmail" autoComplete="email" />
           </Field>
         </div>

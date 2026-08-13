@@ -4,9 +4,11 @@ import { FormEvent } from "react";
 import {
   COUNTRY_CODES,
   DAYS,
+  DESTINATIONS,
   DOCUMENT_TYPES,
   Field,
   FormActions,
+  LANGUAGES,
   MONTHS,
   NATIONALITIES,
   RecaptchaPlaceholder,
@@ -15,27 +17,34 @@ import {
   UploadDocumentButton,
   YEARS,
 } from "./SignupShared";
+import { MEMBER_SIGNUP } from "@/jsonStaticData/onboardingData";
 
 export function MemberSignupForm() {
+  const { fields, sections, terms, newsletterOptIn, title } = MEMBER_SIGNUP;
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
 
   return (
-    <SignupShell title="New Member Registration" onSubmit={handleSubmit}>
+    <SignupShell title={title} onSubmit={handleSubmit}>
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Your login details</h2>
+          <h2 className="signup-card__title">{sections.loginDetails}</h2>
         </div>
         <div className="signup-grid signup-grid--3">
           <Field
-            label="User Email"
-            required
-            hint="Please enter your valid email address as your username (e.g. name@gmail.com)"
+            label={fields.userEmail.label}
+            required={fields.userEmail.required}
+            hint={fields.userEmail.hint}
           >
             <input className="signup-input" type="email" name="email" autoComplete="email" />
           </Field>
-          <Field label="Password" required hint="must be 8-20 characters">
+          <Field
+            label={fields.password.label}
+            required={fields.password.required}
+            hint={fields.password.hint}
+          >
             <input
               className="signup-input"
               type="password"
@@ -43,7 +52,11 @@ export function MemberSignupForm() {
               autoComplete="new-password"
             />
           </Field>
-          <Field label="Confirm password" required hint="Please enter the same password">
+          <Field
+            label={fields.confirmPassword.label}
+            required={fields.confirmPassword.required}
+            hint={fields.confirmPassword.hint}
+          >
             <input
               className="signup-input"
               type="password"
@@ -56,34 +69,38 @@ export function MemberSignupForm() {
 
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Passenger and Document details</h2>
+          <h2 className="signup-card__title">{sections.passengerDocument}</h2>
           <UploadDocumentButton />
         </div>
 
         <div className="signup-grid signup-grid--4" style={{ marginBottom: "1.1rem" }}>
-          <Field label="Title" required>
+          <Field label={fields.title.label} required={fields.title.required}>
             <select className="signup-select" name="title" defaultValue="">
               <option value="" disabled>
-                Title
+                {fields.title.placeholder}
               </option>
-              {TITLES.map((title) => (
-                <option key={title} value={title}>
-                  {title}
+              {TITLES.map((item) => (
+                <option key={item} value={item}>
+                  {item}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="First name" required>
+          <Field label={fields.firstName.label} required={fields.firstName.required}>
             <input className="signup-input" type="text" name="firstName" autoComplete="given-name" />
           </Field>
-          <Field label="Last name" required>
+          <Field label={fields.lastName.label} required={fields.lastName.required}>
             <input className="signup-input" type="text" name="lastName" autoComplete="family-name" />
           </Field>
-          <Field label="Date of birth (Gregorian)" required className="signup-field--dob">
+          <Field
+            label={fields.dateOfBirth.label}
+            required={fields.dateOfBirth.required}
+            className="signup-field--dob"
+          >
             <div className="signup-dob">
               <select className="signup-select" name="dobDay" defaultValue="" aria-label="Day">
                 <option value="" disabled>
-                  DD
+                  {fields.dateOfBirth.dayPlaceholder}
                 </option>
                 {DAYS.map((day) => (
                   <option key={day} value={day}>
@@ -93,7 +110,7 @@ export function MemberSignupForm() {
               </select>
               <select className="signup-select" name="dobMonth" defaultValue="" aria-label="Month">
                 <option value="" disabled>
-                  MONTH
+                  {fields.dateOfBirth.monthPlaceholder}
                 </option>
                 {MONTHS.map((month, index) => (
                   <option key={month} value={String(index + 1)}>
@@ -103,7 +120,7 @@ export function MemberSignupForm() {
               </select>
               <select className="signup-select" name="dobYear" defaultValue="" aria-label="Year">
                 <option value="" disabled>
-                  YYYY
+                  {fields.dateOfBirth.yearPlaceholder}
                 </option>
                 {YEARS.map((year) => (
                   <option key={year} value={year}>
@@ -116,7 +133,7 @@ export function MemberSignupForm() {
         </div>
 
         <div className="signup-grid signup-grid--3">
-          <Field label="Nationality" required>
+          <Field label={fields.nationality.label} required={fields.nationality.required}>
             <select className="signup-select" name="nationality" defaultValue="Saudi Arabia">
               {NATIONALITIES.map((item) => (
                 <option key={item} value={item}>
@@ -125,10 +142,10 @@ export function MemberSignupForm() {
               ))}
             </select>
           </Field>
-          <Field label="Document type" required>
+          <Field label={fields.documentType.label} required={fields.documentType.required}>
             <select className="signup-select" name="documentType" defaultValue="">
               <option value="" disabled>
-                Document type
+                {fields.documentType.placeholder}
               </option>
               {DOCUMENT_TYPES.map((item) => (
                 <option key={item} value={item}>
@@ -137,7 +154,7 @@ export function MemberSignupForm() {
               ))}
             </select>
           </Field>
-          <Field label="Document number" required>
+          <Field label={fields.documentNumber.label} required={fields.documentNumber.required}>
             <input className="signup-input" type="text" name="documentNumber" />
           </Field>
         </div>
@@ -145,10 +162,10 @@ export function MemberSignupForm() {
 
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Contact details</h2>
+          <h2 className="signup-card__title">{sections.contactDetails}</h2>
         </div>
         <div className="signup-grid signup-grid--3">
-          <Field label="Country code" required>
+          <Field label={fields.countryCode.label} required={fields.countryCode.required}>
             <select className="signup-select" name="countryCode" defaultValue="Saudi Arabia(+966)">
               {COUNTRY_CODES.map((item) => (
                 <option key={item} value={item}>
@@ -157,16 +174,20 @@ export function MemberSignupForm() {
               ))}
             </select>
           </Field>
-          <Field label="Mobile" required hint="e.g. 920001234">
+          <Field
+            label={fields.mobile.label}
+            required={fields.mobile.required}
+            hint={fields.mobile.hint}
+          >
             <input
               className="signup-input"
               type="tel"
               name="mobile"
-              placeholder="555XXXXXX"
+              placeholder={fields.mobile.placeholder}
               autoComplete="tel"
             />
           </Field>
-          <Field label="Email" required>
+          <Field label={fields.email.label} required={fields.email.required}>
             <input className="signup-input" type="email" name="contactEmail" autoComplete="email" />
           </Field>
         </div>
@@ -174,40 +195,38 @@ export function MemberSignupForm() {
 
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Sign up to our newsletter</h2>
+          <h2 className="signup-card__title">{sections.newsletter}</h2>
         </div>
         <div className="signup-grid signup-grid--3" style={{ marginBottom: "1rem" }}>
-          <Field label="Language">
+          <Field label={fields.language.label}>
             <select className="signup-select" name="newsletterLanguage" defaultValue="English">
-              <option>English</option>
-              <option>Arabic</option>
-              <option>Russian</option>
+              {LANGUAGES.map((item) => (
+                <option key={item}>{item}</option>
+              ))}
             </select>
           </Field>
-          <Field label="City of Origin">
+          <Field label={fields.cityOfOrigin.label}>
             <input className="signup-input" type="text" name="cityOfOrigin" />
           </Field>
-          <Field label="Preferred destinations">
+          <Field label={fields.preferredDestinations.label}>
             <select className="signup-select" name="preferredDestinations" defaultValue="">
               <option value="" disabled>
-                Locations
+                {fields.preferredDestinations.placeholder}
               </option>
-              <option>Riyadh</option>
-              <option>Jeddah</option>
-              <option>Dubai</option>
-              <option>Cairo</option>
+              {DESTINATIONS.map((item) => (
+                <option key={item}>{item}</option>
+              ))}
             </select>
           </Field>
         </div>
         <label className="signup-check">
           <input type="checkbox" name="allowNewsletter" />
-          Allow News letter notification
+          {newsletterOptIn}
         </label>
       </section>
 
       <p className="signup-terms">
-        By clicking Register, I confirm that I accept the{" "}
-        <a href="#">Terms &amp; Conditions</a>
+        {terms.prefix} <a href={terms.href}>{terms.linkLabel}</a>
       </p>
 
       <RecaptchaPlaceholder />

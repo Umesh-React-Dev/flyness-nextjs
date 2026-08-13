@@ -82,7 +82,7 @@ export default function MegaMenuPopover({
                 {activeCategory.links.map((link) => (
                   <a
                     key={link.title}
-                    href={link.href}
+                    href="javascript:void(0)"
                     className="megaMenuLink"
                   >
                     <i

@@ -18,6 +18,9 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "paths": {
+      "@/assets/*": [
+        "./assets/*"
+      ],
       "@/*": [
         "./src/*"
       ]

@@ -9,6 +9,17 @@ import {
   useRef,
   useState,
 } from "react";
+import CalendarCheckIcon from "@/assets/icons/CalendarCheckIcon";
+import CalendarIcon from "@/assets/icons/CalendarIcon";
+import CloseIcon from "@/assets/icons/CloseIcon";
+import LuggageIcon from "@/assets/icons/LuggageIcon";
+import MinimizeIcon from "@/assets/icons/MinimizeIcon";
+import PlaneIcon from "@/assets/icons/PlaneIcon";
+import PlaneTiltIcon from "@/assets/icons/PlaneTiltIcon";
+import RefreshIcon from "@/assets/icons/RefreshIcon";
+import RefundIcon from "@/assets/icons/RefundIcon";
+import SadFaceIcon from "@/assets/icons/SadFaceIcon";
+import TerminalPinIcon from "@/assets/icons/TerminalPinIcon";
 import logo from "@/assets/images/flynas-logo-green.svg";
 import sendIcon from "@/assets/images/flynas-ai-send.svg";
 import "./FlynasAI.scss";
@@ -40,130 +51,6 @@ function formatTime(date = new Date()) {
   return date.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 }
 
-function IconPlane() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
-function IconCalendarCheck() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.75" />
-      <path d="M3 10h18" stroke="currentColor" strokeWidth="1.75" />
-      <path d="M8 3v4M16 3v4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
-      <path
-        d="m9 15 2 2 4-4"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function IconCalendar() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.75" />
-      <path d="M3 10h18" stroke="currentColor" strokeWidth="1.75" />
-      <path d="M8 3v4M16 3v4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
-      <path d="M8 14h2M12 14h2M16 14h.01M8 17h2M12 17h2" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function IconTerminal() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z"
-        stroke="currentColor"
-        strokeWidth="1.75"
-      />
-      <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.75" />
-    </svg>
-  );
-}
-
-function IconRefund() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.75" />
-      <path
-        d="M12 7.5v9M14.5 9.5c0-1-1-1.5-2.5-1.5s-2.5.5-2.5 1.5 1 1.3 2.5 1.5 2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5-.5-2.5-1.5"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function IconPlaneTilt() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M10.2 14.8 3.5 12.2l1.1-1.8 5.2 1.4L15.5 5l1.7 1.2-5.7 7.6 1.4 5.2-1.8 1.1-2.6-6.7-2.9 2.9-.9-.9 2.5-2.6Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
-function IconSad() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="8.25" stroke="currentColor" strokeWidth="1.75" />
-      <path d="M9 10h.01M15 10h.01" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-      <path
-        d="M8.5 16c1-.9 2.1-1.4 3.5-1.4s2.5.5 3.5 1.4"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function IconLuggage() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="6" y="7" width="12" height="13" rx="2" stroke="currentColor" strokeWidth="1.75" />
-      <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7" stroke="currentColor" strokeWidth="1.75" />
-      <text x="12" y="15.5" textAnchor="middle" fill="currentColor" fontSize="6" fontWeight="700">
-        KG
-      </text>
-    </svg>
-  );
-}
-
-function IconBadge() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M12 2.5 4.5 5.5v5.2c0 5.1 3.4 9.8 7.5 11.3 4.1-1.5 7.5-6.2 7.5-11.3V5.5L12 2.5Z"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinejoin="round"
-      />
-      <path
-        d="m9 12 2 2 4-4"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function IconSend() {
   return (
     <Image
@@ -177,62 +64,32 @@ function IconSend() {
   );
 }
 
-function IconMinimize() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M6 12h12" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function IconRefresh() {
-  return (
-    <svg width="16" height="14" viewBox="0 0 16 14" fill="none" aria-hidden="true">
-      <path
-        d="M4.9002 5L2.8002 3L0.700195 5M2.8002 3V9.66667C2.8002 10.0203 2.94769 10.3594 3.21025 10.6095C3.4728 10.8595 3.82889 11 4.2002 11H8.4002M10.5002 9L12.6002 11L14.7002 9M12.6002 11V4.33333C12.6002 3.97971 12.4527 3.64057 12.1901 3.39052C11.9276 3.14048 11.5715 3 11.2002 3H7.0002"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function IconClose() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M7 7l10 10M17 7 7 17" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 const SECTIONS: QuickSection[] = [
   {
     title: "About Booking",
     actions: [
-      { id: "status", label: "Check Flight Status", icon: <IconPlane /> },
-      { id: "search", label: "Search For Flight", icon: <IconCalendarCheck /> },
-      { id: "manage", label: "Manage My Bookings", icon: <IconCalendar /> },
-      { id: "terminal", label: "Terminal Details", icon: <IconTerminal /> },
+      { id: "status", label: "Check Flight Status", icon: <PlaneIcon /> },
+      { id: "search", label: "Search For Flight", icon: <CalendarCheckIcon /> },
+      { id: "manage", label: "Manage My Bookings", icon: <CalendarIcon /> },
+      { id: "terminal", label: "Terminal Details", icon: <TerminalPinIcon /> },
     ],
   },
   {
     title: "Refunds",
     actions: [
-      { id: "policy", label: "What's The Refund Policy?", icon: <IconRefund /> },
+      { id: "policy", label: "What's The Refund Policy?", icon: <RefundIcon /> },
       {
         id: "cancel-refund",
         label: "Can I Get A Refund For My Cancelled Flight?",
-        icon: <IconPlaneTilt />,
+        icon: <PlaneTiltIcon />,
       },
     ],
   },
   {
     title: "Baggage Queries",
     actions: [
-      { id: "lost", label: "I Lost My Suitcase", icon: <IconSad /> },
-      { id: "allowance", label: "How Much Luggage Can I Carry?", icon: <IconLuggage /> },
+      { id: "lost", label: "I Lost My Suitcase", icon: <SadFaceIcon /> },
+      { id: "allowance", label: "How Much Luggage Can I Carry?", icon: <LuggageIcon /> },
     ],
   },
 ];
@@ -354,7 +211,7 @@ export default function FlynasAI({ open, onClose }: FlynasAIProps) {
               onClick={handleRefresh}
               aria-label="Start a new chat"
             >
-              <IconRefresh />
+              <RefreshIcon />
             </button>
           )}
           <button
@@ -363,7 +220,7 @@ export default function FlynasAI({ open, onClose }: FlynasAIProps) {
             onClick={onClose}
             aria-label="Minimize Flynas AI"
           >
-            <IconMinimize />
+            <MinimizeIcon />
           </button>
           {inChat && (
             <button
@@ -372,7 +229,7 @@ export default function FlynasAI({ open, onClose }: FlynasAIProps) {
               onClick={onClose}
               aria-label="Close Flynas AI"
             >
-              <IconClose />
+              <CloseIcon />
             </button>
           )}
         </div>

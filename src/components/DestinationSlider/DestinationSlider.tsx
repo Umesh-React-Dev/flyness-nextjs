@@ -3,6 +3,8 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ChevronLeftIcon from "@/assets/icons/ChevronLeftIcon";
+import ChevronRightIcon from "@/assets/icons/ChevronRightIcon";
 import "./DestinationSlider.scss";
 
 export type DestinationSlide = {
@@ -76,7 +78,7 @@ export default function DestinationSlider({
         aria-label="Previous destinations"
         onClick={goToPrev}
       >
-        <ChevronLeftIcon />
+        <ChevronLeftIcon width={18} height={18} strokeWidth={2.2} />
       </button>
 
       <div className="destinationSlider__viewport">
@@ -136,36 +138,8 @@ export default function DestinationSlider({
         aria-label="Next destinations"
         onClick={goToNext}
       >
-        <ChevronRightIcon />
+        <ChevronRightIcon width={18} height={18} strokeWidth={2.2} />
       </button>
     </div>
-  );
-}
-
-function ChevronLeftIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M12.5 4.5L7 10l5.5 5.5"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function ChevronRightIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M7.5 4.5L13 10l-5.5 5.5"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

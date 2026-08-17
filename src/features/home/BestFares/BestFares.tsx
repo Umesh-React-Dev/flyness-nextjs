@@ -11,11 +11,14 @@ import {
   FARE_ORIGINS,
   type FareOriginId,
 } from "./bestFaresData";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
+import { useTranslation } from "react-i18next";
 import "./BestFares.scss";
 
 const DESKTOP_PER_VIEW = 4;
 
 export default function BestFares() {
+  const { t } = useTranslation("home");
   const [activeOrigin, setActiveOrigin] = useState<FareOriginId>("riyadh");
   const [page, setPage] = useState(0);
   const [perView, setPerView] = useState(DESKTOP_PER_VIEW);
@@ -67,9 +70,9 @@ export default function BestFares() {
     <section className="bestFares" aria-labelledby="best-fares-heading">
       <div className="bestFares__inner">
         <div className="bestFares__header">
-          <div className="bestFares__tabs" role="tablist" aria-label="Departure city">
+          <div className="bestFares__tabs" role="tablist" aria-label={t(HOME_LABEL.FARES_CITIES_ARIA)}>
             <h2 id="best-fares-heading" className="bestFares__srOnly">
-              Find the best fares
+              {t(HOME_LABEL.FARES_HEADING)}
             </h2>
             {FARE_ORIGINS.map((origin) => {
               const isActive = origin.id === activeOrigin;
@@ -84,14 +87,14 @@ export default function BestFares() {
                   className={`bestFares__tab${isActive ? " is-active" : ""}`}
                   onClick={() => setActiveOrigin(origin.id)}
                 >
-                  {origin.label}
+                  {t(`fares.origins.${origin.id}`)}
                 </button>
               );
             })}
           </div>
 
           <Link href={BEST_FARES_CTA.href} className="bestFares__cta">
-            {BEST_FARES_CTA.label}
+            {t(HOME_LABEL.FARES_CTA)}
           </Link>
         </div>
 
@@ -101,12 +104,14 @@ export default function BestFares() {
           aria-labelledby={`best-fares-tab-${activeOrigin}`}
           className="bestFares__slider"
           aria-roledescription="carousel"
-          aria-label={`Best fares from ${FARE_ORIGINS.find((o) => o.id === activeOrigin)?.label}`}
+          aria-label={t(HOME_LABEL.FARES_SLIDER_ARIA, {
+            city: t(`fares.origins.${activeOrigin}`),
+          })}
         >
           <button
             type="button"
             className="bestFares__arrow bestFares__arrow--prev"
-            aria-label="Previous fares"
+            aria-label={t(HOME_LABEL.FARES_PREV)}
             onClick={goToPrev}
           >
             <ChevronLeftIcon />
@@ -123,7 +128,13 @@ export default function BestFares() {
                   <Link
                     href={deal.href}
                     className="bestFares__card"
-                    aria-label={`${deal.city}, from ${deal.price}, ${deal.cabin}`}
+                    aria-label={t(HOME_LABEL.FARES_CARD_ARIA, {
+                      city: t(`summer.cities.${deal.city.toLowerCase().replace(/\s+/g, "-")}`, {
+                        defaultValue: deal.city,
+                      }),
+                      price: deal.price,
+                      cabin: t(HOME_LABEL.FARES_CABIN),
+                    })}
                   >
                     <div className="bestFares__media">
                       <Image
@@ -137,12 +148,16 @@ export default function BestFares() {
                     </div>
 
                     <div className="bestFares__content">
-                      <span className="bestFares__city">{deal.city}</span>
-                      <span className="bestFares__from">From</span>
+                      <span className="bestFares__city">
+                        {t(`summer.cities.${deal.city.toLowerCase()}`, {
+                          defaultValue: deal.city,
+                        })}
+                      </span>
+                      <span className="bestFares__from">{t(HOME_LABEL.FARES_FROM)}</span>
                       <span className="bestFares__price">{deal.price}</span>
-                      <span className="bestFares__cabin">{deal.cabin}</span>
+                      <span className="bestFares__cabin">{t(HOME_LABEL.FARES_CABIN)}</span>
                       <span className="bestFares__bookNow" aria-hidden="true">
-                        Book Now
+                        {t(HOME_LABEL.FARES_BOOK_NOW)}
                       </span>
                     </div>
                   </Link>
@@ -154,7 +169,7 @@ export default function BestFares() {
           <button
             type="button"
             className="bestFares__arrow bestFares__arrow--next"
-            aria-label="Next fares"
+            aria-label={t(HOME_LABEL.FARES_NEXT)}
             onClick={goToNext}
           >
             <ChevronRightIcon />

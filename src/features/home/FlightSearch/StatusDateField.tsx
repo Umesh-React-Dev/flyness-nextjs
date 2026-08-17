@@ -7,6 +7,8 @@ import {
   isSameDay,
   startOfDay,
 } from "./dateUtils";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
+import { useTranslation } from "react-i18next";
 import "./StatusDateField.scss";
 
 type StatusDateFieldProps = {
@@ -33,6 +35,7 @@ export default function StatusDateField({
   value,
   onChange,
 }: StatusDateFieldProps) {
+  const { t } = useTranslation("home");
   const rootRef = useRef<HTMLDivElement>(null);
   const listId = useId();
   const [open, setOpen] = useState(false);
@@ -74,7 +77,7 @@ export default function StatusDateField({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={open ? listId : undefined}
-        aria-label="Flight date"
+        aria-label={t(HOME_LABEL.SEARCH_FLIGHT_DATE)}
         onClick={() => setOpen((current) => !current)}
       >
         {formatStatusDate(selected)}

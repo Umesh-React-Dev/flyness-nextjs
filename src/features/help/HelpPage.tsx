@@ -11,11 +11,14 @@ import iconEmail from "@/assets/images/help/icon-email.svg";
 import iconTrackArrow from "@/assets/images/help/icon-track-arrow.svg";
 import iconChevron from "@/assets/images/help/icon-chevron.svg";
 import { HELP_CATEGORIES, HELP_FAQS } from "@/jsonStaticData/helpData";
+import { HELP_LABEL } from "@/i18n/constants/help.constant";
+import { useTranslation } from "react-i18next";
 import "./HelpPage.scss";
 
 type TrackMode = "case" | "email";
 
 export default function HelpPage() {
+  const { t } = useTranslation("help");
   const [trackMode, setTrackMode] = useState<TrackMode>("email");
   const [trackValue, setTrackValue] = useState("");
   const [openFaqId, setOpenFaqId] = useState<string | null>(
@@ -46,7 +49,7 @@ export default function HelpPage() {
         </div>
         <div className="helpHero__inner">
           <h1 id="help-hero-title" className="helpHero__title">
-            How can we help?
+            {t(HELP_LABEL.HERO_TITLE)}
           </h1>
         </div>
       </section>
@@ -55,10 +58,10 @@ export default function HelpPage() {
         <section className="helpTrack" aria-labelledby="help-track-title">
           <div className="helpTrack__copy">
             <h2 id="help-track-title" className="helpTrack__title">
-              Track your support cases
+              {t(HELP_LABEL.TRACK_TITLE)}
             </h2>
             <p className="helpTrack__subtitle">
-              Helps you view the status of your support requests
+              {t(HELP_LABEL.TRACK_SUBTITLE)}
             </p>
           </div>
 
@@ -66,7 +69,7 @@ export default function HelpPage() {
             <div
               className="helpTrack__toggle"
               role="group"
-              aria-label="Track by"
+              aria-label={t(HELP_LABEL.TRACK_BY_ARIA)}
             >
               <button
                 type="button"
@@ -79,7 +82,7 @@ export default function HelpPage() {
                 <span className="helpTrack__toggleIcon" aria-hidden="true">
                   <Image src={iconCase} alt="" width={16} height={16} />
                 </span>
-                Case Number
+                {t(HELP_LABEL.TRACK_CASE_NUMBER)}
               </button>
               <button
                 type="button"
@@ -92,7 +95,7 @@ export default function HelpPage() {
                 <span className="helpTrack__toggleIcon" aria-hidden="true">
                   <Image src={iconEmail} alt="" width={16} height={16} />
                 </span>
-                Email Address
+                {t(HELP_LABEL.TRACK_EMAIL)}
               </button>
             </div>
 
@@ -100,16 +103,16 @@ export default function HelpPage() {
               <label className="helpTrack__field">
                 <span className="visuallyHidden">
                   {trackMode === "email"
-                    ? "Email used for the case"
-                    : "Case number"}
+                    ? t(HELP_LABEL.TRACK_EMAIL_PLACEHOLDER)
+                    : t(HELP_LABEL.TRACK_CASE_NUMBER)}
                 </span>
                 <input
                   type={trackMode === "email" ? "email" : "text"}
                   className="helpTrack__input"
                   placeholder={
                     trackMode === "email"
-                      ? "Email used for the case"
-                      : "Enter case number"
+                      ? t(HELP_LABEL.TRACK_EMAIL_PLACEHOLDER)
+                      : t(HELP_LABEL.TRACK_CASE_PLACEHOLDER)
                   }
                   value={trackValue}
                   onChange={(event) => setTrackValue(event.target.value)}
@@ -117,7 +120,7 @@ export default function HelpPage() {
               </label>
 
               <button type="submit" className="helpTrack__submit">
-                Track Case
+                {t(HELP_LABEL.TRACK_SUBMIT)}
                 <span className="helpTrack__submitIcon" aria-hidden="true">
                   <Image src={iconTrackArrow} alt="" width={16} height={16} />
                 </span>
@@ -127,7 +130,7 @@ export default function HelpPage() {
         </section>
 
         <div className="helpPage__content">
-          <section className="helpCategories" aria-label="Help topics">
+          <section className="helpCategories" aria-label={t(HELP_LABEL.CATEGORIES_ARIA)}>
             <ul className="helpCategories__grid">
               {HELP_CATEGORIES.map((category) => (
                 <li key={category.id}>
@@ -153,7 +156,9 @@ export default function HelpPage() {
                             className="helpCard__icon"
                           />
                         </span>
-                        <h3 className="helpCard__title">{category.title}</h3>
+                        <h3 className="helpCard__title">
+                          {t(`categories.${category.id}.title`)}
+                        </h3>
                       </div>
                       <span className="helpCard__arrow" aria-hidden="true">
                         <Image
@@ -165,13 +170,19 @@ export default function HelpPage() {
                       </span>
                     </div>
 
-                    <p className="helpCard__description">{category.description}</p>
+                    <p className="helpCard__description">
+                      {t(`categories.${category.id}.description`)}
+                    </p>
 
-                    {category.tags?.length ? (
+                    {category.tagCount ? (
                       <div className="helpCard__tags">
-                        {category.tags.map((tag) => (
-                          <span key={tag.label} className="helpCard__tag">
-                            {tag.label}
+                        {(
+                          t(`categories.${category.id}.tags`, {
+                            returnObjects: true,
+                          }) as string[]
+                        ).map((tag) => (
+                          <span key={tag} className="helpCard__tag">
+                            {tag}
                           </span>
                         ))}
                       </div>
@@ -184,7 +195,7 @@ export default function HelpPage() {
 
           <section className="helpFaq" aria-labelledby="help-faq-title">
             <h2 id="help-faq-title" className="helpFaq__title">
-              Frequently Asked Questions
+              {t(HELP_LABEL.FAQ_TITLE)}
             </h2>
 
             <div className="helpFaq__list">
@@ -207,7 +218,7 @@ export default function HelpPage() {
                         aria-controls={panelId}
                         onClick={() => toggleFaq(faq.id)}
                       >
-                        <span>{faq.question}</span>
+                        <span>{t(`faq.items.${faq.id}.question`)}</span>
                         <span className="helpFaq__chevron" aria-hidden="true">
                           <Image
                             src={iconChevron}
@@ -225,14 +236,21 @@ export default function HelpPage() {
                       aria-labelledby={buttonId}
                       className="helpFaq__panel"
                     >
-                      <p className="helpFaq__answer">{faq.answer}</p>
-                      {faq.bullets?.length ? (
-                        <ul className="helpFaq__bullets">
-                          {faq.bullets.map((bullet) => (
-                            <li key={bullet}>{bullet}</li>
-                          ))}
-                        </ul>
-                      ) : null}
+                      <p className="helpFaq__answer">
+                        {t(`faq.items.${faq.id}.answer`)}
+                      </p>
+                      {(() => {
+                        const bullets = t(`faq.items.${faq.id}.bullets`, {
+                          returnObjects: true,
+                        });
+                        return Array.isArray(bullets) ? (
+                          <ul className="helpFaq__bullets">
+                            {(bullets as string[]).map((bullet) => (
+                              <li key={bullet}>{bullet}</li>
+                            ))}
+                          </ul>
+                        ) : null;
+                      })()}
                     </div>
                   </div>
                 );

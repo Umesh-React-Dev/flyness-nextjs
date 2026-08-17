@@ -1,0 +1,287 @@
+{
+  "header": {
+    "homeAria": "Flynas home",
+    "search": "Search",
+    "searchPlaceholder": "Search...",
+    "searchSubmit": "Submit search",
+    "login": "Log In",
+    "help": "Help & Support",
+    "navAria": "Main navigation",
+    "megaMenuCategories": "Menu categories",
+    "megaMenuRegion": "{{label}} menu"
+  },
+  "nav": {
+    "plan-and-book": "Plan and book",
+    "prepare-your-trip": "Prepare your trip",
+    "information": "Information",
+    "nasmiles": "nasmiles",
+    "nasholidays": "nasHolidays"
+  },
+  "categories": {
+    "plan-your-journey": { "title": "Plan your journey", "description": "Explore travel options, fares, and offers" },
+    "book": { "title": "Book", "description": "Reserve hotels, cars, and extras" },
+    "before-you-fly": { "title": "Before you fly", "description": "Check travel rules and airport info" },
+    "baggage": { "title": "Baggage", "description": "Carry-on, checked, and special items" },
+    "manage-your-booking": { "title": "Manage Your Booking", "description": "Edit your trip, add extras, or check in" },
+    "enhance-your-trip": { "title": "Enhance your trip", "description": "Upgrade and personalize your journey" },
+    "about-flynas": { "title": "About flynas", "description": "Company, careers, and contact info" },
+    "special-care": { "title": "Special Care", "description": "Support for families and special needs" },
+    "why-flynas": { "title": "Why flynas", "description": "Premium services and partnerships" },
+    "earn-nasmiles": { "title": "Earn nasmiles", "description": "Earn nasmiles" },
+    "spend-nasmiles": { "title": "Spend nasmiles", "description": "Use your miles for rewards and perks" },
+    "programme": { "title": "Programme", "description": "Explore membership levels and benefits" }
+  },
+  "language": {
+    "menuAria": "Country and language",
+    "selectedCountry": "Selected Country (Language)",
+    "allCountries": "All Countries"
+  },
+  "hero": {
+    "aria": "Featured destinations",
+    "prev": "Previous slide",
+    "next": "Next slide",
+    "cta": "Book Now!",
+    "slides": {
+      "vienna": { "title": "Book your Summer Trip to Vienna", "subtitle": "Starting from 649 SAR" },
+      "istanbul": { "title": "Discover Istanbul This Summer", "subtitle": "Starting from 599 SAR" },
+      "cairo": { "title": "Escape to Cairo", "subtitle": "Starting from 549 SAR" }
+    }
+  },
+  "search": {
+    "aria": "Flight search",
+    "tabsAria": "Booking options",
+    "tabs": {
+      "flights": "Flights",
+      "packages": "Flights+Hotel/Packages",
+      "manage": "Manage",
+      "checkin": "Check-in",
+      "status": "Flight Status"
+    },
+    "tripTypes": {
+      "one-way": "One Way",
+      "round-trip": "Round trip",
+      "multi-city": "Multi-City"
+    },
+    "packageTypes": {
+      "flights-hotel": "Flights + Hotel",
+      "umrah": "Umrah Packages"
+    },
+    "statusModes": {
+      "route": "Search by route",
+      "flight-number": "Search by flight number"
+    },
+    "tripType": "Trip type",
+    "packageType": "Package type",
+    "statusMode": "Search mode",
+    "origin": "Origin",
+    "destination": "Destination",
+    "swap": "Swap origin and destination",
+    "submit": "Search",
+    "flightNumber": "Flight number",
+    "bookingReference": "Booking Reference",
+    "bookingReferencePlaceholder": "e.g. RA567L",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Enter Last Name",
+    "findBooking": "Find Booking",
+    "manageHelper": "Manage your flight at your convenience",
+    "checkinHelper": "Save valuable time, check-in for your flight.",
+    "noAirports": "No airports found",
+    "searchAirport": "Search {{label}}",
+    "depart": "Depart",
+    "return": "Return",
+    "chooseDates": "Choose dates",
+    "prevMonth": "Previous month",
+    "nextMonth": "Next month",
+    "hijriCalendar": "Hijri Calendar",
+    "flightDate": "Flight date",
+    "occupancy": "Occupancy",
+    "selectOccupancy": "Select occupancy",
+    "room": "Room - {{number}}",
+    "removeRoom": "– Remove room",
+    "addRoom": "+ Add another room",
+    "adults": "Adults",
+    "adultsHint": "12+ years",
+    "children": "Children",
+    "childrenHint": "0 - 12 years",
+    "decreaseAdults": "Decrease adults for room {{number}}",
+    "increaseAdults": "Increase adults for room {{number}}",
+    "decreaseChildren": "Decrease children for room {{number}}",
+    "increaseChildren": "Increase children for room {{number}}",
+    "occupancySummary": "{{passengers}} Passengers {{rooms}} Room",
+    "today": "TODAY",
+    "tomorrow": "TOMORROW",
+    "yesterday": "YESTERDAY",
+    "weekdays": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+  },
+  "summer": {
+    "title": "Our Summer Destinations",
+    "sliderAria": "Summer destinations",
+    "prev": "Previous destinations",
+    "next": "Next destinations",
+    "explore": "Explore {{name}}",
+    "badges": { "Popular": "Popular", "New": "New" },
+    "cities": {
+      "tirana": "Tirana",
+      "istanbul": "Istanbul",
+      "sarajevo": "Sarajevo",
+      "munich": "Munich",
+      "vienna": "Vienna",
+      "cairo": "Cairo",
+      "paris": "Paris"
+    }
+  },
+  "extras": {
+    "title": "Enjoy your trip even more",
+    "subtitle": "Explore the additional services we offer to make your journey even more memorable.",
+    "items": {
+      "extra-baggage": {
+        "title": "Extra Baggage",
+        "description": "Save up to 50% from airports prices, add your extra baggage now.",
+        "cta": "Add Now"
+      },
+      "preordered-meals": {
+        "title": "Pre-ordered Meals",
+        "description": "Feeling hungry? Choose one of our delicious meals to be specially served to you on your trip.",
+        "cta": "Add Now"
+      },
+      "seat-selection": {
+        "title": "Seat Selection",
+        "description": "Hurry! Don't miss your chance to sit on your preferred seat.",
+        "cta": "Add Now"
+      },
+      "upgrade-premium": {
+        "title": "Upgrade to Premium",
+        "description": "With flynas, you can now upgrade your flight to Premium Class, ensuring a luxurious and comfortable arrival at your destination.",
+        "cta": "Add Now"
+      }
+    }
+  },
+  "whereWeFly": {
+    "aria": "Where we fly",
+    "alt": "Where we fly — click here and navigate the Dynamic Route Map"
+  },
+  "payLater": {
+    "aria": "Book now, pay later",
+    "alt": "Book now, Pay later! — madfu, tabby, and tamara"
+  },
+  "fares": {
+    "heading": "Find the best fares",
+    "citiesAria": "Departure city",
+    "cta": "Find the best fares",
+    "sliderAria": "Best fares from {{city}}",
+    "prev": "Previous fares",
+    "next": "Next fares",
+    "from": "From",
+    "bookNow": "Book Now",
+    "cardAria": "{{city}}, from {{price}}, {{cabin}}",
+    "cabin": "One Way / Economy",
+    "origins": {
+      "riyadh": "Riyadh",
+      "jeddah": "Jeddah",
+      "dammam": "Dammam",
+      "abha": "Abha",
+      "qassim": "Qassim"
+    }
+  },
+  "organise": {
+    "title": "Book and organise your trip with flynas",
+    "subtitle": "Enjoy our discount packages up to 50% off."
+  },
+  "reasons": {
+    "title": "Reasons to Fly With Us",
+    "subtitle": "Discover why millions choose flynas — competitive fares, a growing network, and an award-winning experience on every journey.",
+    "stats": {
+      "fleet": "Fleet of 67+ aircraft",
+      "flights": "2000 flights every week",
+      "passengers": "110 million passengers since the launch in 2007",
+      "routes": "Over 156 routes to 80+ destinations across more than 38 countries"
+    },
+    "tiles": {
+      "competitive-fares": { "title": "Competitive fares", "description": "tailored travel options and exclusive partner deals" },
+      "nasmiles": { "title": "nasmiles", "description": "earn and redeem miles on every journey" },
+      "domestic": { "title": "Strong Domestic presence", "description": "connecting cities across the Kingdom" },
+      "comfort": { "title": "Comfort & Privileges", "description": "extra space, seats, and onboard perks" },
+      "international": { "title": "Extensive International network", "description": "fly to destinations across more than 38 countries" },
+      "fleet": { "title": "Sustainable & Modern Fleet", "description": "newer aircraft for a smoother, greener flight" },
+      "award": { "title": "Award-Winning Service", "description": "recognized for hospitality that goes the extra mile" },
+      "nasholidays": { "title": "nasholidays", "description": "flights and hotels bundled for the perfect getaway" }
+    }
+  },
+  "newsletter": {
+    "title": "Never Miss a Deal Again",
+    "subtitle": "Be the first to find out about our promotions and new services",
+    "email": "Email",
+    "subscribe": "Subscribe"
+  },
+  "sideServices": {
+    "aria": "Quick services",
+    "hotels": "Hotels",
+    "car": "Car",
+    "umrah": "Umrah Packages"
+  },
+  "scrollTop": "Back to top",
+  "footer": {
+    "appTitle": "Flynas App – Your Journey, Your Way",
+    "appSubtitle": "Manage your trips anytime, anywhere.",
+    "qrAlt": "QR code to download the Flynas app",
+    "socialTitle": "Flynas on Social",
+    "socialSubtitle": "Get the latest news, travel deals, and support when you need it.",
+    "awardsTitle": "Middle East's Leading Low Cost Airline",
+    "awardsAlt": "APEX Four Star 2024, Skytrax World Airline Awards Winner 2023, and World Travel Awards Winner",
+    "paymentsTitle": "Payment Partners",
+    "paymentsAlt": "Payment partners including Apple Pay, mada, Visa, Mastercard, American Express, SADAD, STC Bank, PayPal, Tabby, Tamara, KNET, and madfu",
+    "bottomAria": "App, social, awards and payments",
+    "copyright": "Copyright © {{year}} flynas. All rights reserved.",
+    "note": "Site optimized for viewing in Firefox 29+, IE 10+, Safari 7+, and Chrome 35+",
+    "legalAria": "Legal",
+    "copyrightAria": "Copyright and legal",
+    "legal": {
+      "cookies": "Change cookie settings",
+      "personalData": "Personal Data Privacy Policy",
+      "privacy": "Privacy Policy",
+      "cookiePolicy": "Cookie Policy",
+      "terms": "Terms & Conditions",
+      "fare": "Fare Regulations",
+      "sitemap": "Site Map"
+    },
+    "stores": {
+      "appStore": "Download on the App Store",
+      "googlePlay": "Get it on Google Play",
+      "appGallery": "Explore it on AppGallery"
+    },
+    "columns": {
+      "flynas": {
+        "title": "Flynas",
+        "links": ["Our Fleet", "Premium Class", "News & Updates", "Mobile App", "Partnerships", "Jobs"]
+      },
+      "manage": {
+        "title": "Manage My Trip",
+        "links": ["Flight Status", "Online Check-in", "Upgrade to Premium", "Travel Insurance", "Book a hotel", "Our Offices"]
+      },
+      "popular": {
+        "title": "Popular Flights",
+        "links": ["Flights to Dubai", "Flights to Kuwait", "Flights to Islamabad", "Flights to Tirana", "Flights to Cairo", "Flights to Amman"]
+      },
+      "destinations": {
+        "title": "Top Destinations",
+        "links": ["Flights to India", "Flights to Georgia", "Flights to Jordan", "Flights to Egypt", "Flights to Saudi Arabia", "Flights to United Arab Emirates"]
+      },
+      "resources": {
+        "title": "Helpful Resources",
+        "links": ["FAQ's", "Special Services", "Visa Requirements To KSA", "Airports & Terminals", "Help & Support", "Integrated Management System Policy", "Blog"]
+      },
+      "help": {
+        "title": "Help & Support",
+        "links": ["Request refund", "Payment problem", "Feedback", "Track your Bag", "Check your voucher", "GACA", "Help", "Data Rights request"]
+      },
+      "loyalty": {
+        "title": "Loyalty",
+        "links": ["About nasmiles", "Join nasmiles", "Tiers and benefits", "Claim missing nasmiles", "nasmiles partners"]
+      },
+      "investors": {
+        "title": "Investor Relations",
+        "links": ["Investor Relations"]
+      }
+    }
+  }
+}

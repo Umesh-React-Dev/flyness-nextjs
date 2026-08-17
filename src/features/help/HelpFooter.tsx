@@ -1,10 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import type { StaticImageData } from "next/image";
+import { useTranslation } from "react-i18next";
 import iconFacebook from "@/assets/images/help/icon-facebook.svg";
 import iconYoutube from "@/assets/images/help/icon-youtube.svg";
 import iconInstagram from "@/assets/images/help/icon-instagram.svg";
 import iconLinkedin from "@/assets/images/help/icon-linkedin.svg";
+import { HELP_LABEL } from "@/i18n/constants/help.constant";
 import "./HelpFooter.scss";
 
 type SocialLink = {
@@ -22,6 +26,7 @@ const SOCIAL_LINKS: SocialLink[] = [
 ];
 
 export default function HelpFooter() {
+  const { t } = useTranslation("help");
   const year = new Date().getFullYear();
 
   return (
@@ -29,10 +34,8 @@ export default function HelpFooter() {
       <div className="helpFooter__main">
         <div className="helpFooter__columns">
           <div className="helpFooter__column">
-            <h3 className="helpFooter__title">flynas on Social</h3>
-            <p className="helpFooter__text">
-              Get the latest news, travel deals, and support when you need it.
-            </p>
+            <h3 className="helpFooter__title">{t(HELP_LABEL.FOOTER_SOCIAL_TITLE)}</h3>
+            <p className="helpFooter__text">{t(HELP_LABEL.FOOTER_SOCIAL_TEXT)}</p>
             <ul className="helpFooter__social">
               {SOCIAL_LINKS.map((link) => (
                 <li key={link.id}>
@@ -55,27 +58,27 @@ export default function HelpFooter() {
           </div>
 
           <div className="helpFooter__column">
-            <h3 className="helpFooter__title">Help</h3>
+            <h3 className="helpFooter__title">{t(HELP_LABEL.FOOTER_HELP_TITLE)}</h3>
             <ul className="helpFooter__links">
               <li>
                 <Link href="#" className="helpFooter__link">
-                  Contact Us
+                  {t(HELP_LABEL.FOOTER_CONTACT)}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className="helpFooter__column">
-            <h3 className="helpFooter__title">Legal</h3>
+            <h3 className="helpFooter__title">{t(HELP_LABEL.FOOTER_LEGAL_TITLE)}</h3>
             <ul className="helpFooter__links">
               <li>
                 <Link href="#" className="helpFooter__link">
-                  Terms of Service
+                  {t(HELP_LABEL.FOOTER_TERMS)}
                 </Link>
               </li>
               <li>
                 <Link href="#" className="helpFooter__link">
-                  Privacy Policy
+                  {t(HELP_LABEL.FOOTER_PRIVACY)}
                 </Link>
               </li>
             </ul>
@@ -85,7 +88,7 @@ export default function HelpFooter() {
 
       <div className="helpFooter__copyright">
         <p className="helpFooter__copyrightText">
-          © {year} flynas. All rights reserved.
+          {t(HELP_LABEL.FOOTER_COPYRIGHT, { year })}
         </p>
       </div>
     </footer>

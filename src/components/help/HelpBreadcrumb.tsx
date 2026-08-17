@@ -10,11 +10,12 @@ export type HelpBreadcrumbItem = {
 
 type HelpBreadcrumbProps = {
   items: HelpBreadcrumbItem[];
+  ariaLabel?: string;
 };
 
-export default function HelpBreadcrumb({ items }: HelpBreadcrumbProps) {
+export default function HelpBreadcrumb({ items, ariaLabel = "Breadcrumb" }: HelpBreadcrumbProps) {
   return (
-    <nav className="helpSubpageBreadcrumb" aria-label="Breadcrumb">
+    <nav className="helpSubpageBreadcrumb" aria-label={ariaLabel}>
       <ol className="helpSubpageBreadcrumb__list">
         {items.flatMap((item, index) => {
           const elements = [

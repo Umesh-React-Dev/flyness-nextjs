@@ -17,10 +17,7 @@ export type SelectedLocale = {
 export const countries: CountryOption[] = [
   {
     code: "KSA",
-    languages: [
-      { code: "en", label: "English", href: "#" },
-      { code: "ar", label: "عربي", href: "#" },
-    ],
+    languages: [{ code: "en", label: "English", href: "#" }],
   },
   {
     code: "EU",
@@ -32,31 +29,19 @@ export const countries: CountryOption[] = [
   },
   {
     code: "BAH",
-    languages: [
-      { code: "en", label: "English", href: "#" },
-      { code: "ar", label: "عربي", href: "#" },
-    ],
+    languages: [{ code: "en", label: "English", href: "#" }],
   },
   {
     code: "UAE",
-    languages: [
-      { code: "en", label: "English", href: "#" },
-      { code: "ar", label: "عربي", href: "#" },
-    ],
+    languages: [{ code: "en", label: "English", href: "#" }],
   },
   {
     code: "KWT",
-    languages: [
-      { code: "en", label: "English", href: "#" },
-      { code: "ar", label: "عربي", href: "#" },
-    ],
+    languages: [{ code: "en", label: "English", href: "#" }],
   },
   {
     code: "SYR",
-    languages: [
-      { code: "en", label: "English", href: "#" },
-      { code: "ar", label: "عربي", href: "#" },
-    ],
+    languages: [{ code: "en", label: "English", href: "#" }],
   },
 ];
 

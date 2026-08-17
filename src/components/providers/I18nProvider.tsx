@@ -16,7 +16,7 @@ type I18nProviderProps = {
 function syncDocumentLanguage(language: string) {
   const baseLang = normalizeLanguage(language);
   document.documentElement.lang = baseLang;
-  document.documentElement.dir = baseLang === "ar" ? "rtl" : "ltr";
+  document.documentElement.dir = "ltr";
 }
 
 export function I18nProvider({ children }: I18nProviderProps) {

@@ -7,6 +7,8 @@ import ManageIcon from "@/assets/icons/ManageIcon";
 import PackagesIcon from "@/assets/icons/PackagesIcon";
 import StatusIcon from "@/assets/icons/StatusIcon";
 import { SEARCH_TABS, type SearchTabId } from "./flightSearchData";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
+import { useTranslation } from "react-i18next";
 import CheckInPanel from "./panels/CheckInPanel";
 import FlightsPanel from "./panels/FlightsPanel";
 import ManagePanel from "./panels/ManagePanel";
@@ -31,13 +33,14 @@ const TAB_PANELS: Record<SearchTabId, ComponentType> = {
 };
 
 export default function FlightSearch() {
+  const { t } = useTranslation("home");
   const [activeTab, setActiveTab] = useState<SearchTabId>("flights");
   const ActivePanel = TAB_PANELS[activeTab];
 
   return (
-    <section className="flightSearch" aria-label="Flight search">
+    <section className="flightSearch" aria-label={t(HOME_LABEL.SEARCH_ARIA)}>
       <div className="flightSearch__inner">
-        <div className="flightSearch__tabs" role="tablist" aria-label="Booking options">
+        <div className="flightSearch__tabs" role="tablist" aria-label={t(HOME_LABEL.SEARCH_TABS_ARIA)}>
           {SEARCH_TABS.map((tab) => {
             const Icon = TAB_ICONS[tab.id];
             const isActive = activeTab === tab.id;
@@ -54,7 +57,7 @@ export default function FlightSearch() {
                 onClick={() => setActiveTab(tab.id)}
               >
                 <Icon className="flightSearch__tabIcon" />
-                <span>{tab.label}</span>
+                <span>{t(`search.tabs.${tab.id}`)}</span>
               </button>
             );
           })}

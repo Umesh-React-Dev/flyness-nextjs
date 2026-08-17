@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import ChevronLeftIcon from "@/assets/icons/ChevronLeftIcon";
 import ChevronRightIcon from "@/assets/icons/ChevronRightIcon";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
+import { useTranslation } from "react-i18next";
 import "./DestinationSlider.scss";
 
 export type DestinationSlide = {
@@ -25,6 +27,7 @@ export default function DestinationSlider({
   destinations,
   visibleCount = 4,
 }: DestinationSliderProps) {
+  const { t } = useTranslation("home");
   const [startIndex, setStartIndex] = useState(0);
   const [perView, setPerView] = useState(visibleCount);
   const total = destinations.length;
@@ -70,12 +73,12 @@ export default function DestinationSlider({
     <div
       className="destinationSlider"
       aria-roledescription="carousel"
-      aria-label="Summer destinations"
+      aria-label={t(HOME_LABEL.SUMMER_SLIDER_ARIA)}
     >
       <button
         type="button"
         className="destinationSlider__arrow destinationSlider__arrow--prev"
-        aria-label="Previous destinations"
+        aria-label={t(HOME_LABEL.SUMMER_PREV)}
         onClick={goToPrev}
       >
         <ChevronLeftIcon width={18} height={18} strokeWidth={2.2} />
@@ -103,7 +106,7 @@ export default function DestinationSlider({
                 <Link
                   href={destination.href}
                   className="destinationSlider__card"
-                  aria-label={`Explore ${destination.name}`}
+                  aria-label={t(HOME_LABEL.SUMMER_EXPLORE, { name: destination.name })}
                   tabIndex={isVisible ? undefined : -1}
                 >
                   <span
@@ -111,7 +114,9 @@ export default function DestinationSlider({
                       .toLowerCase()
                       .replace(/\s+/g, "-")}`}
                   >
-                    {destination.badge}
+                    {t(`summer.badges.${destination.badge}`, {
+                      defaultValue: destination.badge,
+                    })}
                   </span>
 
                   <div className="destinationSlider__media">
@@ -135,7 +140,7 @@ export default function DestinationSlider({
       <button
         type="button"
         className="destinationSlider__arrow destinationSlider__arrow--next"
-        aria-label="Next destinations"
+        aria-label={t(HOME_LABEL.SUMMER_NEXT)}
         onClick={goToNext}
       >
         <ChevronRightIcon width={18} height={18} strokeWidth={2.2} />

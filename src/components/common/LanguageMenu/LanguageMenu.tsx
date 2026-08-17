@@ -8,20 +8,33 @@ import {
   formatLocaleLabel,
   type SelectedLocale,
 } from "./languageData";
+import {
+  normalizeLanguage,
+  setAppLanguage,
+} from "@/i18n/i18n";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
+import { useTranslation } from "react-i18next";
 import "./LanguageMenu.scss";
 
-const DEFAULT_SELECTION: SelectedLocale = {
-  countryCode: "KSA",
-  languageCode: "en",
-};
-
 export default function LanguageMenu() {
+  const { t, i18n } = useTranslation("home");
   const [isOpen, setIsOpen] = useState(false);
-  const [selection, setSelection] =
-    useState<SelectedLocale>(DEFAULT_SELECTION);
+  const [selection, setSelection] = useState<SelectedLocale>(() => ({
+    countryCode: "KSA",
+    languageCode: normalizeLanguage(i18n.resolvedLanguage ?? i18n.language),
+  }));
   const rootRef = useRef<HTMLDivElement>(null);
 
   const selectedLabel = formatLocaleLabel(selection);
+
+  useEffect(() => {
+    const languageCode = normalizeLanguage(i18n.resolvedLanguage ?? i18n.language);
+    setSelection((current) =>
+      current.languageCode === languageCode
+        ? current
+        : { ...current, languageCode },
+    );
+  }, [i18n.language, i18n.resolvedLanguage]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -49,6 +62,7 @@ export default function LanguageMenu() {
 
   const handleSelect = (countryCode: string, languageCode: string) => {
     setSelection({ countryCode, languageCode });
+    void setAppLanguage(languageCode);
     setIsOpen(false);
   };
 
@@ -67,16 +81,16 @@ export default function LanguageMenu() {
       </button>
 
       {isOpen ? (
-        <div className="languageMenuPanel" role="menu" aria-label="Country and language">
+        <div className="languageMenuPanel" role="menu" aria-label={t(HOME_LABEL.LANGUAGE_MENU_ARIA)}>
           <div className="languageMenuSelected">
-            <p className="languageMenuLabel">Selected Country (Language)</p>
+            <p className="languageMenuLabel">{t(HOME_LABEL.LANGUAGE_SELECTED)}</p>
             <p className="languageMenuSelectedValue">{selectedLabel}</p>
           </div>
 
           <div className="languageMenuDivider" aria-hidden="true" />
 
           <div className="languageMenuAll">
-            <p className="languageMenuLabel">All Countries</p>
+            <p className="languageMenuLabel">{t(HOME_LABEL.LANGUAGE_ALL)}</p>
             <ul className="languageMenuList">
               {countries.map((country) => (
                 <li key={country.code} className="languageMenuCountry">

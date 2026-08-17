@@ -6,11 +6,14 @@ import { useEffect, useState } from "react";
 import ChevronLeftIcon from "@/assets/icons/ChevronLeftIcon";
 import ChevronRightIcon from "@/assets/icons/ChevronRightIcon";
 import { HERO_CTA, HERO_SLIDES } from "./heroSliderData";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
+import { useTranslation } from "react-i18next";
 import "./HeroSlider.scss";
 
 const AUTOPLAY_MS = 5000;
 
 export default function HeroSlider() {
+  const { t } = useTranslation("home");
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const slideCount = HERO_SLIDES.length;
@@ -37,7 +40,7 @@ export default function HeroSlider() {
     <section
       className="heroSlider"
       aria-roledescription="carousel"
-      aria-label="Featured destinations"
+      aria-label={t(HOME_LABEL.HERO_ARIA)}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -69,21 +72,25 @@ export default function HeroSlider() {
               key={slide.id}
               className={`heroSlider__text${index === activeIndex ? " is-active" : ""}`}
             >
-              <h1 className="heroSlider__title">{slide.title}</h1>
-              <p className="heroSlider__subtitle">{slide.subtitle}</p>
+              <h1 className="heroSlider__title">
+                {t(`hero.slides.${slide.id}.title`, { defaultValue: slide.title })}
+              </h1>
+              <p className="heroSlider__subtitle">
+                {t(`hero.slides.${slide.id}.subtitle`, { defaultValue: slide.subtitle })}
+              </p>
             </div>
           ))}
         </div>
 
         <Link href={HERO_CTA.href} className="heroSlider__cta">
-          {HERO_CTA.label}
+          {t(HOME_LABEL.HERO_CTA)}
         </Link>
       </div>
 
       <button
         type="button"
         className="heroSlider__arrow heroSlider__arrow--prev"
-        aria-label="Previous slide"
+        aria-label={t(HOME_LABEL.HERO_PREV)}
         onClick={goToPrev}
       >
         <ChevronLeftIcon width={20} height={20} strokeWidth={2} />
@@ -91,7 +98,7 @@ export default function HeroSlider() {
       <button
         type="button"
         className="heroSlider__arrow heroSlider__arrow--next"
-        aria-label="Next slide"
+        aria-label={t(HOME_LABEL.HERO_NEXT)}
         onClick={goToNext}
       >
         <ChevronRightIcon width={20} height={20} strokeWidth={2} />

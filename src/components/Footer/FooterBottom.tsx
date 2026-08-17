@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import type { StaticImageData } from "next/image";
+import { useTranslation } from "react-i18next";
 import FacebookIcon from "@/assets/icons/FacebookIcon";
 import InstagramIcon from "@/assets/icons/InstagramIcon";
 import LinkedInIcon from "@/assets/icons/LinkedInIcon";
@@ -15,19 +18,19 @@ import paymentsImg from "@/assets/images/footer/payments.png";
 import qrCodeImg from "@/assets/images/footer/qr-code.png";
 import "./FooterBottom.scss";
 
-const storeLinks: { name: string; href: string; image: StaticImageData }[] = [
+const storeLinks: { id: "appStore" | "googlePlay" | "appGallery"; href: string; image: StaticImageData }[] = [
   {
-    name: "Download on the App Store",
+    id: "appStore",
     href: "#",
     image: appStoreImg,
   },
   {
-    name: "Get it on Google Play",
+    id: "googlePlay",
     href: "#",
     image: googlePlayImg,
   },
   {
-    name: "Explore it on AppGallery",
+    id: "appGallery",
     href: "#",
     image: appGalleryImg,
   },
@@ -43,16 +46,18 @@ const socialLinks = [
 ] as const;
 
 export default function FooterBottom() {
+  const { t } = useTranslation("home");
+
   return (
-    <section className="footerBottom" aria-label="App, social, awards and payments">
+    <section className="footerBottom" aria-label={t("footer.bottomAria")}>
       <div className="footerBottom__inner">
         <div className="footerBottom__col footerBottom__col--app">
-          <h3 className="footerBottom__title">Flynas App – Your Journey, Your Way</h3>
-          <p className="footerBottom__subtitle">Manage your trips anytime, anywhere.</p>
+          <h3 className="footerBottom__title">{t("footer.appTitle")}</h3>
+          <p className="footerBottom__subtitle">{t("footer.appSubtitle")}</p>
           <div className="footerBottom__appMedia">
             <Image
               src={qrCodeImg}
-              alt="QR code to download the Flynas app"
+              alt={t("footer.qrAlt")}
               className="footerBottom__qr"
               width={120}
               height={120}
@@ -60,11 +65,11 @@ export default function FooterBottom() {
             />
             <ul className="footerBottom__stores">
               {storeLinks.map((store) => (
-                <li key={store.name}>
+                <li key={store.id}>
                   <Link href={store.href} className="footerBottom__storeLink">
                     <Image
                       src={store.image}
-                      alt={store.name}
+                      alt={t(`footer.stores.${store.id}`)}
                       width={118}
                       height={29}
                       style={{ height: "auto" }}
@@ -77,10 +82,8 @@ export default function FooterBottom() {
         </div>
 
         <div className="footerBottom__col footerBottom__col--social">
-          <h3 className="footerBottom__title">Flynas on Social</h3>
-          <p className="footerBottom__subtitle">
-            Get the latest news, travel deals, and support when you need it.
-          </p>
+          <h3 className="footerBottom__title">{t("footer.socialTitle")}</h3>
+          <p className="footerBottom__subtitle">{t("footer.socialSubtitle")}</p>
           <ul className="footerBottom__socialList">
             {socialLinks.map(({ name, href, icon: Icon }) => (
               <li key={name}>
@@ -93,10 +96,10 @@ export default function FooterBottom() {
         </div>
 
         <div className="footerBottom__col footerBottom__col--awards">
-          <h3 className="footerBottom__title">Middle East&apos;s Leading Low Cost Airline</h3>
+          <h3 className="footerBottom__title">{t("footer.awardsTitle")}</h3>
           <Image
             src={awardsImg}
-            alt="APEX Four Star 2024, Skytrax World Airline Awards Winner 2023, and World Travel Awards Winner"
+            alt={t("footer.awardsAlt")}
             className="footerBottom__awards"
             width={280}
             height={104}
@@ -105,10 +108,10 @@ export default function FooterBottom() {
         </div>
 
         <div className="footerBottom__col footerBottom__col--payments">
-          <h3 className="footerBottom__title">Payment Partners</h3>
+          <h3 className="footerBottom__title">{t("footer.paymentsTitle")}</h3>
           <Image
             src={paymentsImg}
-            alt="Payment partners including Apple Pay, mada, Visa, Mastercard, American Express, SADAD, STC Bank, PayPal, Tabby, Tamara, KNET, and madfu"
+            alt={t("footer.paymentsAlt")}
             className="footerBottom__payments"
             width={360}
             height={100}

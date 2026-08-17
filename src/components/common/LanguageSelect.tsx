@@ -3,7 +3,6 @@
 import { useEffect, useId, useRef, useState, type ComponentType } from "react";
 import { useTranslation } from "react-i18next";
 import FlagRu from "@/assets/icons/FlagRu";
-import FlagSa from "@/assets/icons/FlagSa";
 import FlagUk from "@/assets/icons/FlagUk";
 import {
   normalizeLanguage,
@@ -23,7 +22,6 @@ export type LanguageOption = {
 
 export const DEFAULT_LANGUAGES: LanguageOption[] = [
   { code: "en", label: "English", Flag: FlagUk },
-  { code: "ar", label: "العربية", Flag: FlagSa },
   { code: "ru", label: "Русский", Flag: FlagRu },
 ];
 

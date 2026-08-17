@@ -12,6 +12,8 @@ import {
   isSameDay,
   startOfDay,
 } from "./dateUtils";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
+import { useTranslation } from "react-i18next";
 import "./DateRangePicker.scss";
 
 export type DateRangeValue = {
@@ -34,12 +36,15 @@ export default function DateRangePicker({
   mode = "range",
   value,
   onChange,
-  departLabel = "Depart",
-  returnLabel = "Return",
+  departLabel,
+  returnLabel,
   disabledReturn = false,
   showReturn = true,
   formatDepart = formatFlightDate,
 }: DateRangePickerProps) {
+  const { t } = useTranslation("home");
+  const departText = departLabel ?? t(HOME_LABEL.SEARCH_DEPART);
+  const returnText = returnLabel ?? t(HOME_LABEL.SEARCH_RETURN);
   const rootRef = useRef<HTMLDivElement>(null);
   const pickerId = useId();
   const [open, setOpen] = useState(false);
@@ -139,7 +144,7 @@ export default function DateRangePicker({
         aria-expanded={open && activeField === "depart"}
         aria-controls={pickerId}
       >
-        <span className="dateRangePicker__label">{departLabel}</span>
+        <span className="dateRangePicker__label">{departText}</span>
         <span className={`dateRangePicker__value${value.depart ? " has-value" : ""}`}>
           {formatDepart(value.depart) || "\u00A0"}
         </span>
@@ -156,7 +161,7 @@ export default function DateRangePicker({
           aria-expanded={open && activeField === "return"}
           aria-controls={pickerId}
         >
-          <span className="dateRangePicker__label">{returnLabel}</span>
+          <span className="dateRangePicker__label">{returnText}</span>
           <span
             className={`dateRangePicker__value${value.returnDate ? " has-value" : ""}`}
           >
@@ -166,14 +171,14 @@ export default function DateRangePicker({
       ) : null}
 
       {open ? (
-        <div className="dateRangePicker__popover" id={pickerId} role="dialog" aria-label="Choose dates">
+        <div className="dateRangePicker__popover" id={pickerId} role="dialog" aria-label={t(HOME_LABEL.SEARCH_CHOOSE_DATES)}>
           <div className="dateRangePicker__caret" aria-hidden="true" />
 
           <div className="dateRangePicker__toolbar">
             <button
               type="button"
               className="dateRangePicker__nav"
-              aria-label="Previous month"
+              aria-label={t(HOME_LABEL.SEARCH_PREV_MONTH)}
               onClick={() => setViewMonth((current) => addMonths(current, -1))}
             >
               ‹
@@ -182,14 +187,14 @@ export default function DateRangePicker({
             <button
               type="button"
               className="dateRangePicker__nav"
-              aria-label="Next month"
+              aria-label={t(HOME_LABEL.SEARCH_NEXT_MONTH)}
               onClick={() => setViewMonth((current) => addMonths(current, 1))}
             >
               ›
             </button>
 
             <label className="dateRangePicker__hijri">
-              <span>Hijri Calendar</span>
+              <span>{t(HOME_LABEL.SEARCH_HIJRI)}</span>
               <span className="dateRangePicker__switch">
                 <input
                   type="checkbox"
@@ -207,12 +212,14 @@ export default function DateRangePicker({
               hijri={hijri}
               getDayState={getDayState}
               onSelect={handleDayClick}
+              weekdayLabels={t("search.weekdays", { returnObjects: true }) as string[]}
             />
             <MonthGrid
               viewDate={rightMonth}
               hijri={hijri}
               getDayState={getDayState}
               onSelect={handleDayClick}
+              weekdayLabels={t("search.weekdays", { returnObjects: true }) as string[]}
             />
           </div>
         </div>
@@ -224,6 +231,7 @@ export default function DateRangePicker({
 type MonthGridProps = {
   viewDate: Date;
   hijri: boolean;
+  weekdayLabels: string[];
   getDayState: (date: Date) => {
     isDepart: boolean;
     isReturn: boolean;
@@ -232,7 +240,7 @@ type MonthGridProps = {
   onSelect: (date: Date) => void;
 };
 
-function MonthGrid({ viewDate, hijri, getDayState, onSelect }: MonthGridProps) {
+function MonthGrid({ viewDate, hijri, weekdayLabels, getDayState, onSelect }: MonthGridProps) {
   const cells = getMonthCells(viewDate, hijri);
 
   return (
@@ -244,7 +252,7 @@ function MonthGrid({ viewDate, hijri, getDayState, onSelect }: MonthGridProps) {
             key={day}
             className={`dateRangePicker__weekday${index >= 5 ? " is-weekend" : ""}`}
           >
-            {day}
+            {weekdayLabels[index] ?? day}
           </span>
         ))}
       </div>

@@ -60,6 +60,6 @@ export const SIGNUP_OPTION_VALUES = {
     "United Kingdom(+44)",
   ],
   currencies: ["Saudi Riyal", "US Dollar", "Euro", "UAE Dirham"],
-  languages: ["English", "Arabic", "Russian"],
+  languages: ["English", "Russian"],
   destinations: ["Riyadh", "Jeddah", "Dubai", "Cairo"],
 };

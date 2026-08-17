@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
 import type { MegaMenuItem } from "./types";
 import "./MegaMenuPopover.scss";
 
@@ -15,6 +17,7 @@ export default function MegaMenuPopover({
   onMouseEnter,
   onMouseLeave,
 }: MegaMenuPopoverProps) {
+  const { t } = useTranslation("home");
   const [activeCategoryId, setActiveCategoryId] = useState(
     menu.categories[0]?.id ?? "",
   );
@@ -35,13 +38,15 @@ export default function MegaMenuPopover({
     <div
       className="megaMenuPopover"
       role="region"
-      aria-label={`${menu.label} menu`}
+      aria-label={t(HOME_LABEL.MEGA_MENU_REGION, {
+        label: t(`nav.${menu.id}`, { defaultValue: menu.label }),
+      })}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       <div className="megaMenuTabsContent">
         <div className="megaMenuLayout">
-          <aside className="megaMenuSidebar" aria-label="Menu categories">
+          <aside className="megaMenuSidebar" aria-label={t(HOME_LABEL.MEGA_MENU_CATEGORIES)}>
             <div className="megaMenuLeftTabs" role="tablist">
               {menu.categories.map((category) => {
                 const isActive = category.id === activeCategory.id;
@@ -64,10 +69,14 @@ export default function MegaMenuPopover({
                     />
                     <span className="megaMenuCategoryText">
                       <span className="megaMenuCategoryTitle">
-                        {category.title}
+                        {t(`categories.${category.id}.title`, {
+                          defaultValue: category.title,
+                        })}
                       </span>
                       <span className="megaMenuCategoryDescription">
-                        {category.description}
+                        {t(`categories.${category.id}.description`, {
+                          defaultValue: category.description,
+                        })}
                       </span>
                     </span>
                   </button>

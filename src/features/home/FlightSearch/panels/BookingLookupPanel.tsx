@@ -1,6 +1,8 @@
 "use client";
 
 import { type FormEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
 
 type BookingLookupPanelProps = {
   helperText: string;
@@ -13,6 +15,7 @@ export default function BookingLookupPanel({
   referenceName,
   lastNameName,
 }: BookingLookupPanelProps) {
+  const { t } = useTranslation("home");
   const [bookingRef, setBookingRef] = useState("");
   const [lastName, setLastName] = useState("");
 
@@ -24,11 +27,11 @@ export default function BookingLookupPanel({
     <form className="flightSearch__form" onSubmit={handleSubmit}>
       <div className="flightSearch__fields flightSearch__fields--booking">
         <label className="flightSearch__field flightSearch__field--withHelper">
-          <span className="flightSearch__fieldLabel">Booking Reference</span>
+          <span className="flightSearch__fieldLabel">{t(HOME_LABEL.SEARCH_BOOKING_REF)}</span>
           <input
             type="text"
             name={referenceName}
-            placeholder="e.g. RA567L"
+            placeholder={t(HOME_LABEL.SEARCH_BOOKING_REF_PLACEHOLDER)}
             value={bookingRef}
             onChange={(event) => setBookingRef(event.target.value)}
             autoComplete="off"
@@ -37,11 +40,11 @@ export default function BookingLookupPanel({
         </label>
 
         <label className="flightSearch__field">
-          <span className="flightSearch__fieldLabel">Last Name</span>
+          <span className="flightSearch__fieldLabel">{t(HOME_LABEL.SEARCH_LAST_NAME)}</span>
           <input
             type="text"
             name={lastNameName}
-            placeholder="Enter Last Name"
+            placeholder={t(HOME_LABEL.SEARCH_LAST_NAME_PLACEHOLDER)}
             value={lastName}
             onChange={(event) => setLastName(event.target.value)}
             autoComplete="family-name"
@@ -49,7 +52,7 @@ export default function BookingLookupPanel({
         </label>
 
         <button type="submit" className="flightSearch__submit">
-          Find Booking
+          {t(HOME_LABEL.SEARCH_FIND_BOOKING)}
         </button>
       </div>
       <span className="flightSearch__helper">{helperText}</span>

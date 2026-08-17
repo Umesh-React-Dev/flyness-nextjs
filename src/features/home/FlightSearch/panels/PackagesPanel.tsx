@@ -11,10 +11,13 @@ import {
   type OccupancyValue,
   type PackageType,
 } from "../flightSearchData";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
+import { useTranslation } from "react-i18next";
 import SwapIcon from "@/assets/icons/SwapIcon";
 import { startOfDay } from "../dateUtils";
 
 export default function PackagesPanel() {
+  const { t } = useTranslation("home");
   const [packageType, setPackageType] = useState<PackageType>("flights-hotel");
   const [origin, setOrigin] = useState<Airport | null>(null);
   const [destination, setDestination] = useState<Airport | null>(null);
@@ -34,7 +37,7 @@ export default function PackagesPanel() {
   return (
     <form className="flightSearch__form" onSubmit={handleSubmit}>
       <fieldset className="flightSearch__tripTypes">
-        <legend className="visuallyHidden">Package type</legend>
+        <legend className="visuallyHidden">{t(HOME_LABEL.SEARCH_PACKAGE_TYPE)}</legend>
         {PACKAGE_TYPES.map((type) => (
           <label key={type.id} className="flightSearch__radio">
             <input
@@ -45,7 +48,7 @@ export default function PackagesPanel() {
               onChange={() => setPackageType(type.id)}
             />
             <span className="flightSearch__radioMark" aria-hidden="true" />
-            <span>{type.label}</span>
+            <span>{t(`search.packageTypes.${type.id}`)}</span>
           </label>
         ))}
       </fieldset>
@@ -54,8 +57,8 @@ export default function PackagesPanel() {
         <div className="flightSearch__route">
           <div className="flightSearch__field">
             <AirportField
-              label="Origin"
-              placeholder="Origin"
+              label={t(HOME_LABEL.SEARCH_ORIGIN)}
+              placeholder={t(HOME_LABEL.SEARCH_ORIGIN)}
               value={origin}
               onChange={setOrigin}
             />
@@ -64,7 +67,7 @@ export default function PackagesPanel() {
           <button
             type="button"
             className="flightSearch__swap"
-            aria-label="Swap origin and destination"
+            aria-label={t(HOME_LABEL.SEARCH_SWAP)}
             onClick={swapAirports}
           >
             <SwapIcon />
@@ -72,8 +75,8 @@ export default function PackagesPanel() {
 
           <div className="flightSearch__field">
             <AirportField
-              label="Destination"
-              placeholder="Destination"
+              label={t(HOME_LABEL.SEARCH_DESTINATION)}
+              placeholder={t(HOME_LABEL.SEARCH_DESTINATION)}
               value={destination}
               onChange={setDestination}
             />
@@ -96,7 +99,7 @@ export default function PackagesPanel() {
         </div>
 
         <button type="submit" className="flightSearch__submit">
-          Search
+          {t(HOME_LABEL.SEARCH_SUBMIT)}
         </button>
       </div>
     </form>

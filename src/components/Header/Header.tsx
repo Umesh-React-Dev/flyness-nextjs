@@ -9,12 +9,15 @@ import SearchIcon from "@/assets/icons/SearchIcon";
 import logo from "@/assets/images/header-logo.svg";
 import LanguageMenu from "@/components/common/LanguageMenu";
 import MegaMenuPopover from "@/components/common/MegaMenuPopover";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
+import { useTranslation } from "react-i18next";
 import { navItems } from "./megaMenuData";
 import "./Header.scss";
 
 const CLOSE_DELAY_MS = 150;
 
 export default function Header() {
+  const { t } = useTranslation("home");
   const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -81,7 +84,7 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container">
-        <Link href="/" className="logoLink" aria-label="Flynas home">
+        <Link href="/" className="logoLink" aria-label={t(HOME_LABEL.HEADER_HOME_ARIA)}>
           <Image src={logo} alt="flynas" priority className="logo" />
         </Link>
 
@@ -91,7 +94,7 @@ export default function Header() {
               <button
                 type="button"
                 className={`searchButton${isSearchOpen ? " isOpen" : ""}`}
-                aria-label="Search"
+                aria-label={t(HOME_LABEL.HEADER_SEARCH)}
                 aria-expanded={isSearchOpen}
                 aria-haspopup="true"
                 onClick={() => setIsSearchOpen((open) => !open)}
@@ -109,15 +112,15 @@ export default function Header() {
                     ref={searchInputRef}
                     type="search"
                     className="searchInput"
-                    placeholder="Search..."
+                    placeholder={t(HOME_LABEL.HEADER_SEARCH_PLACEHOLDER)}
                     value={searchQuery}
                     onChange={(event) => setSearchQuery(event.target.value)}
-                    aria-label="Search"
+                    aria-label={t(HOME_LABEL.HEADER_SEARCH)}
                   />
                   <button
                     type="submit"
                     className="searchSubmit"
-                    aria-label="Submit search"
+                    aria-label={t(HOME_LABEL.HEADER_SEARCH_SUBMIT)}
                   >
                     <SearchIcon />
                   </button>
@@ -126,7 +129,7 @@ export default function Header() {
             </div>
 
             <Link href="/login" className="loginButton">
-              Log In
+              {t(HOME_LABEL.HEADER_LOGIN)}
               <ArrowRightIcon />
             </Link>
 
@@ -134,7 +137,7 @@ export default function Header() {
 
             <Link href="/help" className="utilityLink">
               <HeadsetIcon />
-              Help &amp; Support
+              {t(HOME_LABEL.HEADER_HELP)}
             </Link>
 
             <span className="divider" aria-hidden="true" />
@@ -142,7 +145,7 @@ export default function Header() {
             <LanguageMenu />
           </div>
 
-          <nav className="navBar" aria-label="Main navigation">
+          <nav className="navBar" aria-label={t(HOME_LABEL.HEADER_NAV_ARIA)}>
             {navItems.map((item) => {
               const hasMenu = Boolean(item.menu);
               const isActive = activeMenuId === item.id;
@@ -152,7 +155,7 @@ export default function Header() {
                 return (
                   <div key={item.id} className="navItem accentPink">
                     <a href={item.href ?? "#"} className="navLink">
-                      {item.label}
+                      {t(`nav.${item.id}`, { defaultValue: item.label })}
                     </a>
                   </div>
                 );
@@ -174,7 +177,7 @@ export default function Header() {
                     aria-expanded={isActive}
                     onFocus={() => openMenu(item.id)}
                   >
-                    {item.label}
+                    {t(`nav.${item.id}`, { defaultValue: item.label })}
                   </a>
                 </div>
               );

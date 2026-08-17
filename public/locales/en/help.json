@@ -1,0 +1,171 @@
+{
+  "header": {
+    "homeAria": "flynas home",
+    "home": "Home",
+    "navAria": "Help navigation",
+    "language": "Language"
+  },
+  "hero": {
+    "title": "How can we help?"
+  },
+  "track": {
+    "title": "Track your support cases",
+    "subtitle": "Helps you view the status of your support requests",
+    "byAria": "Track by",
+    "caseNumber": "Case Number",
+    "email": "Email Address",
+    "casePlaceholder": "Enter case number",
+    "emailPlaceholder": "Email used for the case",
+    "submit": "Track Case"
+  },
+  "categories": {
+    "aria": "Help topics",
+    "support": {
+      "title": "Support",
+      "description": "Do you need help with your journey? We're here to help you with any problem you may face.",
+      "tags": ["Cancel or Delay", "Payment Issues", "Boarding Pass", "Invoices & Itinerary"]
+    },
+    "inquiries": {
+      "title": "General Inquiries",
+      "description": "Have a question about your trip? We're happy to assist with baggage, seat selection, travel rules, and more."
+    },
+    "feedback": {
+      "title": "Complaints & Feedback",
+      "description": "Your feedback matters! Share your opinions with us so we can always provide you with the best experience and excellent services."
+    },
+    "baggage": {
+      "title": "Baggage Services",
+      "description": "Have you encountered an issue with your baggage? We're here to assist with lost, delayed, or damaged items, ensuring you have a smooth and worry-free travel experience.",
+      "tags": ["Claim Form", "Claim Tracking"]
+    },
+    "voucher": {
+      "title": "flynas Travel Voucher",
+      "description": "You can check your voucher balance, view the expiration date, or request a refund easily."
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": {
+      "refund-entitled": {
+        "question": "When am I entitled to a refund?",
+        "answer": "You may be eligible for a refund of your ticket under the following circumstances:",
+        "bullets": [
+          "If your flight has been cancelled.",
+          "If your scheduled time of departure has been changed by at least 6 hours."
+        ]
+      },
+      "refund-apply": {
+        "question": "How do I apply for a refund in case of a flight disruption?",
+        "answer": "You can apply for a refund through Manage Booking on flynas.com or via the flynas app using your booking reference and passenger details.",
+        "bullets": [
+          "Select the affected flight and choose the refund option.",
+          "Submit the request and keep the confirmation email for your records."
+        ]
+      },
+      "refund-time": {
+        "question": "How long will it take for my refund to be paid?",
+        "answer": "Refund processing times depend on your original payment method and bank policies.",
+        "bullets": [
+          "Credit or debit card refunds usually take 7–14 business days.",
+          "flynas wallet refunds are typically credited within 24–48 hours."
+        ]
+      },
+      "wallet": {
+        "question": "What is flynas wallet and how do I access it?",
+        "answer": "flynas wallet is a digital balance linked to your flynas account that can be used toward future bookings and eligible services.",
+        "bullets": [
+          "Sign in to your flynas account to view your wallet balance.",
+          "You can also check your wallet from the My Account section in the flynas app."
+        ]
+      },
+      "ota-refund": {
+        "question": "How do I get a refund if I booked through an Online Travel Agent?",
+        "answer": "If you booked through an Online Travel Agent (OTA), refunds are usually handled by the agency that issued your ticket.",
+        "bullets": [
+          "Contact the OTA directly with your booking reference.",
+          "If the OTA asks you to contact flynas, open a support case with your booking details."
+        ]
+      },
+      "refund-status": {
+        "question": "How can I check the status of my refund?",
+        "answer": "You can track your refund status using the case tracking tool on this page or from Manage Booking after signing in.",
+        "bullets": [
+          "Enter your case number or the email used for the request.",
+          "You will also receive email updates when the refund status changes."
+        ]
+      },
+      "airport-charge": {
+        "question": "I was charged extra at the airport. Can I get a refund?",
+        "answer": "Extra airport charges may be refundable depending on the reason for the charge and supporting documents.",
+        "bullets": [
+          "Keep your airport receipt and boarding pass.",
+          "Submit a support request with the charge details for review."
+        ]
+      },
+      "third-party": {
+        "question": "How do I contact third parties such as Car Hire, Parking, or Hotels for a refund?",
+        "answer": "Third-party services such as car hire, parking, and hotels are managed by their own providers.",
+        "bullets": [
+          "Use the booking confirmation email from the third-party provider to contact their support team.",
+          "flynas can help guide you, but refund decisions for those services remain with the provider."
+        ]
+      },
+      "payment-method": {
+        "question": "Can I change my original payment method for my refund?",
+        "answer": "Refunds are generally returned to the original payment method used at the time of booking.",
+        "bullets": [
+          "Card payments are refunded to the same card.",
+          "In some cases, a flynas wallet credit may be offered as an alternative."
+        ]
+      },
+      "cancelled-email": {
+        "question": "I cannot find my cancelled flight email. How do I apply for a refund?",
+        "answer": "You can still request a refund without the cancellation email by using your booking reference and travel details.",
+        "bullets": [
+          "Go to Manage Booking or open a support case on this page.",
+          "Provide passenger names, flight date, and booking reference so we can locate the itinerary."
+        ]
+      }
+    }
+  },
+  "support": {
+    "hero": {
+      "title": "How can we help?",
+      "subtitle": "Self-service portal for support and assistance."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "support": "Support"
+    },
+    "topicsAria": "Support topics",
+    "breadcrumbAria": "Breadcrumb",
+    "topics": {
+      "flight-cancel-delay": {
+        "title": "Flight Cancelation or Delay",
+        "description": "Was your flight delayed or cancelled, we're here to help you manage your options quickly and easily."
+      },
+      "payment-issues": {
+        "title": "Payment Issues",
+        "description": "If you encounter a payment problem such as a duplicate deduction or a failed transaction, we can help you with booking confirmation and processing refund requests."
+      },
+      "boarding-pass": {
+        "title": "Boarding Pass",
+        "description": "In case of difficulty obtaining the boarding pass, we will provide you with the necessary support to issue it and complete travel procedures easily."
+      },
+      "invoices-itinerary": {
+        "title": "Invoices and Itinerary",
+        "description": "You can obtain a copy of the invoice or itinerary through: Resending it via email"
+      }
+    }
+  },
+  "footer": {
+    "socialTitle": "flynas on Social",
+    "socialText": "Get the latest news, travel deals, and support when you need it.",
+    "helpTitle": "Help",
+    "contactUs": "Contact Us",
+    "legalTitle": "Legal",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "copyright": "© {{year}} flynas. All rights reserved."
+  }
+}

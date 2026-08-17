@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import DestinationSlider from "@/components/DestinationSlider";
+import { useTranslation } from "react-i18next";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
 import {
   SUMMER_DESTINATIONS,
   SUMMER_DESTINATIONS_BG,
@@ -7,6 +11,8 @@ import {
 import "./SummerDestinations.scss";
 
 export default function SummerDestinations() {
+  const { t } = useTranslation("home");
+
   return (
     <section className="summerDestinations" aria-labelledby="summer-destinations-title">
       <div className="summerDestinations__bg" aria-hidden="true">
@@ -23,10 +29,17 @@ export default function SummerDestinations() {
 
       <div className="summerDestinations__inner">
         <h2 id="summer-destinations-title" className="summerDestinations__title">
-          Our Summer Destinations
+          {t(HOME_LABEL.SUMMER_TITLE)}
         </h2>
 
-        <DestinationSlider destinations={SUMMER_DESTINATIONS} />
+        <DestinationSlider
+          destinations={SUMMER_DESTINATIONS.map((destination) => ({
+            ...destination,
+            name: t(`summer.cities.${destination.id}`, {
+              defaultValue: destination.name,
+            }),
+          }))}
+        />
       </div>
     </section>
   );

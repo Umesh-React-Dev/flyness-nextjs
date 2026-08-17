@@ -1,12 +1,16 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import arOnboarding from "../../public/locales/ar/onboarding.json";
+import enHelp from "../../public/locales/en/help.json";
+import enHome from "../../public/locales/en/home.json";
 import enOnboarding from "../../public/locales/en/onboarding.json";
+import ruHelp from "../../public/locales/ru/help.json";
+import ruHome from "../../public/locales/ru/home.json";
 import ruOnboarding from "../../public/locales/ru/onboarding.json";
 
-export const SUPPORTED_LANGUAGES = ["en", "ar", "ru"] as const;
+export const SUPPORTED_LANGUAGES = ["en", "ru"] as const;
 export const DEFAULT_LANGUAGE = "en";
 export const LANGUAGE_STORAGE_KEY = "flynas-lang";
+export const NAMESPACES = ["onboarding", "home", "help"] as const;
 
 const DEFAULT_NAMESPACE = "onboarding";
 
@@ -79,12 +83,11 @@ if (!i18n.isInitialized) {
     fallbackLng: DEFAULT_LANGUAGE,
     load: "currentOnly",
     supportedLngs: [...SUPPORTED_LANGUAGES],
-    ns: [DEFAULT_NAMESPACE],
+    ns: [...NAMESPACES],
     defaultNS: DEFAULT_NAMESPACE,
     resources: {
-      en: { [DEFAULT_NAMESPACE]: enOnboarding },
-      ar: { [DEFAULT_NAMESPACE]: arOnboarding },
-      ru: { [DEFAULT_NAMESPACE]: ruOnboarding },
+      en: { onboarding: enOnboarding, home: enHome, help: enHelp },
+      ru: { onboarding: ruOnboarding, home: ruHome, help: ruHelp },
     },
     interpolation: {
       escapeValue: false,

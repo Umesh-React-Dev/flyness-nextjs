@@ -13,6 +13,8 @@ import {
   formatAirportLabel,
   type Airport,
 } from "./airportData";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
+import { useTranslation } from "react-i18next";
 import "./AirportField.scss";
 
 type AirportFieldProps = {
@@ -28,6 +30,7 @@ export default function AirportField({
   value,
   onChange,
 }: AirportFieldProps) {
+  const { t } = useTranslation("home");
   const fieldId = useId();
   const listId = `${fieldId}-list`;
   const rootRef = useRef<HTMLDivElement>(null);
@@ -134,7 +137,7 @@ export default function AirportField({
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             onKeyDown={handleSearchKeyDown}
-            aria-label={`Search ${label.toLowerCase()}`}
+            aria-label={t(HOME_LABEL.SEARCH_AIRPORT, { label })}
             aria-autocomplete="list"
             aria-controls={listId}
             aria-activedescendant={
@@ -145,7 +148,7 @@ export default function AirportField({
 
           <ul className="airportField__list" role="listbox" id={listId}>
             {results.length === 0 ? (
-              <li className="airportField__empty">No airports found</li>
+              <li className="airportField__empty">{t(HOME_LABEL.SEARCH_NO_AIRPORTS)}</li>
             ) : (
               results.map((airport, index) => {
                 const isActive = index === activeIndex;

@@ -1,7 +1,13 @@
+"use client";
+
 import EmailIcon from "@/assets/icons/EmailIcon";
+import { useTranslation } from "react-i18next";
+import { HOME_LABEL } from "@/i18n/constants/home.constant";
 import "./NewsletterSubscribe.scss";
 
 export default function NewsletterSubscribe() {
+  const { t } = useTranslation("home");
+
   return (
     <section
       className="newsletterSubscribe"
@@ -13,16 +19,16 @@ export default function NewsletterSubscribe() {
             id="newsletter-subscribe-title"
             className="newsletterSubscribe__title"
           >
-            Never Miss a Deal Again
+            {t(HOME_LABEL.NEWSLETTER_TITLE)}
           </h2>
           <p className="newsletterSubscribe__subtitle">
-            Be the first to find out about our promotions and new services
+            {t(HOME_LABEL.NEWSLETTER_SUBTITLE)}
           </p>
         </div>
 
         <form className="newsletterSubscribe__form" action="#" method="post">
           <label className="visually-hidden" htmlFor="newsletter-email">
-            Email
+            {t(HOME_LABEL.NEWSLETTER_EMAIL)}
           </label>
           <EmailIcon className="newsletterSubscribe__icon" />
           <input
@@ -30,12 +36,12 @@ export default function NewsletterSubscribe() {
             className="newsletterSubscribe__input"
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder={t(HOME_LABEL.NEWSLETTER_EMAIL)}
             autoComplete="email"
             required
           />
           <button type="submit" className="newsletterSubscribe__button">
-            Subscribe
+            {t(HOME_LABEL.NEWSLETTER_SUBSCRIBE)}
           </button>
         </form>
       </div>

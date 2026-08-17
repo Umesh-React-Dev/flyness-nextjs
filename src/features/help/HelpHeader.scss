@@ -68,15 +68,6 @@ $help-max: 1400px;
       display: block;
     }
 
-    &:has(.helpHeader__langInput[value="ar"]:checked) {
-      .helpHeader__langLabel--en {
-        display: none;
-      }
-
-      .helpHeader__langLabel--ar {
-        display: inline;
-      }
-    }
   }
 
   &__lang {
@@ -106,11 +97,6 @@ $help-max: 1400px;
     }
   }
 
-  &__langLabel {
-    &--ar {
-      display: none;
-    }
-  }
 
   &__langIcon {
     display: inline-flex;

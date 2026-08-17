@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import { LanguageSelect } from "@/components/common/LanguageSelect";
+import { ONBOARDING_LABEL } from "@/i18n/constants/onboarding.constant";
 import { ONBOARDING_FOOTER_LINKS } from "@/jsonStaticData/onboardingData";
 import "@/styles/onboarding.scss";
 
@@ -9,6 +13,8 @@ export default function OnboardingLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { t } = useTranslation("onboarding");
+
   return (
     <div className="onboarding-layout">
       <header className="onboarding-header">
@@ -28,15 +34,18 @@ export default function OnboardingLayout({
       <div className="onboarding-layout__content">{children}</div>
 
       <footer className="onboarding-footer">
-        <nav className="onboarding-footer__nav" aria-label="Footer">
-          {ONBOARDING_FOOTER_LINKS.map(({ label, href }, index) => (
-            <span key={label} className="onboarding-footer__item">
+        <nav
+          className="onboarding-footer__nav"
+          aria-label={t(ONBOARDING_LABEL.FOOTER_NAV_ARIA)}
+        >
+          {ONBOARDING_FOOTER_LINKS.map(({ labelKey, href }, index) => (
+            <span key={labelKey} className="onboarding-footer__item">
               {index > 0 && (
                 <span className="onboarding-footer__sep" aria-hidden="true">
                   |
                 </span>
               )}
-              <a href={href}>{label}</a>
+              <a href={href}>{t(labelKey)}</a>
             </span>
           ))}
         </nav>

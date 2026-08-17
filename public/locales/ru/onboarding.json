@@ -1,0 +1,223 @@
+{
+  "footer": {
+    "changeCookieSettings": "Изменить настройки файлов cookie",
+    "employeeLogin": "Вход для сотрудников",
+    "agenciesLogin": "Вход для агентств",
+    "corporateLogin": "Корпоративный вход",
+    "agenciesRegister": "Регистрация агентства",
+    "corporateAgenciesRegister": "Регистрация корпоративного агентства",
+    "bookFlight": "Забронировать рейс",
+    "manageBooking": "Управление бронированием",
+    "webCheckIn": "Онлайн-регистрация",
+    "navAria": "Подвал"
+  },
+  "login": {
+    "tabsAria": "Тип входа",
+    "tabs": {
+      "member": "Вход участника",
+      "corporate": "Корпоративный вход",
+      "agencies": "Вход для агентств"
+    },
+    "fields": {
+      "email": {
+        "label": "Адрес электронной почты",
+        "placeholder": "Адрес электронной почты"
+      },
+      "userId": {
+        "label": "ID пользователя",
+        "placeholder": "ID пользователя"
+      },
+      "password": {
+        "label": "Пароль",
+        "placeholder": "Пароль"
+      }
+    },
+    "copy": {
+      "captchaLabel": "Я не робот",
+      "forgotPassword": "Забыли пароль",
+      "submit": "Войти",
+      "memberSignup": {
+        "prefix": "Ещё нет аккаунта?",
+        "linkLabel": "Зарегистрироваться"
+      },
+      "corporate": {
+        "supportPrefix": "по корпоративным вопросам пишите на",
+        "signupLabel": "Новый корпоративный участник? Зарегистрироваться"
+      },
+      "agencies": {
+        "supportPrefix": "по вопросам поддержки GDS пишите на",
+        "signupLabel": "Новый агент? Зарегистрироваться"
+      }
+    }
+  },
+  "signup": {
+    "common": {
+      "requiredNote": "Это обязательное поле",
+      "uploadDocument": "Загрузить документ",
+      "back": "Назад",
+      "register": "Зарегистрироваться",
+      "captchaLabel": "Я не робот"
+    },
+    "options": {
+      "titles": ["Г-н", "Г-жа", "Г-жа", "Госпожа", "Д-р"],
+      "nationalities": [
+        "Саудовская Аравия",
+        "Объединённые Арабские Эмираты",
+        "Египет",
+        "Индия",
+        "Великобритания"
+      ],
+      "documentTypes": ["Паспорт", "Национальный ID", "Икама"],
+      "countryCodes": [
+        "Саудовская Аравия(+966)",
+        "ОАЭ(+971)",
+        "Египет(+20)",
+        "Индия(+91)",
+        "Великобритания(+44)"
+      ],
+      "months": [
+        "Январь",
+        "Февраль",
+        "Март",
+        "Апрель",
+        "Май",
+        "Июнь",
+        "Июль",
+        "Август",
+        "Сентябрь",
+        "Октябрь",
+        "Ноябрь",
+        "Декабрь"
+      ],
+      "currencies": ["Саудовский риял", "Доллар США", "Евро", "Дирхам ОАЭ"],
+      "languages": ["Английский", "Арабский", "Русский"],
+      "destinations": ["Эр-Рияд", "Джидда", "Дубай", "Каир"]
+    },
+    "fields": {
+      "userEmail": {
+        "label": "Электронная почта пользователя",
+        "hintMember": "Введите действительный адрес электронной почты в качестве имени пользователя (например, name@gmail.com)",
+        "hintCorporate": "Введите действительный корпоративный адрес электронной почты в качестве имени пользователя (например, lg@corporatedomain.com)"
+      },
+      "password": {
+        "label": "Пароль",
+        "hintMember": "должен содержать 8–20 символов",
+        "hintGeneric": "Пароль может содержать буквы, цифры или специальные символы"
+      },
+      "confirmPassword": {
+        "label": "Подтвердите пароль",
+        "hintMember": "Введите тот же пароль",
+        "hintGeneric": "Пароль может содержать буквы, цифры или специальные символы"
+      },
+      "title": {
+        "label": "Обращение",
+        "placeholder": "Обращение"
+      },
+      "firstName": {
+        "label": "Имя"
+      },
+      "middleName": {
+        "label": "Отчество"
+      },
+      "lastName": {
+        "label": "Фамилия"
+      },
+      "dateOfBirth": {
+        "label": "Дата рождения (григорианский календарь)",
+        "dayPlaceholder": "ДД",
+        "monthPlaceholder": "МЕСЯЦ",
+        "yearPlaceholder": "ГГГГ"
+      },
+      "nationality": {
+        "label": "Гражданство"
+      },
+      "documentType": {
+        "label": "Тип документа",
+        "placeholder": "Тип документа"
+      },
+      "documentNumber": {
+        "label": "Номер документа"
+      },
+      "countryCode": {
+        "label": "Код страны"
+      },
+      "mobile": {
+        "label": "Мобильный",
+        "hint": "например, 920001234",
+        "placeholder": "555XXXXXX"
+      },
+      "email": {
+        "label": "Электронная почта"
+      },
+      "confirmEmail": {
+        "label": "Подтвердите электронную почту"
+      },
+      "language": {
+        "label": "Язык"
+      },
+      "cityOfOrigin": {
+        "label": "Город отправления"
+      },
+      "preferredDestinations": {
+        "label": "Предпочтительные направления",
+        "placeholder": "Места"
+      },
+      "organizationCode": {
+        "label": "Код организации"
+      },
+      "agentId": {
+        "label": "ID агента"
+      },
+      "currency": {
+        "label": "Валюта"
+      },
+      "eveningPhone": {
+        "label": "Вечерний телефон"
+      },
+      "contactPhone": {
+        "label": "Контактный телефон"
+      },
+      "mobilePhone": {
+        "label": "Мобильный телефон"
+      },
+      "fax": {
+        "label": "Факс"
+      }
+    },
+    "member": {
+      "title": "Регистрация нового участника",
+      "sections": {
+        "loginDetails": "Данные для входа",
+        "passengerDocument": "Данные пассажира и документа",
+        "contactDetails": "Контактные данные",
+        "newsletter": "Подписка на рассылку"
+      },
+      "newsletterOptIn": "Разрешить уведомления рассылки",
+      "terms": {
+        "prefix": "Нажимая «Зарегистрироваться», я подтверждаю, что принимаю",
+        "linkLabel": "Условия использования"
+      }
+    },
+    "corporate": {
+      "sections": {
+        "loginDetails": "Данные для входа",
+        "passengerDocument": "Данные пассажира и документа",
+        "contactDetails": "Контактные данные"
+      }
+    },
+    "agencies": {
+      "title": "Регистрация агента",
+      "sections": {
+        "organizationDetails": "Данные организации",
+        "contactDetails": "Контактные данные"
+      },
+      "conditions": {
+        "prefix": "Я прочитал(а), понял(а) и принимаю",
+        "linkLabel": "Условия перевозки"
+      }
+    }
+  },
+  "languageSelect": {
+    "ariaLabel": "Выбор языка"
+  }
+}

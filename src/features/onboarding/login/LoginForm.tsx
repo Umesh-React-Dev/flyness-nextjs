@@ -2,17 +2,25 @@
 
 import { FormEvent, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useTranslation } from "react-i18next";
 import EditIcon from "@/assets/icons/EditIcon";
 import LockIcon from "@/assets/icons/LockIcon";
 import UserIcon from "@/assets/icons/UserIcon";
 import loginBackground from "@/assets/images/login/login-background.jpg";
+import { ONBOARDING_LABEL } from "@/i18n/constants/onboarding.constant";
 import {
-  LOGIN_COPY,
-  LOGIN_FIELDS,
-  LOGIN_TABS,
+  LOGIN_LINKS,
+  LOGIN_TAB_IDS,
   type LoginType,
 } from "@/jsonStaticData/onboardingData";
 import "@/styles/login.scss";
+
+const LOGIN_TAB_LABELS: Record<LoginType, string> = {
+  member: ONBOARDING_LABEL.LOGIN_TAB_MEMBER,
+  corporate: ONBOARDING_LABEL.LOGIN_TAB_CORPORATE,
+  agencies: ONBOARDING_LABEL.LOGIN_TAB_AGENCIES,
+};
 
 function NasmilesLogo() {
   return (
@@ -29,12 +37,12 @@ function NasmilesLogo() {
   );
 }
 
-function RecaptchaPlaceholder() {
+function RecaptchaPlaceholder({ label }: { label: string }) {
   return (
     <div className="login-recaptcha" role="presentation">
       <label className="login-recaptcha__check">
-        <input type="checkbox" aria-label={LOGIN_COPY.captchaLabel} />
-        <span>{LOGIN_COPY.captchaLabel}</span>
+        <input type="checkbox" aria-label={label} />
+        <span>{label}</span>
       </label>
       <div className="login-recaptcha__brand">
         <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -57,12 +65,18 @@ function RecaptchaPlaceholder() {
 }
 
 export function LoginForm() {
+  const { t } = useTranslation("onboarding");
   const [loginType, setLoginType] = useState<LoginType>("member");
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
   const isMember = loginType === "member";
-  const identifierField = isMember ? LOGIN_FIELDS.email : LOGIN_FIELDS.userId;
+  const identifierLabel = isMember
+    ? t(ONBOARDING_LABEL.LOGIN_EMAIL_LABEL)
+    : t(ONBOARDING_LABEL.LOGIN_USER_ID_LABEL);
+  const identifierPlaceholder = isMember
+    ? t(ONBOARDING_LABEL.LOGIN_EMAIL_PLACEHOLDER)
+    : t(ONBOARDING_LABEL.LOGIN_USER_ID_PLACEHOLDER);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -82,16 +96,16 @@ export function LoginForm() {
       </div>
       <div className="login-stage">
         <div className="login-card">
-          <nav className="login-tabs" aria-label="Login type">
-            {LOGIN_TABS.map((tab) => (
+          <nav className="login-tabs" aria-label={t(ONBOARDING_LABEL.LOGIN_TABS_ARIA)}>
+            {LOGIN_TAB_IDS.map((tabId) => (
               <button
-                key={tab.id}
+                key={tabId}
                 type="button"
-                className={`login-tabs__item${loginType === tab.id ? " is-active" : ""}`}
-                onClick={() => setLoginType(tab.id)}
-                aria-pressed={loginType === tab.id}
+                className={`login-tabs__item${loginType === tabId ? " is-active" : ""}`}
+                onClick={() => setLoginType(tabId)}
+                aria-pressed={loginType === tabId}
               >
-                {tab.label}
+                {t(LOGIN_TAB_LABELS[tabId])}
               </button>
             ))}
           </nav>
@@ -102,8 +116,8 @@ export function LoginForm() {
               <input
                 type={isMember ? "email" : "text"}
                 name="identifier"
-                placeholder={identifierField.placeholder}
-                aria-label={identifierField.label}
+                placeholder={identifierPlaceholder}
+                aria-label={identifierLabel}
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
                 autoComplete={isMember ? "email" : "username"}
@@ -115,46 +129,46 @@ export function LoginForm() {
               <input
                 type="password"
                 name="password"
-                placeholder={LOGIN_FIELDS.password.placeholder}
-                aria-label={LOGIN_FIELDS.password.label}
+                placeholder={t(ONBOARDING_LABEL.LOGIN_PASSWORD_PLACEHOLDER)}
+                aria-label={t(ONBOARDING_LABEL.LOGIN_PASSWORD_LABEL)}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
               />
             </div>
 
-            <RecaptchaPlaceholder />
+            <RecaptchaPlaceholder label={t(ONBOARDING_LABEL.LOGIN_CAPTCHA)} />
 
             <div className="login-form__actions">
               <a href="#" className="login-link">
-                {LOGIN_COPY.forgotPassword}
+                {t(ONBOARDING_LABEL.LOGIN_FORGOT_PASSWORD)}
               </a>
             </div>
 
             <button type="submit" className="login-submit">
-              {LOGIN_COPY.submit}
+              {t(ONBOARDING_LABEL.LOGIN_SUBMIT)}
             </button>
 
             {loginType === "corporate" && (
               <p className="login-support">
-                {LOGIN_COPY.corporate.supportPrefix}{" "}
+                {t(ONBOARDING_LABEL.LOGIN_CORPORATE_SUPPORT_PREFIX)}{" "}
                 <a
-                  href={`mailto:${LOGIN_COPY.corporate.supportEmail}`}
+                  href={`mailto:${LOGIN_LINKS.corporateSupportEmail}`}
                   className="login-link"
                 >
-                  {LOGIN_COPY.corporate.supportEmail}
+                  {LOGIN_LINKS.corporateSupportEmail}
                 </a>
               </p>
             )}
 
             {loginType === "agencies" && (
               <p className="login-support">
-                {LOGIN_COPY.agencies.supportPrefix}{" "}
+                {t(ONBOARDING_LABEL.LOGIN_AGENCIES_SUPPORT_PREFIX)}{" "}
                 <a
-                  href={`mailto:${LOGIN_COPY.agencies.supportEmail}`}
+                  href={`mailto:${LOGIN_LINKS.agenciesSupportEmail}`}
                   className="login-link"
                 >
-                  {LOGIN_COPY.agencies.supportEmail}
+                  {LOGIN_LINKS.agenciesSupportEmail}
                 </a>
               </p>
             )}
@@ -162,25 +176,25 @@ export function LoginForm() {
             <div className="login-signup">
               {loginType === "member" && (
                 <p>
-                  {LOGIN_COPY.memberSignup.prefix}{" "}
-                  <a href={LOGIN_COPY.memberSignup.href} className="login-link">
-                    {LOGIN_COPY.memberSignup.linkLabel}
-                  </a>
+                  {t(ONBOARDING_LABEL.LOGIN_MEMBER_SIGNUP_PREFIX)}{" "}
+                  <Link href={LOGIN_LINKS.memberSignupHref} className="login-link">
+                    {t(ONBOARDING_LABEL.LOGIN_MEMBER_SIGNUP_LINK)}
+                  </Link>
                 </p>
               )}
 
               {loginType === "corporate" && (
-                <a href={LOGIN_COPY.corporate.signupHref} className="login-signup__cta">
+                <Link href={LOGIN_LINKS.corporateSignupHref} className="login-signup__cta">
                   <EditIcon className="login-signup__icon" />
-                  {LOGIN_COPY.corporate.signupLabel}
-                </a>
+                  {t(ONBOARDING_LABEL.LOGIN_CORPORATE_SIGNUP)}
+                </Link>
               )}
 
               {loginType === "agencies" && (
-                <a href={LOGIN_COPY.agencies.signupHref} className="login-signup__cta">
+                <Link href={LOGIN_LINKS.agenciesSignupHref} className="login-signup__cta">
                   <EditIcon className="login-signup__icon" />
-                  {LOGIN_COPY.agencies.signupLabel}
-                </a>
+                  {t(ONBOARDING_LABEL.LOGIN_AGENCIES_SIGNUP)}
+                </Link>
               )}
             </div>
           </form>

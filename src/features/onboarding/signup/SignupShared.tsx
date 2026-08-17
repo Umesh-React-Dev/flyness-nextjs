@@ -2,25 +2,56 @@
 
 import Link from "next/link";
 import { FormEvent, ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import AgentTitleIcon from "@/assets/icons/AgentTitleIcon";
 import RequiredIcon from "@/assets/icons/RequiredIcon";
 import UploadIcon from "@/assets/icons/UploadIcon";
-import {
-  SIGNUP_COMMON,
-  SIGNUP_OPTIONS,
-} from "@/jsonStaticData/onboardingData";
+import { ONBOARDING_LABEL } from "@/i18n/constants/onboarding.constant";
+import { SIGNUP_LINKS, SIGNUP_OPTION_VALUES } from "@/jsonStaticData/onboardingData";
 
 export const DAYS = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, "0"));
-export const MONTHS = SIGNUP_OPTIONS.months;
 export const YEARS = Array.from({ length: 100 }, (_, i) => String(new Date().getFullYear() - i));
 
-export const TITLES = SIGNUP_OPTIONS.titles;
-export const NATIONALITIES = SIGNUP_OPTIONS.nationalities;
-export const DOCUMENT_TYPES = SIGNUP_OPTIONS.documentTypes;
-export const COUNTRY_CODES = SIGNUP_OPTIONS.countryCodes;
-export const CURRENCIES = SIGNUP_OPTIONS.currencies;
-export const LANGUAGES = SIGNUP_OPTIONS.languages;
-export const DESTINATIONS = SIGNUP_OPTIONS.destinations;
+export const TITLE_VALUES = SIGNUP_OPTION_VALUES.titles;
+export const NATIONALITY_VALUES = SIGNUP_OPTION_VALUES.nationalities;
+export const DOCUMENT_TYPE_VALUES = SIGNUP_OPTION_VALUES.documentTypes;
+export const COUNTRY_CODE_VALUES = SIGNUP_OPTION_VALUES.countryCodes;
+export const CURRENCY_VALUES = SIGNUP_OPTION_VALUES.currencies;
+export const LANGUAGE_VALUES = SIGNUP_OPTION_VALUES.languages;
+export const DESTINATION_VALUES = SIGNUP_OPTION_VALUES.destinations;
+
+export function useSignupOptions() {
+  const { t } = useTranslation("onboarding");
+
+  const asList = (key: string, fallback: string[]) => {
+    const value = t(key, { returnObjects: true });
+    return Array.isArray(value) ? (value as string[]) : fallback;
+  };
+
+  return {
+    titles: asList(ONBOARDING_LABEL.OPTIONS_TITLES, TITLE_VALUES),
+    nationalities: asList(ONBOARDING_LABEL.OPTIONS_NATIONALITIES, NATIONALITY_VALUES),
+    documentTypes: asList(ONBOARDING_LABEL.OPTIONS_DOCUMENT_TYPES, DOCUMENT_TYPE_VALUES),
+    countryCodes: asList(ONBOARDING_LABEL.OPTIONS_COUNTRY_CODES, COUNTRY_CODE_VALUES),
+    months: asList(ONBOARDING_LABEL.OPTIONS_MONTHS, [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ]),
+    currencies: asList(ONBOARDING_LABEL.OPTIONS_CURRENCIES, CURRENCY_VALUES),
+    languages: asList(ONBOARDING_LABEL.OPTIONS_LANGUAGES, LANGUAGE_VALUES),
+    destinations: asList(ONBOARDING_LABEL.OPTIONS_DESTINATIONS, DESTINATION_VALUES),
+  };
+}
 
 type FieldProps = {
   label: string;
@@ -44,11 +75,14 @@ export function Field({ label, required, hint, className = "", children }: Field
 }
 
 export function RecaptchaPlaceholder() {
+  const { t } = useTranslation("onboarding");
+  const label = t(ONBOARDING_LABEL.SIGNUP_CAPTCHA);
+
   return (
     <div className="signup-recaptcha" role="presentation">
       <label className="signup-recaptcha__check">
-        <input type="checkbox" aria-label={SIGNUP_COMMON.captchaLabel} />
-        <span>{SIGNUP_COMMON.captchaLabel}</span>
+        <input type="checkbox" aria-label={label} />
+        <span>{label}</span>
       </label>
       <div className="signup-recaptcha__brand">
         <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -71,10 +105,12 @@ export function RecaptchaPlaceholder() {
 }
 
 export function UploadDocumentButton() {
+  const { t } = useTranslation("onboarding");
+
   return (
     <button type="button" className="signup-upload">
       <UploadIcon />
-      {SIGNUP_COMMON.uploadDocument}
+      {t(ONBOARDING_LABEL.SIGNUP_UPLOAD_DOCUMENT)}
     </button>
   );
 }
@@ -94,6 +130,8 @@ export function SignupShell({
   children,
   onSubmit,
 }: SignupShellProps) {
+  const { t } = useTranslation("onboarding");
+
   return (
     <main className="signup-main">
       {title ? (
@@ -106,7 +144,7 @@ export function SignupShell({
       {showRequiredNote ? (
         <p className="signup-required-note">
           <RequiredIcon />
-          {SIGNUP_COMMON.requiredNote}
+          {t(ONBOARDING_LABEL.SIGNUP_REQUIRED_NOTE)}
         </p>
       ) : null}
 
@@ -121,14 +159,16 @@ type FormActionsProps = {
   backHref?: string;
 };
 
-export function FormActions({ backHref = SIGNUP_COMMON.backHref }: FormActionsProps) {
+export function FormActions({ backHref = SIGNUP_LINKS.backHref }: FormActionsProps) {
+  const { t } = useTranslation("onboarding");
+
   return (
     <div className="signup-actions">
       <Link href={backHref} className="signup-btn signup-btn--back">
-        {SIGNUP_COMMON.back}
+        {t(ONBOARDING_LABEL.SIGNUP_BACK)}
       </Link>
       <button type="submit" className="signup-btn signup-btn--register">
-        {SIGNUP_COMMON.register}
+        {t(ONBOARDING_LABEL.SIGNUP_REGISTER)}
       </button>
     </div>
   );

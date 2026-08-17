@@ -1,44 +1,49 @@
 "use client";
 
 import { FormEvent } from "react";
+import { useTranslation } from "react-i18next";
 import {
-  CURRENCIES,
+  CURRENCY_VALUES,
   Field,
   FormActions,
-  LANGUAGES,
+  LANGUAGE_VALUES,
   RecaptchaPlaceholder,
   SignupShell,
-  TITLES,
+  TITLE_VALUES,
+  useSignupOptions,
 } from "./SignupShared";
-import { AGENCIES_SIGNUP } from "@/jsonStaticData/onboardingData";
+import { ONBOARDING_LABEL } from "@/i18n/constants/onboarding.constant";
+import { SIGNUP_LINKS } from "@/jsonStaticData/onboardingData";
 
 export function AgenciesSignupForm() {
-  const { fields, sections, conditions, title } = AGENCIES_SIGNUP;
+  const { t } = useTranslation("onboarding");
+  const options = useSignupOptions();
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
 
   return (
-    <SignupShell title={title} showAgentIcon onSubmit={handleSubmit}>
+    <SignupShell
+      title={t(ONBOARDING_LABEL.AGENCIES_TITLE)}
+      showAgentIcon
+      onSubmit={handleSubmit}
+    >
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">{sections.organizationDetails}</h2>
+          <h2 className="signup-card__title">{t(ONBOARDING_LABEL.AGENCIES_SECTION_ORG)}</h2>
         </div>
         <div className="signup-grid signup-grid--4">
-          <Field
-            label={fields.organizationCode.label}
-            required={fields.organizationCode.required}
-          >
+          <Field label={t(ONBOARDING_LABEL.FIELD_ORGANIZATION_CODE)} required>
             <input className="signup-input" type="text" name="organizationCode" />
           </Field>
-          <Field label={fields.agentId.label} required={fields.agentId.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_AGENT_ID)} required>
             <input className="signup-input" type="text" name="agentId" />
           </Field>
           <Field
-            label={fields.password.label}
-            required={fields.password.required}
-            hint={fields.password.hint}
+            label={t(ONBOARDING_LABEL.FIELD_PASSWORD)}
+            required
+            hint={t(ONBOARDING_LABEL.FIELD_PASSWORD_HINT_GENERIC)}
           >
             <input
               className="signup-input"
@@ -48,9 +53,9 @@ export function AgenciesSignupForm() {
             />
           </Field>
           <Field
-            label={fields.confirmPassword.label}
-            required={fields.confirmPassword.required}
-            hint={fields.confirmPassword.hint}
+            label={t(ONBOARDING_LABEL.FIELD_CONFIRM_PASSWORD)}
+            required
+            hint={t(ONBOARDING_LABEL.FIELD_CONFIRM_PASSWORD_HINT_GENERIC)}
           >
             <input
               className="signup-input"
@@ -64,26 +69,26 @@ export function AgenciesSignupForm() {
 
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">{sections.contactDetails}</h2>
+          <h2 className="signup-card__title">{t(ONBOARDING_LABEL.AGENCIES_SECTION_CONTACT)}</h2>
         </div>
 
         <div className="signup-grid signup-grid--4" style={{ marginBottom: "1.1rem" }}>
-          <Field label={fields.title.label} required={fields.title.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_TITLE)} required>
             <select className="signup-select" name="title" defaultValue="">
               <option value="" disabled>
-                {fields.title.placeholder}
+                {t(ONBOARDING_LABEL.FIELD_TITLE_PLACEHOLDER)}
               </option>
-              {TITLES.map((item) => (
-                <option key={item} value={item}>
-                  {item}
+              {TITLE_VALUES.map((value, index) => (
+                <option key={value} value={value}>
+                  {options.titles[index] ?? value}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label={fields.firstName.label} required={fields.firstName.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_FIRST_NAME)} required>
             <input className="signup-input" type="text" name="firstName" autoComplete="given-name" />
           </Field>
-          <Field label={fields.middleName.label}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_MIDDLE_NAME)}>
             <input
               className="signup-input"
               type="text"
@@ -91,46 +96,46 @@ export function AgenciesSignupForm() {
               autoComplete="additional-name"
             />
           </Field>
-          <Field label={fields.lastName.label} required={fields.lastName.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_LAST_NAME)} required>
             <input className="signup-input" type="text" name="lastName" autoComplete="family-name" />
           </Field>
         </div>
 
         <div className="signup-grid signup-grid--4" style={{ marginBottom: "1.1rem" }}>
-          <Field label={fields.currency.label} required={fields.currency.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_CURRENCY)} required>
             <select className="signup-select" name="currency" defaultValue="Saudi Riyal">
-              {CURRENCIES.map((item) => (
-                <option key={item} value={item}>
-                  {item}
+              {CURRENCY_VALUES.map((value, index) => (
+                <option key={value} value={value}>
+                  {options.currencies[index] ?? value}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label={fields.language.label} required={fields.language.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_LANGUAGE)} required>
             <select className="signup-select" name="language" defaultValue="English">
-              {LANGUAGES.map((item) => (
-                <option key={item} value={item}>
-                  {item}
+              {LANGUAGE_VALUES.map((value, index) => (
+                <option key={value} value={value}>
+                  {options.languages[index] ?? value}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label={fields.email.label} required={fields.email.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_EMAIL)} required>
             <input className="signup-input" type="email" name="email" autoComplete="email" />
           </Field>
-          <Field label={fields.eveningPhone.label} required={fields.eveningPhone.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_EVENING_PHONE)} required>
             <input className="signup-input" type="tel" name="eveningPhone" />
           </Field>
         </div>
 
         <div className="signup-grid signup-grid--4">
-          <Field label={fields.contactPhone.label} required={fields.contactPhone.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_CONTACT_PHONE)} required>
             <input className="signup-input" type="tel" name="contactPhone" />
           </Field>
-          <Field label={fields.mobilePhone.label} required={fields.mobilePhone.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_MOBILE_PHONE)} required>
             <input className="signup-input" type="tel" name="mobilePhone" autoComplete="tel" />
           </Field>
-          <Field label={fields.fax.label} required={fields.fax.required}>
+          <Field label={t(ONBOARDING_LABEL.FIELD_FAX)} required>
             <input className="signup-input" type="tel" name="fax" />
           </Field>
         </div>
@@ -139,9 +144,9 @@ export function AgenciesSignupForm() {
       <label className="signup-check" style={{ margin: "1rem 0" }}>
         <input type="checkbox" name="acceptConditions" />
         <span>
-          {conditions.prefix}{" "}
-          <a href={conditions.href} className="signup-link">
-            {conditions.linkLabel}
+          {t(ONBOARDING_LABEL.AGENCIES_CONDITIONS_PREFIX)}{" "}
+          <a href={SIGNUP_LINKS.conditionsHref} className="signup-link">
+            {t(ONBOARDING_LABEL.AGENCIES_CONDITIONS_LINK)}
           </a>
         </span>
       </label>

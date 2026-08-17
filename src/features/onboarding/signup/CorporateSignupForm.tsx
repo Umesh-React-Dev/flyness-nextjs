@@ -1,22 +1,27 @@
 "use client";
 
 import { FormEvent } from "react";
+import { useTranslation } from "react-i18next";
 import {
-  COUNTRY_CODES,
+  COUNTRY_CODE_VALUES,
   DAYS,
-  DOCUMENT_TYPES,
+  DOCUMENT_TYPE_VALUES,
   Field,
   FormActions,
-  MONTHS,
-  NATIONALITIES,
+  NATIONALITY_VALUES,
   RecaptchaPlaceholder,
   SignupShell,
-  TITLES,
+  TITLE_VALUES,
   UploadDocumentButton,
+  useSignupOptions,
   YEARS,
 } from "./SignupShared";
+import { ONBOARDING_LABEL } from "@/i18n/constants/onboarding.constant";
 
 export function CorporateSignupForm() {
+  const { t } = useTranslation("onboarding");
+  const options = useSignupOptions();
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
@@ -25,20 +30,20 @@ export function CorporateSignupForm() {
     <SignupShell showRequiredNote onSubmit={handleSubmit}>
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Your login details</h2>
+          <h2 className="signup-card__title">{t(ONBOARDING_LABEL.CORPORATE_SECTION_LOGIN)}</h2>
         </div>
         <div className="signup-grid signup-grid--3">
           <Field
-            label="User Email"
+            label={t(ONBOARDING_LABEL.FIELD_USER_EMAIL)}
             required
-            hint="Please enter your valid corporate email address as your username (e.g. lg@corporatedomain.com)"
+            hint={t(ONBOARDING_LABEL.FIELD_USER_EMAIL_HINT_CORPORATE)}
           >
             <input className="signup-input" type="email" name="email" autoComplete="email" />
           </Field>
           <Field
-            label="Password"
+            label={t(ONBOARDING_LABEL.FIELD_PASSWORD)}
             required
-            hint="Your password can comprise letters, numbers or special characters"
+            hint={t(ONBOARDING_LABEL.FIELD_PASSWORD_HINT_GENERIC)}
           >
             <input
               className="signup-input"
@@ -48,9 +53,9 @@ export function CorporateSignupForm() {
             />
           </Field>
           <Field
-            label="Confirm password"
+            label={t(ONBOARDING_LABEL.FIELD_CONFIRM_PASSWORD)}
             required
-            hint="Your password can comprise letters, numbers or special characters"
+            hint={t(ONBOARDING_LABEL.FIELD_CONFIRM_PASSWORD_HINT_GENERIC)}
           >
             <input
               className="signup-input"
@@ -64,34 +69,38 @@ export function CorporateSignupForm() {
 
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Passenger and Document details</h2>
+          <h2 className="signup-card__title">{t(ONBOARDING_LABEL.CORPORATE_SECTION_PASSENGER)}</h2>
           <UploadDocumentButton />
         </div>
 
         <div className="signup-grid signup-grid--4" style={{ marginBottom: "1.1rem" }}>
-          <Field label="Title" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_TITLE)} required>
             <select className="signup-select" name="title" defaultValue="">
               <option value="" disabled>
-                Title
+                {t(ONBOARDING_LABEL.FIELD_TITLE_PLACEHOLDER)}
               </option>
-              {TITLES.map((title) => (
-                <option key={title} value={title}>
-                  {title}
+              {TITLE_VALUES.map((value, index) => (
+                <option key={value} value={value}>
+                  {options.titles[index] ?? value}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="First name" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_FIRST_NAME)} required>
             <input className="signup-input" type="text" name="firstName" autoComplete="given-name" />
           </Field>
-          <Field label="Last name" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_LAST_NAME)} required>
             <input className="signup-input" type="text" name="lastName" autoComplete="family-name" />
           </Field>
-          <Field label="Date of birth (Gregorian)" required className="signup-field--dob">
+          <Field
+            label={t(ONBOARDING_LABEL.FIELD_DOB)}
+            required
+            className="signup-field--dob"
+          >
             <div className="signup-dob">
               <select className="signup-select" name="dobDay" defaultValue="" aria-label="Day">
                 <option value="" disabled>
-                  DD
+                  {t(ONBOARDING_LABEL.FIELD_DOB_DAY)}
                 </option>
                 {DAYS.map((day) => (
                   <option key={day} value={day}>
@@ -101,9 +110,9 @@ export function CorporateSignupForm() {
               </select>
               <select className="signup-select" name="dobMonth" defaultValue="" aria-label="Month">
                 <option value="" disabled>
-                  MONTH
+                  {t(ONBOARDING_LABEL.FIELD_DOB_MONTH)}
                 </option>
-                {MONTHS.map((month, index) => (
+                {options.months.map((month, index) => (
                   <option key={month} value={String(index + 1)}>
                     {month}
                   </option>
@@ -111,7 +120,7 @@ export function CorporateSignupForm() {
               </select>
               <select className="signup-select" name="dobYear" defaultValue="" aria-label="Year">
                 <option value="" disabled>
-                  YYYY
+                  {t(ONBOARDING_LABEL.FIELD_DOB_YEAR)}
                 </option>
                 {YEARS.map((year) => (
                   <option key={year} value={year}>
@@ -124,28 +133,28 @@ export function CorporateSignupForm() {
         </div>
 
         <div className="signup-grid signup-grid--3">
-          <Field label="Nationality" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_NATIONALITY)} required>
             <select className="signup-select" name="nationality" defaultValue="Saudi Arabia">
-              {NATIONALITIES.map((item) => (
-                <option key={item} value={item}>
-                  {item}
+              {NATIONALITY_VALUES.map((value, index) => (
+                <option key={value} value={value}>
+                  {options.nationalities[index] ?? value}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="Document type" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_DOCUMENT_TYPE)} required>
             <select className="signup-select" name="documentType" defaultValue="">
               <option value="" disabled>
-                Document type
+                {t(ONBOARDING_LABEL.FIELD_DOCUMENT_TYPE_PLACEHOLDER)}
               </option>
-              {DOCUMENT_TYPES.map((item) => (
-                <option key={item} value={item}>
-                  {item}
+              {DOCUMENT_TYPE_VALUES.map((value, index) => (
+                <option key={value} value={value}>
+                  {options.documentTypes[index] ?? value}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="Document number" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_DOCUMENT_NUMBER)} required>
             <input className="signup-input" type="text" name="documentNumber" />
           </Field>
         </div>
@@ -153,27 +162,31 @@ export function CorporateSignupForm() {
 
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Contact details</h2>
+          <h2 className="signup-card__title">{t(ONBOARDING_LABEL.CORPORATE_SECTION_CONTACT)}</h2>
         </div>
         <div className="signup-grid signup-grid--2" style={{ marginBottom: "1.1rem" }}>
-          <Field label="Country code" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_COUNTRY_CODE)} required>
             <select className="signup-select" name="countryCode" defaultValue="Saudi Arabia(+966)">
-              {COUNTRY_CODES.map((item) => (
-                <option key={item} value={item}>
-                  {item}
+              {COUNTRY_CODE_VALUES.map((value, index) => (
+                <option key={value} value={value}>
+                  {options.countryCodes[index] ?? value}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="Mobile" required hint="e.g. 920001234">
+          <Field
+            label={t(ONBOARDING_LABEL.FIELD_MOBILE)}
+            required
+            hint={t(ONBOARDING_LABEL.FIELD_MOBILE_HINT)}
+          >
             <input className="signup-input" type="tel" name="mobile" autoComplete="tel" />
           </Field>
         </div>
         <div className="signup-grid signup-grid--2">
-          <Field label="Email" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_EMAIL)} required>
             <input className="signup-input" type="email" name="contactEmail" autoComplete="email" />
           </Field>
-          <Field label="Confirm email" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_CONFIRM_EMAIL)} required>
             <input className="signup-input" type="email" name="confirmEmail" autoComplete="email" />
           </Field>
         </div>

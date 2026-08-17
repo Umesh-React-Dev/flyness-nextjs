@@ -1,12 +1,19 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type ComponentType } from "react";
+import { useTranslation } from "react-i18next";
 import FlagRu from "@/assets/icons/FlagRu";
 import FlagSa from "@/assets/icons/FlagSa";
 import FlagUk from "@/assets/icons/FlagUk";
+import {
+  normalizeLanguage,
+  setAppLanguage,
+  type SupportedLanguage,
+} from "@/i18n/i18n";
+import { ONBOARDING_LABEL } from "@/i18n/constants/onboarding.constant";
 import "@/styles/language-select.scss";
 
-export type LanguageCode = "en" | "ar" | "ru";
+export type LanguageCode = SupportedLanguage;
 
 export type LanguageOption = {
   code: LanguageCode;
@@ -22,27 +29,21 @@ export const DEFAULT_LANGUAGES: LanguageOption[] = [
 
 type LanguageSelectProps = {
   languages?: LanguageOption[];
-  value?: LanguageCode;
-  defaultValue?: LanguageCode;
-  onChange?: (code: LanguageCode) => void;
   className?: string;
 };
 
 export function LanguageSelect({
   languages = DEFAULT_LANGUAGES,
-  value,
-  defaultValue = "en",
-  onChange,
   className = "",
 }: LanguageSelectProps) {
+  const { t, i18n } = useTranslation("onboarding");
   const [open, setOpen] = useState(false);
-  const [internalValue, setInternalValue] = useState<LanguageCode>(defaultValue);
   const rootRef = useRef<HTMLDivElement>(null);
   const listId = useId();
 
-  const selectedCode = value ?? internalValue;
+  const activeCode = normalizeLanguage(i18n.resolvedLanguage ?? i18n.language);
   const selected =
-    languages.find((language) => language.code === selectedCode) ?? languages[0];
+    languages.find((language) => language.code === activeCode) ?? languages[0];
 
   useEffect(() => {
     if (!open) return;
@@ -69,10 +70,7 @@ export function LanguageSelect({
   }, [open]);
 
   function selectLanguage(code: LanguageCode) {
-    if (value === undefined) {
-      setInternalValue(code);
-    }
-    onChange?.(code);
+    void setAppLanguage(code);
     setOpen(false);
   }
 
@@ -101,7 +99,7 @@ export function LanguageSelect({
           id={listId}
           className="language-select__menu"
           role="listbox"
-          aria-label="Select language"
+          aria-label={t(ONBOARDING_LABEL.LANGUAGE_SELECT_ARIA)}
         >
           {languages.map((language) => {
             const isActive = language.code === selected.code;

@@ -1,39 +1,49 @@
 "use client";
 
 import { FormEvent } from "react";
+import { useTranslation } from "react-i18next";
 import {
+  CURRENCY_VALUES,
   Field,
   FormActions,
+  LANGUAGE_VALUES,
   RecaptchaPlaceholder,
   SignupShell,
-  TITLES,
+  TITLE_VALUES,
+  useSignupOptions,
 } from "./SignupShared";
-
-const CURRENCIES = ["Saudi Riyal", "US Dollar", "Euro", "UAE Dirham"];
-const LANGUAGES = ["English", "Arabic", "Russian"];
+import { ONBOARDING_LABEL } from "@/i18n/constants/onboarding.constant";
+import { SIGNUP_LINKS } from "@/jsonStaticData/onboardingData";
 
 export function AgenciesSignupForm() {
+  const { t } = useTranslation("onboarding");
+  const options = useSignupOptions();
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
 
   return (
-    <SignupShell title="Agent Register" showAgentIcon onSubmit={handleSubmit}>
+    <SignupShell
+      title={t(ONBOARDING_LABEL.AGENCIES_TITLE)}
+      showAgentIcon
+      onSubmit={handleSubmit}
+    >
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Organization Details</h2>
+          <h2 className="signup-card__title">{t(ONBOARDING_LABEL.AGENCIES_SECTION_ORG)}</h2>
         </div>
         <div className="signup-grid signup-grid--4">
-          <Field label="Organization Code" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_ORGANIZATION_CODE)} required>
             <input className="signup-input" type="text" name="organizationCode" />
           </Field>
-          <Field label="Agent ID" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_AGENT_ID)} required>
             <input className="signup-input" type="text" name="agentId" />
           </Field>
           <Field
-            label="Password"
+            label={t(ONBOARDING_LABEL.FIELD_PASSWORD)}
             required
-            hint="Your password can comprise letters, numbers or special characters"
+            hint={t(ONBOARDING_LABEL.FIELD_PASSWORD_HINT_GENERIC)}
           >
             <input
               className="signup-input"
@@ -43,9 +53,9 @@ export function AgenciesSignupForm() {
             />
           </Field>
           <Field
-            label="Confirm password"
+            label={t(ONBOARDING_LABEL.FIELD_CONFIRM_PASSWORD)}
             required
-            hint="Your password can comprise letters, numbers or special characters"
+            hint={t(ONBOARDING_LABEL.FIELD_CONFIRM_PASSWORD_HINT_GENERIC)}
           >
             <input
               className="signup-input"
@@ -59,68 +69,73 @@ export function AgenciesSignupForm() {
 
       <section className="signup-card">
         <div className="signup-card__head">
-          <h2 className="signup-card__title">Contact Details</h2>
+          <h2 className="signup-card__title">{t(ONBOARDING_LABEL.AGENCIES_SECTION_CONTACT)}</h2>
         </div>
 
         <div className="signup-grid signup-grid--4" style={{ marginBottom: "1.1rem" }}>
-          <Field label="Title" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_TITLE)} required>
             <select className="signup-select" name="title" defaultValue="">
               <option value="" disabled>
-                Title
+                {t(ONBOARDING_LABEL.FIELD_TITLE_PLACEHOLDER)}
               </option>
-              {TITLES.map((title) => (
-                <option key={title} value={title}>
-                  {title}
+              {TITLE_VALUES.map((value, index) => (
+                <option key={value} value={value}>
+                  {options.titles[index] ?? value}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="First name" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_FIRST_NAME)} required>
             <input className="signup-input" type="text" name="firstName" autoComplete="given-name" />
           </Field>
-          <Field label="Middle name">
-            <input className="signup-input" type="text" name="middleName" autoComplete="additional-name" />
+          <Field label={t(ONBOARDING_LABEL.FIELD_MIDDLE_NAME)}>
+            <input
+              className="signup-input"
+              type="text"
+              name="middleName"
+              autoComplete="additional-name"
+            />
           </Field>
-          <Field label="Last name" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_LAST_NAME)} required>
             <input className="signup-input" type="text" name="lastName" autoComplete="family-name" />
           </Field>
         </div>
 
         <div className="signup-grid signup-grid--4" style={{ marginBottom: "1.1rem" }}>
-          <Field label="Currency" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_CURRENCY)} required>
             <select className="signup-select" name="currency" defaultValue="Saudi Riyal">
-              {CURRENCIES.map((item) => (
-                <option key={item} value={item}>
-                  {item}
+              {CURRENCY_VALUES.map((value, index) => (
+                <option key={value} value={value}>
+                  {options.currencies[index] ?? value}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="Language" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_LANGUAGE)} required>
             <select className="signup-select" name="language" defaultValue="English">
-              {LANGUAGES.map((item) => (
-                <option key={item} value={item}>
-                  {item}
+              {LANGUAGE_VALUES.map((value, index) => (
+                <option key={value} value={value}>
+                  {options.languages[index] ?? value}
                 </option>
               ))}
             </select>
           </Field>
-          <Field label="Email" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_EMAIL)} required>
             <input className="signup-input" type="email" name="email" autoComplete="email" />
           </Field>
-          <Field label="Evening Phone" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_EVENING_PHONE)} required>
             <input className="signup-input" type="tel" name="eveningPhone" />
           </Field>
         </div>
 
         <div className="signup-grid signup-grid--4">
-          <Field label="Contact Phone" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_CONTACT_PHONE)} required>
             <input className="signup-input" type="tel" name="contactPhone" />
           </Field>
-          <Field label="Mobile Phone" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_MOBILE_PHONE)} required>
             <input className="signup-input" type="tel" name="mobilePhone" autoComplete="tel" />
           </Field>
-          <Field label="Fax" required>
+          <Field label={t(ONBOARDING_LABEL.FIELD_FAX)} required>
             <input className="signup-input" type="tel" name="fax" />
           </Field>
         </div>
@@ -129,9 +144,9 @@ export function AgenciesSignupForm() {
       <label className="signup-check" style={{ margin: "1rem 0" }}>
         <input type="checkbox" name="acceptConditions" />
         <span>
-          I have read and understood and accept the{" "}
-          <a href="#" className="signup-link">
-            Conditions of carriage
+          {t(ONBOARDING_LABEL.AGENCIES_CONDITIONS_PREFIX)}{" "}
+          <a href={SIGNUP_LINKS.conditionsHref} className="signup-link">
+            {t(ONBOARDING_LABEL.AGENCIES_CONDITIONS_LINK)}
           </a>
         </span>
       </label>

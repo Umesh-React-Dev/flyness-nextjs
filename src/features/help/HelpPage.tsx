@@ -9,7 +9,7 @@ import iconArrowPink from "@/assets/images/help/icon-arrow-pink.svg";
 import iconCase from "@/assets/images/help/icon-case.svg";
 import iconEmail from "@/assets/images/help/icon-email.svg";
 import iconTrackArrow from "@/assets/images/help/icon-track-arrow.svg";
-import iconChevron from "@/assets/images/help/icon-chevron.svg";
+import HelpFaq from "@/components/help/HelpFaq";
 import { HELP_CATEGORIES, HELP_FAQS } from "@/jsonStaticData/helpData";
 import { HELP_LABEL } from "@/i18n/constants/help.constant";
 import { useTranslation } from "react-i18next";
@@ -21,16 +21,9 @@ export default function HelpPage() {
   const { t } = useTranslation("help");
   const [trackMode, setTrackMode] = useState<TrackMode>("email");
   const [trackValue, setTrackValue] = useState("");
-  const [openFaqId, setOpenFaqId] = useState<string | null>(
-    HELP_FAQS[0]?.id ?? null,
-  );
 
   const handleTrackSubmit = (event: FormEvent) => {
     event.preventDefault();
-  };
-
-  const toggleFaq = (id: string) => {
-    setOpenFaqId((current) => (current === id ? null : id));
   };
 
   return (
@@ -193,70 +186,21 @@ export default function HelpPage() {
             </ul>
           </section>
 
-          <section className="helpFaq" aria-labelledby="help-faq-title">
-            <h2 id="help-faq-title" className="helpFaq__title">
-              {t(HELP_LABEL.FAQ_TITLE)}
-            </h2>
+          <HelpFaq
+            title={t(HELP_LABEL.FAQ_TITLE)}
+            items={HELP_FAQS.map((faq) => {
+              const bullets = t(`faq.items.${faq.id}.bullets`, {
+                returnObjects: true,
+              });
 
-            <div className="helpFaq__list">
-              {HELP_FAQS.map((faq) => {
-                const isOpen = openFaqId === faq.id;
-                const panelId = `faq-panel-${faq.id}`;
-                const buttonId = `faq-button-${faq.id}`;
-
-                return (
-                  <div
-                    key={faq.id}
-                    className={`helpFaq__item${isOpen ? " isOpen" : ""}`}
-                  >
-                    <h3 className="helpFaq__question">
-                      <button
-                        type="button"
-                        id={buttonId}
-                        className="helpFaq__trigger"
-                        aria-expanded={isOpen}
-                        aria-controls={panelId}
-                        onClick={() => toggleFaq(faq.id)}
-                      >
-                        <span>{t(`faq.items.${faq.id}.question`)}</span>
-                        <span className="helpFaq__chevron" aria-hidden="true">
-                          <Image
-                            src={iconChevron}
-                            alt=""
-                            width={16}
-                            height={16}
-                          />
-                        </span>
-                      </button>
-                    </h3>
-
-                    <div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={buttonId}
-                      className="helpFaq__panel"
-                    >
-                      <p className="helpFaq__answer">
-                        {t(`faq.items.${faq.id}.answer`)}
-                      </p>
-                      {(() => {
-                        const bullets = t(`faq.items.${faq.id}.bullets`, {
-                          returnObjects: true,
-                        });
-                        return Array.isArray(bullets) ? (
-                          <ul className="helpFaq__bullets">
-                            {(bullets as string[]).map((bullet) => (
-                              <li key={bullet}>{bullet}</li>
-                            ))}
-                          </ul>
-                        ) : null;
-                      })()}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
+              return {
+                id: faq.id,
+                question: t(`faq.items.${faq.id}.question`),
+                answer: t(`faq.items.${faq.id}.answer`),
+                bullets: Array.isArray(bullets) ? (bullets as string[]) : undefined,
+              };
+            })}
+          />
         </div>
       </div>
     </div>

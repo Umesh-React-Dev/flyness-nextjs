@@ -1,0 +1,77 @@
+@use "../../styles/variables" as *;
+
+$help-muted: #4b5563;
+$help-title: #111827;
+
+.helpVoucherDetails {
+  .helpForm {
+    gap: 16px;
+  }
+
+  .helpForm__grid {
+    gap: 16px;
+  }
+
+  .helpForm__headerTitle {
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -0.75px;
+  }
+
+  .helpForm__headerDescription {
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 448px;
+  }
+
+  &__balance {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.helpVoucherTerms {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__heading {
+    margin: 0;
+    font-family: "Flynas-Medium", $font-family;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    color: $help-title;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding-left: 24px;
+    font-size: 14px;
+    line-height: 22.75px;
+    color: $help-muted;
+
+    p {
+      margin: 0;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin: 8px 0 0;
+      padding-left: 24px;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .helpVoucherDetails .helpForm__headerTitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}

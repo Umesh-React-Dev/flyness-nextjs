@@ -158,6 +158,32 @@
       }
     }
   },
+  "baggage": {
+    "hero": {
+      "title": "Baggage Services",
+      "subtitle": "Manage your baggage-related requests and get support"
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "baggage": "Baggage Services"
+    },
+    "topicsAria": "Baggage service topics",
+    "breadcrumbAria": "Breadcrumb",
+    "topics": {
+      "claim-form": {
+        "title": "Complete the Claim Form",
+        "description": "In just a few simple steps, complete the claim form and we'll ensure your request is processed quickly and efficiently."
+      },
+      "claim-tracking": {
+        "title": "Claim Tracking",
+        "description": "Track your lost, damaged, or delayed baggage claims"
+      },
+      "find-baggage": {
+        "title": "Find My Baggage",
+        "description": "Browse photos of unclaimed baggage we are holding. If you recognise your bag, you can claim it here."
+      }
+    }
+  },
   "footer": {
     "socialTitle": "flynas on Social",
     "socialText": "Get the latest news, travel deals, and support when you need it.",

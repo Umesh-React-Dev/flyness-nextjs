@@ -37,13 +37,13 @@ export const HELP_CATEGORIES: HelpCategory[] = [
   {
     id: "baggage",
     icon: iconBaggage,
-    href: "#",
+    href: "/help/baggage-services",
     tagCount: 2,
   },
   {
     id: "voucher",
     icon: iconVoucher,
-    href: "#",
+    href: "/help/voucher/details",
     featured: true,
   },
 ];
